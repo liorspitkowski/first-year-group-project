@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <script type="text/javascript">
+      function enter() {
+        var username = document.getElementById("i_username").value;
+        var password = document.getElementById("i_password").value;
+        alert("Successfully entered, please click to continue");
+        document.getElementById("o_username").innerHTML = username;
+      }
+    </script>
+  </head>
+  <body>
+    This is the Login Page, where user enter their info and password <br>
+    we checkon whether they are in our database. <br>
+    1 hyperlink:
+    <a href="./index.html">Home</a><br>
+    Enter name: <input type="text" id="i_username"> <br>
+    Enter password: <input type="text" id="i_password"> <br>
+    <button onclick="enter()">Enter</button>
+    <p id="o_username">
+      this is the paragraph that shall display the username.
+
+    </p>
+  </body>
+</html>
