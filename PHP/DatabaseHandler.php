@@ -2,17 +2,19 @@
 
 $host = "dbhost.cs.man.ac.uk";
 $dbname = "2021_comp10120_x18";
+$user = "y66466tl";
+$pass = "SpagetiC0de";
+$conn;
 
 //creates connection object to database
-function connect(String $user, String $pass){
+function connect(){
 
-  global $host, $dbname;
+  global $host, $dbname, $conn, $user, $pass;
 
   try
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-    echo "Connected to $host successfully.";
+    echo "Connected to $host successfully. \n";
     return $conn;
   }
   catch (PDOException $pe)
@@ -21,26 +23,37 @@ function connect(String $user, String $pass){
   }
 }
 
-function createTables($conn){
+//creates connection using specified username and pass for debuging
+function adminConnect(String $user, String $pass){
 
-  $sql = "CREATE TABLE user (
-   userId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-   forename VARCHAR(30) NOT NULL,
-   surname VARCHAR(30) NOT NULL,
-   email VARCHAR(30) NOT NULL,
-   password VARCHAR(128) NOT NULL)";
+  global $host, $dbname, $conn;
 
-   $conn->query($sql);
+  try
+  {
+    $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    echo "Connected to $host successfully. \n";
+    return $conn;
+  }
+  catch (PDOException $pe)
+  {
+    die("Could not connect to $host :" . $pe->getMessage());
+  }
 }
 
-function executeSQL($sql){
+function SQLquery($sql){
 
-  $conn = connect("y66466tl", "SpagetiC0de");
+  global $conn;
+
+  try{
+    $conn->query($sql);
+    echo "SQL query ran successfully \n";
+  }
+  catch (PDOException $pe)
+  {
+    echo "ERROR : SQLquery '$sql' failed to run \n";
+  }
 
 }
-
-$conn = connect("y66466tl", "SpagetiC0de");
-createTables($conn);
-
 
  ?>
