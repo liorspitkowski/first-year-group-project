@@ -1,0 +1,47 @@
+/*index style*/
+html{
+    background-color: honeydew;
+}
+.background_container{
+    background-color: gold;
+    padding-top: 50px;
+    width: 100%;
+    height: 500px;
+}
+.outercontainer{
+    display: inline-block;
+   background-color: gold;
+   height: 500px;
+}
+
+.rightcolumn{
+    float: right;
+    width: 20%;
+    height: auto;
+    padding-left: 0px;
+}
+.leftcolumn{
+    float: left;
+    width: 69%;
+    padding-right: 0px;
+    height: auto;
+}
+.card{
+    padding: 10px;
+}
+.card img{
+    height: auto;
+    width: 100%;
+}
+
+li{
+    list-style: none;
+}
+
+a {
+    font-size: 20px;
+    width: auto;
+    padding: 0px;
+    background-color: gold;
+    display: block;
+}

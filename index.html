@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>
-      Foogle - your personal recipe finder
-    </title>
-    <script>
-      var username = prompt("This is welcome page, please enter your name: ");
-      alert("Hello" + username);
-    </script>
-  </head>
-  <body>
-    This is a welcome page.
-    4 hyperlinks:
-    <a href="./login.html">Login</a>
-    <a href="./guest.html">Guest</a>
-    <a href="./registration.html">Registration</a>
-    <a href="./aboutus.html">About Us</a>
 
-    <!-- the php test hyperlink remained for Ziggy -->
-    <a href="test_connection.php">test connection</a>
+<head>
+  <meta charset="utf-8">
+  <title>
+    Foogle - your personal recipe finder
+  </title>
+  <link rel="stylesheet" href="./index.css">
+  <!--where the js script should be-->
 
-  </body>
+  <script>
+  </script>
+</head>
+
+<body>
+  <!--<p>This is a welcome page.</p>-->
+
+  <div class="outer_container">
+    <div class="leftcolumn">
+      <div class="card">
+        <img src="./src/index_front.jpg" alt="frontimg">
+      </div>
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <!--right side bar for hyperlinks-->
+        <ul>
+          <li><a href="./login.html">Login</a></li>
+          <li><a href="./guest.html">Guest</a></li>
+          <li><a href="./registration.html">Registration</a></li>
+          <li><a href="./aboutus.html">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- the php test hyperlink remained for Ziggy 
+    <a href="test_connection.php">test connection</a>-->
+
+</body>
+
 </html>
