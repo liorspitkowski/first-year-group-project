@@ -17,12 +17,14 @@ html{
 .rightcolumn{
     float: right;
     width: 20%;
+    height: auto;
     padding-left: 0px;
 }
 .leftcolumn{
     float: left;
-    width: 80%;
+    width: 69%;
     padding-right: 0px;
+    height: auto;
 }
 .card{
     padding: 10px;
