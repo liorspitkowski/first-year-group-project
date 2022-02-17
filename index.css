@@ -37,7 +37,8 @@ body{
 
     left:15%;
     top:30%;
-    font-size: 120px;
+
+    font-size: 10vw;
     font-weight: 800;
 }
 .div-title_bg_img{
@@ -65,4 +66,9 @@ body{
     align-items: center; /*horizontal*/
 
     height: 25%;
+}
+.column-2 a{
+    font-size: 32px;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration:none;
 }
