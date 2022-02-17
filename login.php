@@ -4,24 +4,27 @@
   // if a match return confirmation
   // SQL = "SELECT hashed_password FROM users WHERE username = " . $pw;
 
+  // $un = "ziggy112";
+  // $pw = "12345";
+
   require "DatabaseHandler.php";
 
   $conn = connect();
-  $sql = "SELECT password FROM user WHERE username = '" . $pw; . "'";
+  $sql = "SELECT password FROM user WHERE username = '" . $pw . "'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       if ($row["hashed_password"] == $pw) {
-        // return confirmation
+        echo "correct";
       }
       else {
-        // incorect password
+        echo "incorrect password";
       }
     }
   }
   else {
-    // user not found
+    echo "incorrect username";
   }
 
   $conn->close();
