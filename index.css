@@ -17,11 +17,16 @@ body{
    background-color: gold;
    height:100%;
 }
+/* 
+I don't know what this can do but I'll keep it cause
+the initial code I wrote had it. --Hanmin Liu
+
 .row::after{
     content:"";
     clear:both;
     display:table;
 }
+*/
 .column-1{
     float: left;
     height: 100%;
