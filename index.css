@@ -1,0 +1,32 @@
+/*index style*/
+html{
+    background-color: honeydew;
+}
+
+.row{
+   background-color: gold;
+   height: 500px;
+}
+
+.column-1{
+    float: left;
+    width: 80%;
+    height: 100%;
+    padding-left: 0px;
+}
+.column-1 li{
+    height: 25%;
+}
+
+.column-2{
+    float: left;
+    width: 20%;
+    height: 100%;
+    padding-left: 0px;
+}
+
+.row::after{
+    content:"";
+    clear:both;
+    display:table;
+}
