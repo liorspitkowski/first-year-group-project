@@ -10,7 +10,7 @@
   require "DatabaseHandler.php";
 
   $conn = connect();
-  $sql = "SELECT password FROM user WHERE username = '" . $pw . "'";
+  $sql = "SELECT password FROM user WHERE username = '" . $un . "'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
