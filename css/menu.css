@@ -4,6 +4,7 @@ html{
     background-color: honeydew;
 }
 body{
+    margin:0;
     height:98%;
 }
 .topbox{
