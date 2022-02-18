@@ -7,7 +7,7 @@ $pass = "SpagetiC0de";
 $conn;
 
 //creates connection object to database
-function connect(){
+function connect(bool $debug){
 
   global $host, $dbname, $conn, $user, $pass;
 
@@ -15,6 +15,9 @@ function connect(){
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
     echo "Connected to $host successfully. \n";
+    if ($debug){
+      $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    }
     return $conn;
   }
   catch (PDOException $pe)
@@ -56,4 +59,15 @@ function SQLquery($sql){
 
 }
 
+// $sql = "CREATE TABLE ingredients (
+// recipieId INT(6) UNSIGNED,
+// foodId INT(6) UNSIGNED,
+// amount DECIMAL(30),
+// PRIMARY KEY (recipieId, foodId),
+// FOREIGN KEY (recipieId) REFERENCES recipies(recipieId),
+// FOREIGN KEY (foodId) REFERENCES foods(foodId))";
+//
+//
+// connect(true);
+// $conn->query($sql);
  ?>
