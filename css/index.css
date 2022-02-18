@@ -1,0 +1,79 @@
+/*Written and maintained by Hanmin Liu*/
+/*index style*/
+html{
+    height:100%;
+    background-color: honeydew;
+}
+body{
+    height:100%;
+}
+.outer{
+    height:100%;
+    width:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.row{
+   background-color: gold;
+   height:100%;
+}
+/* 
+I don't know what this can do but I'll keep it cause
+the initial code I wrote had it. --Hanmin Liu
+
+.row::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+*/
+.column-1{
+    float: left;
+    height: 100%;
+    width: 80%;
+    padding-left: 0px;
+
+    overflow: hidden;
+}
+.div-title_icon{
+    position: absolute;
+    /*Put it at the top*/
+    z-index: 100;
+
+    left:15%;
+    top:30%;
+
+    font-size: 10vw;
+    font-weight: 800;
+}
+.div-title_bg_img{
+    /*Put it at second*/
+    z-index: 80;
+}
+.column-2{
+    float: left;
+    height: 100%;
+    width: 20%;
+
+    padding-left: 0px;
+    padding-top: 0px;
+}
+.column-2 ul{
+    list-style: none; /*delete circle*/
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height:100%;
+}
+.column-2 li{
+    display: flex; /*use flex to center the inner item*/
+    justify-content: center; /*vertical*/
+    align-items: center; /*horizontal*/
+
+    height: 25%;
+}
+.column-2 a{
+    font-size: 32px;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration:none;
+}

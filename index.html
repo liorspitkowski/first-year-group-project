@@ -1,25 +1,50 @@
+<!--Written and maintained by Hanmin Liu-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>
-      Foogle - your personal recipe finder
-    </title>
-    <script>
-      var username = prompt("This is welcome page, please enter your name: ");
-      alert("Hello" + username);
-    </script>
-  </head>
-  <body>
-    This is a welcome page.
-    4 hyperlinks:
-    <a href="./login.html">Login</a>
-    <a href="./guest.html">Guest</a>
-    <a href="./registration.html">Registration</a>
-    <a href="./aboutus.html">About Us</a>
 
-    <!-- the php test hyperlink remained for Ziggy -->
-    <a href="test_connection.php">test connection</a>
+<head>
+  <meta charset="utf-8">
+  <title>
+    Foogle - your personal recipe finder
+  </title>
+  <link rel="stylesheet" href="./css/index.css">
+  <!--<script type="text/ecmascript">
+    function adjust_img(){
+      document.getElementsByClassName("img_index_front").style.height = "100%"
+    }
+  </script>-->
+</head>
 
-  </body>
+<body>
+    <div class="row">
+      <!--Welcome page left part-->
+      <div class="column-1">
+        
+        <div class="div-title_icon">
+          Foogle
+        </div>
+
+        <div class="div-title_bg_img">
+          
+          <img id="img_index_front" src="./src/index_front.jpg" alt="Food" style="width:100%; ">
+        </div>
+        
+      </div>
+
+      <!--Welcome page right part - side bar-->
+      <div class="column-2">
+        <ul>
+          <li><a href="./html/login.html">Login</a></li>
+          <li><a href="./html/guest.html">Guest</a></li>
+          <li><a href="./html/registration.html">Registration</a></li>
+          <li><a href="./html/aboutus.html">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- the php test hyperlink remained for Ziggy 
+    <a href="test_connection.php">test connection</a>-->
+
+</body>
+
 </html>
