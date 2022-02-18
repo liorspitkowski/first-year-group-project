@@ -3,12 +3,28 @@ html{
     background-color: honeydew;
 }
 body{
-    height:100%;
+    height:98%;
 }
-.row{
+.topbox{
+    height: 10%;
+}
+.title-box{
     height:100%;
+    width:20%;
+    float:left;
+}
+.shopping-list{
+    height:100%;
+    width:10%;
+    float:right;
+}
+
+.row{
+    height:90%;
     width:100%;
 }
+
+
 .column-1{
     height:100%;
     width:50%;
@@ -24,11 +40,15 @@ body{
     float:left;
 }
 .card{
-    /*Shadow*/
+    
     height:100%;
     width:100%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+
+    display: flex; /*use flex to center the inner item*/
+    justify-content: center; /*vertical*/
+    align-items: center; /*horizontal*/
 }
 .card:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -37,4 +57,16 @@ body{
     height:100%;
     width:50%;
     float:left;
+
+    display: flex; /*use flex to center the inner item*/
+    justify-content: center; /*vertical*/
+    align-items: center; /*horizontal*/
+}
+.column-2 p{
+    margin:0;
+    line-height: 100%;
+    text-align: center;
+    font-size: 32px;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration:none;
 }
