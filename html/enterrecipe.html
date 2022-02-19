@@ -1,2 +1,79 @@
-Enter recipe on this page
-Use side bar to go to any page you have been to.
+<!-- Enter recipe on this page
+Use side bar to go to any page you have been to. -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>add recipe</title>
+
+    <script type="text/javascript">
+      function addIngredientFeild(){
+
+        var table = document.getElementById("ingredientTable");
+        var lenTable = table.rows.length;
+        var row = table.insertRow();
+
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+
+        var input1 = document.createElement("input");
+        input1.required = true;
+        input1.type = "text";
+        input1.name = "ingredient" + lenTable;
+        var input2 = document.createElement("input");
+        input2.required = true;
+        input2.type = "number";
+        input2.name = "amount" + lenTable;
+        input2.min = "0";
+        input2.step = "any";
+        var input3 = document.createElement("input");
+        input3.type = "text";
+        input3.name = "unit" + lenTable;
+
+        cell0.innerHTML = lenTable + " : "
+        cell1.appendChild(input1);
+        cell2.appendChild(input2);
+        cell3.appendChild(input3);
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <h1> Enter New Recipe </h1>
+
+    <form class="" action="../PHP/Recipe.php" method="post">
+
+      <p> Recipe Name </p>
+      <input required type="text" id="recipeName" name="recipeName" value="">
+
+      <p> ingredients </p>
+      <table id="ingredientTable">
+        <tr>
+          <th></th>
+          <th>name</th>
+          <th>amount</th>
+          <th>units</th>
+        </tr>
+        <tr>
+          <td>1 : </td>
+          <td><input required type="text" name="ingredient1" value=""></td>
+          <td><input required type="number" name="amount1" min="0" value="" step="any"></td>
+          <td><input type="text" name="unit1" value=""></td>
+        </tr>
+      </table>
+      <button type="button" name="button" onclick="addIngredientFeild()">+</button><br>
+
+      <p>Instructions</p>
+      <textarea name="instructions" rows="8" cols="40"></textarea><br>
+
+      <input type="submit" name="" value="submit">
+      <input type="reset" name="" value="clear">
+
+    </form>
+
+  </body>
+</html>

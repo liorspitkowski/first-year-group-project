@@ -69,7 +69,7 @@ $conn = connect(); // or $conn = connect(false);
 
 $sql = "CREATE table";
 
-//unsecure for user input only use for
+//unsecure for user input only use for sql with not user input
 $conn->query($sql);
 
 //secure way of passing user inputed variable into sql pre-formated statments

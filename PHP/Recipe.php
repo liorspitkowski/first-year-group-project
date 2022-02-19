@@ -4,7 +4,7 @@ require "DatabaseHandler.php";
 
 //add recipe to database in for (String, String[], double[], String[], String)
 //example add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
-function add_recipe($recipeName, $ingredients, $amounts, $units, $instructions){
+function addRecipe($recipeName, $ingredients, $amounts, $units, $instructions){
 
   $conn = connect(True);
 
@@ -32,15 +32,14 @@ function add_recipe($recipeName, $ingredients, $amounts, $units, $instructions){
 
     $result = getFoodId($conn, $ingredient);
 
-    //if ingridient already in food table entry is added to ingredients table
+    //if ingredient already in food table entry is added to ingredients table
     if ($values = $result->fetch()){
 
       $foodId = $values["foodId"];
-      //echo($foodId . "\n");
       addIngredient($conn, $recipeId, $foodId, $amount);
 
     }
-    //if ingridient not found new entry added to foods table and then entry added to ingredients table
+    //if ingredient not found new entry added to foods table and then entry added to ingredients table
     else{
 
       $sql = "INSERT INTO foods (foodName, defaultMeasurmentUnits)
@@ -59,9 +58,9 @@ function add_recipe($recipeName, $ingredients, $amounts, $units, $instructions){
 
   }
 
-
 }
 
+//gets foodId from food table
 function getFoodId($conn, $ingredient){
 
   $sql = "SELECT foodId FROM foods WHERE foodName = :ingredient";
@@ -74,6 +73,7 @@ function getFoodId($conn, $ingredient){
 
 }
 
+//gets recipeId from recipies table
 function getrecipeId($conn, $recipe){
 
   $sql = "SELECT recipeId FROM recipes WHERE recipeName = :recipe";
@@ -86,6 +86,7 @@ function getrecipeId($conn, $recipe){
 
 }
 
+//creates new entry in ingredients table
 function addIngredient($conn, $recipeId, $foodId, $amount){
 
   $sql = "INSERT INTO ingredients (recipeId, foodId, amount)
@@ -99,6 +100,36 @@ function addIngredient($conn, $recipeId, $foodId, $amount){
 
 }
 
-add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
+function main(){
+
+  $recipeName = $_POST["recipeName"];
+  $ingredients = [];
+  $amounts = [];
+  $units = [];
+  $instructions = $_POST["instructions"];
+
+  $i = 1;
+  while(isset($_POST["ingredient$i"])){
+    array_push($ingredients, $_POST["ingredient$i"]);
+    array_push($amounts, floatval($_POST["amount$i"]));
+    array_push($units, $_POST["unit$i"]);
+    $i++;
+  }
+
+  // var_dump($recipeName);
+  // var_dump($ingredients);
+  // var_dump($amounts);
+  // var_dump($units);
+  // var_dump($instructions);
+
+  addRecipe($recipeName, $ingredients, $amounts, $units, $instructions);
+  echo "finnished";
+
+}
+
+//add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
+main();
+
+
 
  ?>
