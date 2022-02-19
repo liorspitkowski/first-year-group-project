@@ -10,8 +10,16 @@
   require "DatabaseHandler.php";
 
   $conn = connect();
+
   $sql = "SELECT password FROM user WHERE username = '" . $un . "'";
   $result = $conn->query($sql);
+
+  // experemental sql injection protection
+  // $sql = $conn->prepare('SELECT password FROM user WHERE username = :name');
+  // $sql->bind_param(':name', $un);
+  //
+  // $sql->execute();
+  // $result = $sql->get_result();
 
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
