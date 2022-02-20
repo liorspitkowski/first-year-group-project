@@ -71,6 +71,8 @@ body{
     justify-content: center; /*vertical*/
     align-items: center; /*horizontal*/
 }
+
+
 .column-2 p{
     margin:0;
     line-height: 100%;
