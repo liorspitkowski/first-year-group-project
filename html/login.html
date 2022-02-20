@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="../css/login.css">
     <script type="text/javascript">
       function enter() {
-        var username = document.getElementById("i_username").value;
-        var password = document.getElementById("i_password").value;
-        alert("Successfully entered, please click to continue");
-        document.getElementById("o_username").innerHTML = username;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        document.getElementById("o_username").innerHTML = "Your name is " + username + " and your password is " + password;
       }
     </script>
   </head>

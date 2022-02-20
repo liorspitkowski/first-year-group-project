@@ -8,7 +8,7 @@
 	<?php
 
 
-	echo 'Hello ' . htmlspecialchars($_POST["user_name"]) . '!' . '\nYour password is: ' . htmlspecialchars($_POST["user_password"]);
+	echo 'Hello ';
 
 
 	?>
