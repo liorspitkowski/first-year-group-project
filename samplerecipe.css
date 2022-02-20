@@ -1,0 +1,27 @@
+.header{
+    background-color: aliceblue;
+    text-align: center;
+    padding: 20px;
+}
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    height: auto;
+    width: 45px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+li a {
+    display: block;
+    background-color:aqua;
+
+}
+li a :hover{
+    background-color: azure;
+    color:black;
+
+}
