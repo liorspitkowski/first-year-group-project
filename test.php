@@ -9,4 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo 'Entered name is :' . $name . '<br>password is :' . $password;
   }
 }
+header('Location: index.html');
+exit;
 ?>
