@@ -18,8 +18,6 @@ body{
     height:100%;
     width:60%;
 
-
-    z-index: 100;
 }
 .right-box{
     background-color: blue;
@@ -31,11 +29,10 @@ body{
     background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
     background-size: cover;
 
-    z-index: 50;
 }
 
 .topbox{
-    height: 10%;
+    height: 8%;
 }
 .title-box{
     height:100%;
@@ -105,8 +102,6 @@ body{
     margin-left:10%;
     background-color: rgba(255, 255, 255, 0.5);
 
-    z-index: 120;
-}
 .bottom-box{
     height:10%;
 }
