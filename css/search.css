@@ -56,6 +56,10 @@ body{
     height:100%;
     width:20%;
     float: left;
+    position:relative;
+
+    display: flex;
+    align-items: center;
 }
 .card{
     padding:10%;
@@ -95,7 +99,8 @@ body{
     text-decoration:none;
 }
 .sidebar-panel{
-    margin-top:23%;
+    position:absolute;
+
     margin-left:20%;
     height:90%;
     width:90%;
