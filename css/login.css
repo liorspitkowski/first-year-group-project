@@ -9,12 +9,28 @@ body{
 .top-box{
     height: 10%;
 }
+.middle-box{
+    height: 80%;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    position:relative;
+}
 .bottom-box{
     height:10%;
 }
 .form-box{
-    height:80%;
-    width:100%;
-    background-color: gold;
+    height:100%;
+    width:50%;
+    position:absolute;
+    z-index: 100;
+}
+.below-box{
+    height:100%;
+    width:50%;
+    background-color: white;
+    opacity: 0.5;
+    z-index: 50;
 }
