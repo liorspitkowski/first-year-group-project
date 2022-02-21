@@ -17,6 +17,9 @@ body{
     float:left;
     height:100%;
     width:60%;
+
+
+    z-index: 100;
 }
 .right-box{
     background-color: blue;
@@ -27,6 +30,8 @@ body{
     overflow: hidden;
     background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
     background-size: cover;
+
+    z-index: 50;
 }
 
 .topbox{
@@ -76,9 +81,13 @@ body{
     width:80%;
     float:left;
 
-    display: flex; /*use flex to center the inner item*/
-    justify-content: center; /*vertical*/
-    align-items: center; /*horizontal*/
+    position:relative;
+
+    overflow: visible;
+
+     display: flex; 
+    
+    align-items: center;  
 }
 .column-2 p{
     margin:0;
@@ -87,6 +96,16 @@ body{
     font-size: 32px;
     font-family: "Times New Roman", Times, serif;
     text-decoration:none;
+}
+.search-panel{
+    position:absolute;
+    
+    height:90%;
+    width:150%;
+    margin-left:10%;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    z-index: 120;
 }
 .bottom-box{
     height:10%;
