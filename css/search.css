@@ -5,7 +5,7 @@ html{
 }
 body{
     margin:0px;
-    height:98%;
+    height:100%;
 }
 
 .row-large{
@@ -13,16 +13,20 @@ body{
     width:100%;
 }
 .left-box{
-    background-color: aqua;
+    background-color: rgba(240,255,240,1);
     float:left;
     height:100%;
-    width:80%;
+    width:60%;
 }
 .right-box{
     background-color: blue;
     float:left;
     height: 100%;
-    width:20%;
+    width:40%;
+
+    overflow: hidden;
+    background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
+    background-size: cover;
 }
 
 .topbox{
