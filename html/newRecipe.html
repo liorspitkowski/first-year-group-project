@@ -1,0 +1,52 @@
+<!-- Enter recipe on this page
+Use side bar to go to any page you have been to. -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>create recipe</title>
+
+    <script src="../javaScript/newRecipe.js"></script>
+    <link rel="stylesheet" href="../css/newRecipe.css">
+
+  </head>
+  <body>
+
+    <h1> Create New Recipe </h1>
+
+    <!-- form for entering recipe -->
+    <div class="">
+      <form class="" action="../PHP/addRecipe.php" method="post">
+
+        <p> Recipe Name </p>
+        <input required type="text" id="recipeName" name="recipeName" value="">
+
+        <p> Ingredients </p>
+        <table id="ingredientTable">
+          <tr>
+            <th>name</th>
+            <th>amount</th>
+            <th>units</th>
+          </tr>
+          <tr>
+            <td><input required type="text" name="ingredient1" value=""></td>
+            <td><input required type="number" name="amount1" min="0" value="" step="any"></td>
+            <td><input type="text" name="unit1" value=""></td>
+          </tr>
+        </table><br>
+        <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>
+        <button id="minus" type="button" name="button" onclick="removeIngredientFeild()">-</button><br>
+
+        <p>Instructions</p>
+        <textarea name="instructions" rows="8" cols="40"></textarea><br>
+
+        <input type="submit" name="" value="submit">
+        <input type="reset" name="" value="clear">
+
+      </form>
+    </div>
+
+
+  </body>
+</html>
