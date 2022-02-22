@@ -17,10 +17,13 @@
   <div class="middle-box">
     <div class="form-box">
       <form action="../test.php" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="user_name" required><br>
+        <label for="username">Username(8 characters):</label>
+        <input type="text" id="username" name="user_name" required
+        pattern=".{8,}" title="8 letters or more"><br>
         <label for="password">Password:</label>
-        <input type="text" id="password" name="user_password" required><br>
+        <input type="password" id="password" name="user_password" required
+        pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
         <button type="submit">Enter</button>
       </form>
       <a href="">Forget your password?</a>
