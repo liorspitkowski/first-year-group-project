@@ -18,8 +18,6 @@ body{
     height:100%;
     width:60%;
 
-
-    z-index: 100;
 }
 .right-box{
     background-color: blue;
@@ -31,11 +29,10 @@ body{
     background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
     background-size: cover;
 
-    z-index: 50;
 }
 
 .topbox{
-    height: 10%;
+    height: 8%;
 }
 .title-box{
     height:100%;
@@ -59,6 +56,10 @@ body{
     height:100%;
     width:20%;
     float: left;
+    position:relative;
+
+    display: flex;
+    align-items: center;
 }
 .card{
     padding:10%;
@@ -97,6 +98,14 @@ body{
     font-family: "Times New Roman", Times, serif;
     text-decoration:none;
 }
+.sidebar-panel{
+    position:absolute;
+
+    margin-left:20%;
+    height:90%;
+    width:90%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
 .search-panel{
     position:absolute;
     
@@ -104,9 +113,22 @@ body{
     width:150%;
     margin-left:10%;
     background-color: rgba(255, 255, 255, 0.5);
-
-    z-index: 120;
 }
 .bottom-box{
     height:10%;
+}
+
+
+.search-bar{
+    margin:1%;
+    height:10%;
+
+    background-color: aqua;
+}
+.search-result{
+    margin:1%;
+
+    height:85%;
+
+    background-color: red;
 }
