@@ -37,7 +37,7 @@
     }
   }
   // redirect back in 10s.
-   header('Refresh: 10;URL= ./html/menu.html');
+   header('Refresh: 0;URL= ./html/menu.html');
 
    
   ?>
