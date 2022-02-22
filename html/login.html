@@ -1,39 +1,41 @@
+<!--Written and maintained by Hanmin Liu-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>login</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <script type="text/javascript">
-      function enter() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        document.getElementById("o_username").innerHTML = "Your name is " + username + " and your password is " + password;
-      }
-    </script>
-  </head>
-  <body>
-    <div class="background-box">
-      <div class="top-box">
-        This is the title img appear.
-        <a href="../index.html">Home</a>
-      </div>
-      <div class="form-box">
-        <form action="../test.php" method="POST">
-          <label for="">Username:</label>
-          <input type="text" id="username" name="user_name"><br>
-          <label for="">Password:</label>
-          <input type="text" id="password" name="user_password"><br>
-          <button type="submit">Enter</button>
-        </form>        
-      </div>
 
+<head>
+  <meta charset="utf-8">
+  <title>login</title>
+  <link rel="stylesheet" href="../css/login.css">
+
+</head>
+
+<body>
+
+  <div class="top-box">
+    <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
+  </div>
+  <div class="middle-box">
+    <div class="form-box">
+      <form action="../test.php" method="POST">
+        <label for="username">Username(8 characters):</label>
+        <input type="text" id="username" name="user_name" required
+        pattern=".{8,}" title="8 letters or more"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password" required
+        pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+        <button type="submit">Enter</button>
+      </form>
+      <a href="">Forget your password?</a>
     </div>
+    <div class="below-box"></div>
+  </div>
 
-    <button onclick="enter()">Enter</button>
-    <p id="o_username">
-      this is the paragraph that shall display the username.
 
-    </p>
-  </body>
+  <div class="bottom-box">
+
+  </div>
+
+</body>
+
 </html>
