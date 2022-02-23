@@ -7,6 +7,7 @@ Use side bar to go to any page you have been to. -->
     <meta charset="utf-8">
     <title>create recipe</title>
 
+    <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/newRecipe.js"></script>
     <link rel="stylesheet" href="../css/newRecipe.css">
 
@@ -16,11 +17,13 @@ Use side bar to go to any page you have been to. -->
     <h1> Create New Recipe </h1>
 
     <!-- form for entering recipe -->
-    <div class="">
-      <form class="" action="../PHP/addRecipe.php" method="post">
+    <div class="newRecipeForm">
+      <form id="newRecipe" method="post" onsubmit="submitRecipe()">
 
         <p> Recipe Name </p>
         <input required type="text" id="recipeName" name="recipeName" value="">
+        <p> Servings </p>
+        <input required type="number" id="servings" name="servings" min="0" value="" step="1">
 
         <p> Ingredients </p>
         <table id="ingredientTable">
@@ -41,8 +44,8 @@ Use side bar to go to any page you have been to. -->
         <p>Instructions</p>
         <textarea name="instructions" rows="8" cols="40"></textarea><br>
 
-        <input type="submit" name="" value="submit">
-        <input type="reset" name="" value="clear">
+        <input type="submit" name="submit" value="submit">
+        <input type="reset" name="clear" value="clear">
 
       </form>
     </div>
