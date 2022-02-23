@@ -1,9 +1,6 @@
 <?php
-  // $un = $_POST['user_name'];
-  // $pw = $_POST['user_password'];
-
-  $un = "TheBigZig";
-  $pw = "hashed";
+  $un = $_POST['user_name'];
+  $pw = $_POST['user_password'];
 
   require "DatabaseHandler.php";
 
