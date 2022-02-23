@@ -5,6 +5,25 @@
 <head>
   <meta charset="utf-8">
   <title>login</title>
+  <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script type="javacript">
+      function submitRecipe(){
+        var url = "../PHP/addRecipe.php",
+        data = $('#newRecipe').serialize();
+        console.log(data);
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: data,
+            success: function(data)
+             {
+               alert(data); // show response from the php script.
+             }
+         });
+         alert("Code to make AJAX Call");
+         return false;
+      }
+    </script>
   <link rel="stylesheet" href="../css/login.css">
 
 </head>
@@ -16,7 +35,7 @@
   </div>
   <div class="middle-box">
     <div class="form-box">
-      <form action="../test.php" method="POST">
+      <form id="login_form" method="POST" onsubmit="submitRecipe()">
         <label for="username">Username(8 characters):</label>
         <input type="text" id="username" name="user_name" required
         pattern=".{8,}" title="8 letters or more"><br>

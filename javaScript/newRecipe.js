@@ -39,8 +39,8 @@ function removeIngredientFeild(){
 }
 
 function submitRecipe(){
-  var url = "../PHP/addRecipe.php",
-  data = $('#newRecipe').serialize();
+  var url = "../PHP/login.php",
+  data = $('#login_form').serialize();
   console.log(data);
   $.ajax({
       url: url,
