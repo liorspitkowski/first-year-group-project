@@ -1,39 +1,38 @@
 <?php
-  // receive $un, $pw
-  // search database for hashed passwords where usernames == $un and check if it matches
-  // if a match return confirmation
-  // SQL = "SELECT hashed_password FROM users WHERE username = " . $pw;
+  // $un = $_POST['user_name'];
+  // $pw = $_POST['user_password'];
 
-  // $un = "ziggy112";
-  // $pw = "12345";
+  $un = "TheBigZig";
+  $pw = "hash";
 
   require "DatabaseHandler.php";
 
   $conn = connect();
 
-  $sql = "SELECT password FROM user WHERE username = '" . $un . "'";
-  $result = $conn->query($sql);
+  // $sql = "SELECT password FROM user WHERE username = '" . $un . "'";
+  // $result = $conn->query($sql);
 
   // experemental sql injection protection
-  // $sql = $conn->prepare('SELECT password FROM user WHERE username = :name');
-  // $sql->bind_param(':name', $un);
-  //
-  // $sql->execute();
-  // $result = $sql->get_result();
+  $sql = $conn->prepare('SELECT hashedPassword, userId FROM users WHERE username = :name');
+  $sql->bindParam(':name', $un);
 
-  if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      if ($row["hashed_password"] == $pw) {
-        echo "correct";
+  $sql->execute();
+  $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+  if ($sql == null) {
+    while($row = $sql->fetch()) {
+      if ($row["hashedPassword"] == $pw) {
+        echo 2;
+        echo $row["userId"];
       }
       else {
-        echo "incorrect password";
+        // wrong password
+        echo 1;
       }
     }
   }
   else {
-    echo "incorrect username";
+    // wrong username
+    echo 0;
   }
-
-  $conn->close();
 ?>
