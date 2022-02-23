@@ -1,43 +1,32 @@
 <?php
-  // recieve $fname, $lname, $un, $pw
-  // check user does not allready apc_exist
-  // add user to table
-  //return confirmation
+  $fname = $_POST[''];
+  $lname = $_POST[''];
+  $un = $_POST[''];
+  $pw = $_POST[''];
 
   require "DatabaseHandler.php";
 
   $conn = connect();
 
-  $sql = "SELECT * FROM user WHERE username = '" . $un . "'";
-  $result = $conn->query($sql);
+  $sql = "SELECT * FROM users WHERE username = :name";
+  $stmt = $conn->prepare($sql);
 
-  // experemental sql injection protection
-  // $sql = $conn->prepare('SELECT * FROM user WHERE username = :name');
-  // $sql->bind_param(':name', $un);
-  //
-  // $sql->execute();
-  // $result = $sql->get_result();
+  $stmt->execute([':name' => $un]);
 
-  if ($result->num_rows > 0) {
-    // return user already exists
+  if ($stmt->rowCount() > 0) {
+    echo 0;
   }
   else {
-    $sql = "INSERT INTO user (forename, surname, username, password)
-    VALUES ('" . $fname . "','" . $lname . "','" . $un . "','" . $pw . "')";
-    $conn->query($sql);
+    $sql = "INSERT INTO users (firstName, secondName, username, hashedPassword)
+    VALUES (:fn, :lan, :usn, :pass)";
+    $stmt = $conn->prepare($sql);
 
-    // experemental sql injection protection
-    // $sql = $conn->prepare('INSERT INTO user (forename, surname, username, password)
-    // VALUES (:fn, :lan, :usn, :pass)');
-    // $sql->bind_param(':fn', $fname);
-    // $sql->bind_param(':lan', $lname);
-    // $sql->bind_param(':usn', $un);
-    // $sql->bind_param(':pass', $pw);
-    //
-    // $sql->execute();
-
-    // return confirmation
+    $stmt->execute([
+      ':fn' => $fname,
+      ':lan' => $lname,
+      ':usn' => $un,
+      ':pass' => $pw,
+    ]);
+    echo 1;
   }
-
-  $conn->close();
 ?>
