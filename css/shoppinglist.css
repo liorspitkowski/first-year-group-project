@@ -47,6 +47,9 @@ li a:hover{
 }
 .content{
     padding-left: 18%;
+
+    height: 100%;
+
 }
 .content .content-title{
     
@@ -60,8 +63,8 @@ li a:hover{
 }
 .content .mainpage{
     
-    width: 100%;
-    height: auto;
+    
+    height: 100%;
     margin: 0;
     background-color: rgb(1, 250, 84);
 
