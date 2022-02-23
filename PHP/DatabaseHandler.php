@@ -7,7 +7,7 @@ $pass = "SpagetiC0de";
 $conn;
 
 //creates connection object to database
-function connect(){
+function connect(bool $debug = false){
 
   global $host, $dbname, $conn, $user, $pass;
 
@@ -15,6 +15,9 @@ function connect(){
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
     echo "Connected to $host successfully. \n";
+    if ($debug){
+      $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    }
     return $conn;
   }
   catch (PDOException $pe)
@@ -55,5 +58,27 @@ function SQLquery($sql){
   }
 
 }
+
+/*
+require "DatabaseHandler.php";
+//creates connection object with debug mode on
+$conn = connect(true);
+
+//creates connection object with debug mode off
+$conn = connect(); // or $conn = connect(false);
+
+$sql = "CREATE table";
+
+//unsecure for user input only use for sql with not user input
+$conn->query($sql);
+
+//secure way of passing user inputed variable into sql pre-formated statments
+$pre_formated_sql = "SELECT FROM table (column1, column2) VALUES (:value1, :value2)"
+$stmt = $conn->prepare($sql);
+$stmt->execute([
+  'valu1' => $variable1,
+  'value2' => $variable2
+]);
+*/
 
  ?>
