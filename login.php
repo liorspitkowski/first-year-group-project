@@ -3,7 +3,7 @@
   // $pw = $_POST['user_password'];
 
   $un = "TheBigZig";
-  $pw = "hash";
+  $pw = "hashed";
 
   require "DatabaseHandler.php";
 
@@ -19,7 +19,7 @@
   $sql->execute();
   $sql->setFetchMode(PDO::FETCH_ASSOC);
 
-  if ($sql == null) {
+  if ($sql != null) {
     while($row = $sql->fetch()) {
       if ($row["hashedPassword"] == $pw) {
         echo 2;
