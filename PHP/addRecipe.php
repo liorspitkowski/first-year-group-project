@@ -116,30 +116,18 @@ function main(){
     $i++;
   }
 
-  // var_dump($recipeName);
-  // var_dump($ingredients);
-  // var_dump($amounts);
-  // var_dump($units);
-  // var_dump($instructions);
+  var_dump($recipeName);
+  var_dump($ingredients);
+  var_dump($amounts);
+  var_dump($units);
+  var_dump($instructions);
 
-  addRecipe($recipeName, $ingredients, $amounts, $units, $instructions);
-  echo "finnished";
+  //addRecipe($recipeName, $ingredients, $amounts, $units, $instructions);
+  echo "Success";
 
 }
 
 //add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
-//main();
+main();
 
  ?>
-
- <!DOCTYPE html>
- <html lang="en" dir="ltr">
-   <head>
-     <meta charset="utf-8">
-     <title>newRecipeResult</title>
-     <meta http-equiv = "refresh" content = "3; url = https://web.cs.manchester.ac.uk/y66466tl/first_group_project/" />
-   </head>
-   <body>
-     <h1> successfully added recipe </h1>
-   </body>
- </html>
