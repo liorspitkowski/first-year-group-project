@@ -10,6 +10,6 @@ function submitLogin() {
             alert(data); // show response from the php script.
         }
     });
-    alert("Code to make AJAX Call");
+    alert("making AJAX Call");
     return false;
 }
