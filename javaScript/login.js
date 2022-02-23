@@ -1,10 +1,10 @@
 function submitLogin() {
-    var url = "../PHP/addRecipe.php",
-        data = $('#newRecipe').serialize();
+    var url = "../PHP/login.php",
+        data = $('#login_form').serialize();
     console.log(data);
     $.ajax({
         url: url,
-        type: 'post',
+        type: 'POST',
         data: data,
         success: function (data) {
             alert(data); // show response from the php script.
