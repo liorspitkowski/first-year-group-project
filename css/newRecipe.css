@@ -11,7 +11,12 @@ input {
   font-size: 16px;
 }
 
-.newRecipeForm{
+.newRecipeForm {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
   margin-left: auto;
   margin-right: auto;
 }

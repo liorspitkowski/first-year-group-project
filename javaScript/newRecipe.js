@@ -48,10 +48,10 @@ function submitRecipe(){
       data: data,
       success: function(data)
        {
-         alert(data); // show response from the php script.
+         console.log(typeof(data)); // show response from the php script.
        }
    });
-   alert("Code to make AJAX Call");
+
    return false;
 }
 

@@ -4,24 +4,29 @@ require "DatabaseHandler.php";
 
 //add recipe to database in for (String, String[], double[], String[], String)
 //example add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
-function addRecipe($recipeName, $ingredients, $amounts, $units, $instructions){
+function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $instructions){
 
   $conn = connect(True);
 
+  if (getrecipeId($conn, $recipeName)->fetch()['recipeId'] != NULL){
+    echo "Duplicate recipe name\n";
+    return;
+  }
+
   //adds data to recipe table
-  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions)
-          VALUES (:recipeName, :num, :instructions)";
+  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions)
+          VALUES (:recipeName, :num, :instructions, :portions)";
   $numIngredients = count($ingredients);
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([
       'recipeName' => $recipeName,
       'num' => $numIngredients,
-      'instructions' => $instructions
+      'instructions' => $instructions,
+      'portions' => $portions
     ]);
 
   $recipeId = getrecipeId($conn, $recipeName)->fetch()['recipeId'];
-  echo($recipeId . "\n");
 
   //adds ingredients to ingredients table
   for ($i = 0; $i < $numIngredients; $i++){
@@ -103,6 +108,7 @@ function addIngredient($conn, $recipeId, $foodId, $amount){
 function main(){
 
   $recipeName = $_POST["recipeName"];
+  $portions = $_POST["portions"];
   $ingredients = [];
   $amounts = [];
   $units = [];
@@ -116,18 +122,18 @@ function main(){
     $i++;
   }
 
-  var_dump($recipeName);
-  var_dump($ingredients);
-  var_dump($amounts);
-  var_dump($units);
-  var_dump($instructions);
+  // var_dump($recipeName);
+  // var_dump($ingredients);
+  // var_dump($amounts);
+  // var_dump($units);
+  // var_dump($instructions);
 
-  //addRecipe($recipeName, $ingredients, $amounts, $units, $instructions);
+  addRecipe($recipeName,$servings, $ingredients, $amounts, $units, $instructions);
   echo "Success";
 
 }
 
-//add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
-main();
+addRecipe("fancy beans on toast", 2, ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
+//main();
 
  ?>
