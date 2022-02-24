@@ -13,7 +13,7 @@
 
   if ($stmt->rowCount() > 0) {
     while($row = $stmt->fetch()) {
-      if ($row["hashedPassword"] == $pw) {
+      if ($row["hashedPassword"] == hash("sha256", $pw)) {
         echo 2;
         echo $row["userId"];
       }
