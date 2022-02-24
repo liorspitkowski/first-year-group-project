@@ -3,40 +3,67 @@
 require "DatabaseHandler.php";
 
 // removes all ingredients of a recipe from a user's inventory
-function remove_ingredients($id, $recipeName) {
-    $conn = connect(True);
+function remove_ingredients() {
+    // retrieves variables from POST
+    $id = $_POST["id"];
+    $recipeName = $_POST["recipeName"];
+    $amount = $_POST["amount"];
 
-    $recipeId = get_recipeId($conn, $recipeName);
+    $conn = connect(True); // connects to database
 
-    $ingredientsAndQuantities = get_ingredients_and_quantities($conn, $recipeId);
+    $foodId = get_foodId($conn, $ingredient);
 
-    for ()
-    // for every ingredient
-        // if ingredient in inventory
-            // if quantity of ingredient in inventory < quanitity in recipe
-                // set quantity to 0
-            // else
-                // decrease quantity in inventory by quantity in recipe
+    $current_quantity = get_quantity($conn, $id, $foodId);
+
+    if ($current_quantity > 0) {
+        // already have ingredient
+        if ($current_quantity == $amount) {
+            // delete record
+            $sql = "DELETE FROM inventory WHERE userId = :userId AND foodId = ;foodId";
+            $stmt = $conn->prepare($sql);
+            $stmt ->execute([
+              'userId' => $id,
+              'foodId' => $foodId
+            ]);
+        } else {
+          // decrease amount
+          $amount = $amount - $current_quantity;
+          $sql = "UPDATE inventory
+                  SET amount = :amount
+                  WHERE userId = :userId AND foodId = :foodId";
+          $stmt = $conn->prepare($sql);
+          $stmt ->execute([
+            'userId' => $id,
+            'foodId' => $foodId,
+            'amount' => $amount
+          ]);
+        }
+    }
 }
 
-// gets recipeId of recipe from database
-function get_recipeId($conn, $recipeName) {
-    $sql = "SELECT recipe_id From recipe Where recipe_name = :recipeName";
+// fetches foodId from name of ingredient
+function get_foodId($conn, $ingredient) {
+    $sql = "SELECT foodId FROM foods WHERE foodName = :ingredient";
     $stmt = $conn->prepare($sql);
     $stmt ->execute([
-      'recipeName' => $recipeName
+      'ingredient' => $ingredient
     ]);
-    return $stmts;
+    $results = $stmt->fetch();
+    return $results;
 }
 
-// get a list of the ingredients and their quanitites in the recipe
-function get_ingredients_and_quantities($conn, $recipeId) {
-  $sql = "SELECT food_id, quantity From ingredients Where recipe_id = :recipeId";
+// fetches quantity of ingredient from database
+function get_quantity($conn, $id, $foodId) {
+  $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
   $stmt = $conn->prepare($sql);
   $stmt ->execute([
-    'recipeId' => $recipeId
+    'id' => $id,
+    'foodId' => $foodId
   ]);
-  return $stmts;
+  $results = $stmt->fetch();
+  return $results;
 }
+
+remove_ingredients();
 
 ?>
