@@ -25,7 +25,7 @@
       ':fn' => $fname,
       ':lan' => $lname,
       ':usn' => $un,
-      ':pass' => $pw,
+      ':pass' => hash("sha256", $pw),
     ]);
     echo 1;
   }
