@@ -14,9 +14,9 @@ function connect(bool $debug = false){
   try
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
-    echo "Connected to $host successfully. \n";
     if ($debug){
       $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+      echo "Connected to $host successfully. \n";
     }
     return $conn;
   }

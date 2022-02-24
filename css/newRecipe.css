@@ -1,22 +1,65 @@
-body {
+body, html {
   font: 16px Arial;
-  background-color: honeydew;
   text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.fixed-bg {
+  background-image: url("../src/cooked-food.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+
+.header {
+  height: 50px;
+  background-color: white;
+}
+
+.footer {
+  height: 50px;
+  background-color: white;
 }
 
 input {
-  border: 1px solid transparent;
-  background-color: #ffce8f;
-  padding: 10px;
+  opacity: 1.0;
+  border: 1px solid black;
   font-size: 16px;
+  padding: 0.5em;
+}
+
+#recipeName{
+  font-size: 25px;
+}
+
+#portions{
+  width: 2em;
 }
 
 .newRecipeForm {
+  top: 50px;
+  bottom: 50px;
+  width: 70%;
+  background-color: white;
+  background: rgba(204, 204, 204, 0.6);
   margin-left: auto;
   margin-right: auto;
+  padding: 2em;
+}
+
+.amount {
+  width: 5em;
+}
+
+.unit {
+  width: 3em;
 }
 
 table {
+  opacity: 1;
   margin-left: auto;
   margin-right: auto;
 }

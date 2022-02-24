@@ -14,40 +14,48 @@ Use side bar to go to any page you have been to. -->
   </head>
   <body>
 
-    <h1> Create New Recipe </h1>
+    <div class="fixed-bg">
 
-    <!-- form for entering recipe -->
-    <div class="newRecipeForm">
-      <form id="newRecipe" method="post" onsubmit="submitRecipe()">
+      <div class="header">
+        header
+      </div>
 
-        <p> Recipe Name </p>
-        <input required type="text" id="recipeName" name="recipeName" value="">
-        <p> Servings </p>
-        <input required type="number" id="portions" name="portions" min="0" value="" step="1">
+      <!-- form for entering recipe -->
+      <div class="newRecipeForm">
 
-        <p> Ingredients </p>
-        <table id="ingredientTable">
-          <tr>
-            <th>name</th>
-            <th>amount</th>
-            <th>units</th>
-          </tr>
-          <tr>
-            <td><input required type="text" name="ingredient1" value=""></td>
-            <td><input required type="number" name="amount1" min="0" value="" step="any"></td>
-            <td><input type="text" name="unit1" value=""></td>
-          </tr>
-        </table><br>
-        <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>
-        <button id="minus" type="button" name="button" onclick="removeIngredientFeild()">-</button><br>
+        <h1> Create New Recipe </h1>
 
-        <p>Instructions</p>
-        <textarea name="instructions" rows="8" cols="40"></textarea><br>
+        <form id="newRecipe" method="post" onsubmit="submitRecipe()">
 
-        <input type="submit" name="submit" value="submit">
-        <input type="reset" name="clear" value="clear">
+          <h3> Recipe Name </h3>
+          <input required type="text" id="recipeName" name="recipeName" autocomplete="off">
+          <h3> Portions
+          <input required type="number" id="portions" name="portions" min="0" autocomplete="off" step="1">
+          </h3>
+          <h2> Ingredients </h2>
+          <table id="ingredientTable">
+            <tr>
+              <td><input id="ingredient1" required type="text" name="ingredient1" placeholder="food" autocomplete="off"></td>
+              <td><input required class="amount" type="number" name="amount1" min="0" step="any" placeholder="quantity"></td>
+              <td><input class="unit" type="text" name="unit1" placeholder="unit" autocomplete="off"></td>
+            </tr>
+          </table><br>
+          <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>
+          <button id="minus" type="button" name="button" onclick="removeIngredientFeild()">-</button><br>
 
-      </form>
+          <h3>Instructions</h3>
+          <textarea name="instructions" rows="8" cols="40"></textarea><br>
+
+          <input id="submitRecipe" type="submit" name="submit" value="submit">
+          <input type="reset" name="clear" value="clear">
+
+        </form>
+      </div>
+
+      <div class="footer">
+        footer
+      </div>
+
     </div>
 
 

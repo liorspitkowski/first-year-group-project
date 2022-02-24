@@ -133,7 +133,8 @@ function main(){
 
 }
 
-addRecipe("fancy beans on toast", 2, ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
+//addRecipe("fancy beans on toast", 2, ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
 //main();
+echo "suc";
 
  ?>

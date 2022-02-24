@@ -12,15 +12,23 @@ function addIngredientFeild(){
   input1.required = true;
   input1.type = "text";
   input1.name = "ingredient" + lenTable;
+  input1.id = "ingredient" + lenTable;
+  input1.placeholder = "food";
+  input1.autocomplete = "off";
   var input2 = document.createElement("input");
   input2.required = true;
   input2.type = "number";
   input2.name = "amount" + lenTable;
+  input2.className = "amount";
   input2.min = "0";
   input2.step = "any";
+  input2.placeholder = "quantity";
   var input3 = document.createElement("input");
   input3.type = "text";
   input3.name = "unit" + lenTable;
+  input3.className = "unit";
+  input3.placeholder = "unit";
+  input3.autocomplete = "off";
 
   cell1.appendChild(input1);
   cell2.appendChild(input2);
@@ -30,7 +38,7 @@ function addIngredientFeild(){
 function removeIngredientFeild(){
   var table = document.getElementById("ingredientTable");
   var lenTable = table.rows.length;
-  if (lenTable > 2){
+  if (lenTable > 1){
     var row = table.deleteRow(lenTable-1);
   }
   else {
@@ -41,17 +49,40 @@ function removeIngredientFeild(){
 function submitRecipe(){
   var url = "../PHP/addRecipe.php",
   data = $('#newRecipe').serialize();
-  console.log(data);
   $.ajax({
       url: url,
       type: 'post',
       data: data,
       success: function(data)
        {
-         console.log(typeof(data)); // show response from the php script.
+         alert(data);
+       }
+   });
+}
+
+const autoComplete = function autoCompleteFood(e){
+  //console.log(e.target.value);
+
+  var url = "../PHP/GetIngridientParts.php",
+  data = e.target.value;
+  $.ajax({
+      url: url,
+      type: 'post',
+      data: {input: data, function: "autofill"},
+      success: function(data)
+       {
+         console.log(data);
        }
    });
 
-   return false;
 }
 
+function init(){
+  input = document.getElementById("ingredient1");
+  if (input){
+    input.addEventListener('input', autoComplete);
+    input.addEventListener('propertychange', autoComplete);
+  }
+}
+
+window.onload = init;
