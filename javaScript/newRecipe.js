@@ -5,16 +5,19 @@ function addIngredientFeild(){
   var row = table.insertRow();
 
   var cell1 = row.insertCell(0);
+  cell1.className = "foodColumn";
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
 
   var input1 = document.createElement("input");
   input1.required = true;
   input1.type = "text";
+  input1.className = "ingredient";
   input1.name = "ingredient" + lenTable;
   input1.id = "ingredient" + lenTable;
   input1.placeholder = "food";
   input1.autocomplete = "off";
+  input1.addEventListener('input', autoComplete);
   var input2 = document.createElement("input");
   input2.required = true;
   input2.type = "number";
@@ -61,19 +64,66 @@ function submitRecipe(){
 }
 
 const autoComplete = function autoCompleteFood(e){
-  //console.log(e.target.value);
+
+  document.addEventListener("click", function (e) {
+      closeLists();
+  });
 
   var url = "../PHP/GetIngridientParts.php",
-  data = e.target.value;
+  input = e.target;
+  inputVal = e.target.value;
   $.ajax({
       url: url,
       type: 'post',
-      data: {input: data, function: "autofill"},
+      data: {input: inputVal, function: "autofill"},
       success: function(data)
        {
-         console.log(data);
+         closeLists();
+         if(inputVal.length < 1){return;}
+         var foods = data.split(",");
+         list = document.createElement("DIV");
+         list.setAttribute("id", e.target.id + "-autocomplete-list");
+         list.setAttribute("class", "autocomplete-items");
+         e.target.parentNode.appendChild(list);
+
+         for (i = 0; i < foods.length && i <= 5; i++){
+           item = document.createElement("DIV");
+           item.innerHTML = "<strong>" + foods[i].substr(0, inputVal.length) + "</strong>";
+           item.innerHTML += foods[i].substr(inputVal.length);
+           item.innerHTML += "<input type='hidden' value='" + foods[i] + "'>";
+           item.addEventListener("click", function(event){
+             //autofills value clicked by user
+             const food = this.getElementsByTagName("input")[0].value;
+             input.value = food;
+             //gets default units for the selected food
+             $.ajax({
+                 url: "../PHP/GetIngridientParts.php",
+                 type: 'post',
+                 data: {input: food, function: "defaultUnits"},
+                 success: function(unitVals) {
+                   var units = unitVals.split(",");
+                   if (units.length == 1){
+                     input.parentNode.parentNode.getElementsByClassName("unit")[0].value = units[0];
+                   }
+                   else{
+                     console.log(units);
+                   }
+                 }
+             });
+             closeLists();
+           });
+           list.appendChild(item);
+         }
        }
    });
+
+
+   function closeLists(){
+     var x = document.getElementsByClassName("autocomplete-items");
+     for (var i = 0; i < x.length; i++) {
+       x[i].parentNode.removeChild(x[i]);
+     }
+   }
 
 }
 
@@ -81,8 +131,11 @@ function init(){
   input = document.getElementById("ingredient1");
   if (input){
     input.addEventListener('input', autoComplete);
-    input.addEventListener('propertychange', autoComplete);
   }
+
+  addIngredientFeild();
+  addIngredientFeild();
+
 }
 
 window.onload = init;

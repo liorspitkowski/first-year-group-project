@@ -35,9 +35,9 @@ Use side bar to go to any page you have been to. -->
           <h2> Ingredients </h2>
           <table id="ingredientTable">
             <tr>
-              <td><input id="ingredient1" required type="text" name="ingredient1" placeholder="food" autocomplete="off"></td>
-              <td><input required class="amount" type="number" name="amount1" min="0" step="any" placeholder="quantity"></td>
-              <td><input class="unit" type="text" name="unit1" placeholder="unit" autocomplete="off"></td>
+              <td class="foodColumn"><input class="ingredient" id="ingredient1" required type="text" name="ingredient1" placeholder="food" autocomplete="off" value=""></td>
+              <td><input required class="amount" type="number" name="amount1" min="0" step="any" placeholder="quantity" value=""></td>
+              <td><input class="unit" type="text" name="unit1" placeholder="unit" autocomplete="off" value=""></td>
             </tr>
           </table><br>
           <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>

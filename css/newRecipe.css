@@ -50,6 +50,10 @@ input {
   padding: 2em;
 }
 
+.ingredient {
+  width: 10em;
+}
+
 .amount {
   width: 5em;
 }
@@ -64,8 +68,41 @@ table {
   margin-right: auto;
 }
 
+.foodColumn {
+  position: relative;
+  display: inline-block;
+}
+
 button {
   font-size: 16px;
-  height: 30px;
-  width: 30px;
+  height: 2em;
+  width: 2em;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
