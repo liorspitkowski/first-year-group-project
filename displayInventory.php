@@ -4,7 +4,6 @@
 
 	function displayInventory(){
 		$conn = connect(true);
-
 	}
 
 	function getFoodId($conn, $ingredient){
@@ -41,4 +40,27 @@
 
 		return $stmt;
 	}
+
+	function main($user){
+		$conn = connect(true);
+		$data = getData($conn, $user);
+
+		$foodNames = $data->fetch()['foodName'];
+		$quantity = $data->fetch()['quantity'];
+
+		//return data to the hanmin
+	}
+
+	function getData($conn, $user){
+		$sql = "SELECT foodName, quantity FROM foods WHERE userName = :user";
+		$stmt = $conn->prepare($sql);
+
+		$stmt->execute([
+			'user' => $user
+		]);
+
+		return stmt;
+	}
+
+
 ?>
