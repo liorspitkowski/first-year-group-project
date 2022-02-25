@@ -67,7 +67,7 @@ function submitRecipe(submitButton){
   });
 
   function submitRequest(){
-    var url = "../PHP/addRecipe.php",
+    var url = "../PHP/AddRecipe.php",
     data = $('#newRecipe').serialize();
     $.ajax({
         url: url,
@@ -106,8 +106,6 @@ function autoCompleteFood(input){
            list.setAttribute("id", e.target.id + "-autocomplete-list");
            list.setAttribute("class", "autocomplete-items");
            e.target.parentNode.appendChild(list);
-
-           console.log(foods);
 
            for (i = 0; i < foods.length && i <= 5; i++){
              item = document.createElement("DIV");

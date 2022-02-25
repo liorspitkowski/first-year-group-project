@@ -16,8 +16,10 @@ function connect(bool $debug = false){
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
     if ($debug){
       $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-      echo "Connected to $host successfully. \n";
     }
+    //log messages WIP
+    //$ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : "Uknown";
+    //logMessage("Connected to $host successfully from " . $ip);
     return $conn;
   }
   catch (PDOException $pe)
@@ -44,19 +46,10 @@ function adminConnect(String $user, String $pass){
   }
 }
 
-function SQLquery($sql){
-
-  global $conn;
-
-  try{
-    $conn->query($sql);
-    echo "SQL query ran successfully \n";
-  }
-  catch (PDOException $pe)
-  {
-    echo "ERROR : SQLquery '$sql' failed to run \n";
-  }
-
+function logMessage($message){
+  $datetime = date("Y-m-d H:i:s") . " : ";
+  $log = $datetime . $message . "\n";
+  file_put_contents("logs/database_logs.log", $log, FILE_APPEND);
 }
 
 /*
