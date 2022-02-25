@@ -1,9 +1,42 @@
+
+/* element formating */
+
 body, html {
   font: 16px Arial;
   text-align: center;
   margin: 0;
   padding: 0;
 }
+
+input {
+  opacity: 1.0;
+  border: 1px solid black;
+  font-size: 16px;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+table {
+  opacity: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  font-size: 16px;
+  height: 2em;
+  width: 2em;
+}
+
+textarea{
+  border-radius: 5px;
+}
+
+sup {
+  color: #d11733;
+}
+
+/* class formating */
 
 .fixed-bg {
   background-image: url("../src/cooked-food.jpg");
@@ -22,21 +55,6 @@ body, html {
 .footer {
   height: 50px;
   background-color: white;
-}
-
-input {
-  opacity: 1.0;
-  border: 1px solid black;
-  font-size: 16px;
-  padding: 0.5em;
-}
-
-#recipeName{
-  font-size: 25px;
-}
-
-#portions{
-  width: 2em;
 }
 
 .newRecipeForm {
@@ -62,21 +80,9 @@ input {
   width: 3em;
 }
 
-table {
-  opacity: 1;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .foodColumn {
   position: relative;
   display: inline-block;
-}
-
-button {
-  font-size: 16px;
-  height: 2em;
-  width: 2em;
 }
 
 .autocomplete-items {
@@ -104,4 +110,24 @@ button {
 .autocomplete-active {
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+
+.message {
+  margin-top: 1em;
+  padding: 1em;
+  width:70%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+/* id formating */
+
+#recipeName{
+  font-size: 25px;
+}
+
+#portions, #timeToCook{
+  width: 3em;
 }

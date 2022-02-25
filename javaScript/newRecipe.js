@@ -60,13 +60,40 @@ function submitRecipe(submitButton){
   });
 
   document.addEventListener("keypress", function(e){
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && e.target.type != "submit") {
       e.preventDefault
       submitRequest();
     }
   });
 
+  document.getElementById("clearForm").addEventListener("click", function(e){
+    clearMessages();
+    var form = document.getElementById('newRecipe');
+    for(var i=0; i<form.elements.length; i++){
+      form.elements[i].style.backgroundColor = "white";
+    }
+  });
+
   function submitRequest(){
+
+    //validation
+    var form = document.getElementById('newRecipe');
+    var validation = true;
+    for(var i=0; i<form.elements.length; i++){
+      if(form.elements[i].hasAttribute('required')){
+        form.elements[i].style.backgroundColor = "white";
+        if(form.elements[i].value === ''){
+          form.elements[i].style.backgroundColor = "#ffdede";
+          validation = false;
+        }
+      }
+    }
+
+    if(!validation){
+      displayMessage("-1", "missing some required fields");
+      return false;
+    }
+
     var url = "../PHP/AddRecipe.php",
     data = $('#newRecipe').serialize();
     $.ajax({
@@ -75,9 +102,53 @@ function submitRecipe(submitButton){
         data: data,
         success: function(data)
          {
-           alert(data);
+           console.log(data);
+           result = data.split(" | ");
+           displayMessage(result[0], result[1]);
          }
      });
+  }
+
+  function displayMessage(type, message){
+
+    var colour;
+    switch (type) {
+      case "-1":
+        colour = "#ffdede";
+        break;
+      case "0":
+        colour = "#ffb861";
+        break;
+      case "1":
+        document.getElementById("clearForm").click();
+        colour = "#83ff7a";
+        break;
+      case "99":
+        return;
+      default:
+        colour = "white";
+        break;
+
+    }
+
+    const container = document.getElementById("recipeFormDiv");
+
+    clearMessages();
+
+    var requestMessage = document.createElement("DIV");
+    requestMessage.className = "message";
+    requestMessage.style.backgroundColor = colour;
+    requestMessage.innerHTML = message;
+    container.appendChild(requestMessage);
+  }
+
+  function clearMessages(){
+    const container = document.getElementById("recipeFormDiv");
+
+    var messages = container.getElementsByClassName("message");
+    while (messages[0]) {
+      messages[0].parentNode.removeChild(messages[0]);
+    }
   }
 
 }

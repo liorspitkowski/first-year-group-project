@@ -3,12 +3,16 @@
 require "DatabaseHandler.php";
 
 //add recipe to database in for (String, int, String[], double[], String[], String)
-//example add_recipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
+//example addRecipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
 function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $instructions){
 
-  $conn = connect();
+  $conn = connect(true);
 
-  if (getrecipeId($conn, $recipeName)->fetch()['recipeId'] != NULL){
+  if (!$conn) {
+    return "-1 | ERROR : Failed to connect to database";
+  }
+
+  if (getrecipeId($conn, $recipeName)->fetch()){
     return "-1 | ERROR : Recipie with name $recipeName already exists";
   }
 
@@ -17,13 +21,13 @@ function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $inst
           VALUES (:recipeName, :num, :instructions, :portions)";
   $numIngredients = count($ingredients);
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([
-      'recipeName' => $recipeName,
-      'num' => $numIngredients,
-      'instructions' => $instructions,
-      'portions' => $portions
-    ]);
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([
+    'recipeName' => $recipeName,
+    'num' => $numIngredients,
+    'instructions' => $instructions,
+    'portions' => $portions
+  ]);
 
   $recipeId = getrecipeId($conn, $recipeName)->fetch()['recipeId'];
 
@@ -122,11 +126,10 @@ function main(){
     $i++;
   }
 
-  echo addRecipe($recipeName,$servings, $ingredients, $amounts, $units, $instructions);
+  echo addRecipe($recipeName,$portions, $ingredients, $amounts, $units, $instructions);
 
 }
 
-//main();
-connect();
+main();
 
  ?>
