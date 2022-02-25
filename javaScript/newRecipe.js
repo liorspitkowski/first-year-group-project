@@ -49,18 +49,37 @@ function removeIngredientFeild(){
   }
 }
 
-function submitRecipe(){
-  var url = "../PHP/addRecipe.php",
-  data = $('#newRecipe').serialize();
-  $.ajax({
-      url: url,
-      type: 'post',
-      data: data,
-      success: function(data)
-       {
-         alert(data);
-       }
-   });
+function submitRecipe(submitButton){
+
+  //adds event listeners for form submit
+  submitButton.addEventListener("click", function(e){
+
+    e.preventDefault();
+    submitRequest();
+
+  });
+
+  document.addEventListener("keypress", function(e){
+    if (e.keyCode === 13) {
+      e.preventDefault
+      submitRequest();
+    }
+  });
+
+  function submitRequest(){
+    var url = "../PHP/addRecipe.php",
+    data = $('#newRecipe').serialize();
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        success: function(data)
+         {
+           alert(data);
+         }
+     });
+  }
+
 }
 
 function autoCompleteFood(input){
@@ -160,14 +179,14 @@ function autoCompleteFood(input){
     }
   }
 
-   function closeLists(){
+  function closeLists(){
      var list = document.getElementsByClassName("autocomplete-items");
      for (var i = 0; i < list.length; i++) {
        list[i].parentNode.removeChild(list[i]);
      }
    }
 
-   document.addEventListener("click", function (e) {
+  document.addEventListener("click", function (e) {
        closeLists();
    });
 
@@ -180,6 +199,9 @@ function init(){
 
   addIngredientFeild();
   addIngredientFeild();
+
+  submit = document.getElementById("submitRecipe");
+  submitRecipe(submit);
 
 }
 

@@ -2,15 +2,14 @@
 
 require "DatabaseHandler.php";
 
-//add recipe to database in for (String, String[], double[], String[], String)
-//example add_recipe("beans on toast", ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
+//add recipe to database in for (String, int, String[], double[], String[], String)
+//example add_recipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
 function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $instructions){
 
-  $conn = connect(True);
+  $conn = connect();
 
   if (getrecipeId($conn, $recipeName)->fetch()['recipeId'] != NULL){
-    echo "Duplicate recipe name\n";
-    return;
+    return "-1 | ERROR : Recipie with name $recipeName already exists";
   }
 
   //adds data to recipe table
@@ -62,6 +61,7 @@ function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $inst
     }
 
   }
+  return "1 | Recipe $recipeName successfully added to database";
 
 }
 
@@ -122,19 +122,11 @@ function main(){
     $i++;
   }
 
-  // var_dump($recipeName);
-  // var_dump($ingredients);
-  // var_dump($amounts);
-  // var_dump($units);
-  // var_dump($instructions);
-
-  addRecipe($recipeName,$servings, $ingredients, $amounts, $units, $instructions);
-  echo "Success";
+  echo addRecipe($recipeName,$servings, $ingredients, $amounts, $units, $instructions);
 
 }
 
 //addRecipe("fancy beans on toast", 2, ["toast", "beans"], [2, 400], ["slices", "g"], "put beans on toast");
-//main();
-echo "suc";
+main();
 
  ?>
