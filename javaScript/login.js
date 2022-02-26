@@ -1,6 +1,5 @@
 function submitLogin() {
-    var url = "../PHP/login.php",
-        data = $('#login_form').serialize();
+    var url = "../PHP/login.php", data = $('#login_form').serialize();
     console.log(data);
     $.ajax({
         url: url,

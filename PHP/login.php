@@ -19,9 +19,7 @@
   $sql->setFetchMode(PDO::FETCH_ASSOC);
 
   if ($sql != null) {
-    echo('test if php work  1231');
     while($row = $sql->fetch()) {
-        echo('test if php work');
       if ($row["hashedPassword"] == $pw) {
         echo 2;
         echo $row["userId"];
