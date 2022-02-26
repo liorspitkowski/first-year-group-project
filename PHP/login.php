@@ -6,21 +6,14 @@
 
   $conn = connect();
 
-  // $sql = "SELECT password FROM user WHERE username = '" . $un . "'";
-  // $result = $conn->query($sql);
+  $sql = 'SELECT hashedPassword, userId FROM users WHERE username = :name';
+  $stmt = $conn->prepare($sql);
 
-  // experemental sql injection protection
-    
+  $stmt->execute([':name' => $un]);
 
-  $sql = $conn->prepare('SELECT hashedPassword, userId FROM users WHERE username = :name');
-  $sql->bindParam(':name', $un);
-
-  $sql->execute();
-  $sql->setFetchMode(PDO::FETCH_ASSOC);
-
-  if ($sql != null) {
-    while($row = $sql->fetch()) {
-      if ($row["hashedPassword"] == $pw) {
+  if ($stmt->rowCount() > 0) {
+    while($row = $stmt->fetch()) {
+      if ($row["hashedPassword"] == hash("sha256", $pw)) {
         echo 2;
         echo $row["userId"];
       }
@@ -33,8 +26,5 @@
   else {
     // wrong username
     echo 0;
-    
   }
-  
-
 ?>
