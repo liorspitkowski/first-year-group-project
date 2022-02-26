@@ -4,7 +4,7 @@ html{
     background-color: honeydew;
 }
 body{
-    margin:0px;
+    margin:0;
     height:100%;
 }
 
@@ -122,13 +122,10 @@ body{
 .search-bar{
     margin:1%;
     height:10%;
-
-    background-color: aqua;
+    border: 1px solid black;
 }
 .search-result{
     margin:1%;
-
     height:85%;
-
-    background-color: red;
+    border: 1px solid black;
 }
