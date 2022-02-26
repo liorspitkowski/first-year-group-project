@@ -1,5 +1,9 @@
 <?php
 
+/* to do
+ - add vegi/vegan options
+ - add time to cook */
+
 require "DatabaseHandler.php";
 
 //add recipe to database in for (String, int, String[], double[], String[], String)
