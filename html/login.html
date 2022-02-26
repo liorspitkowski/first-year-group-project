@@ -8,36 +8,40 @@
   <script src="../javaScript/jquery-3.6.0.js"></script>
   <script src="../javaScript/login.js"></script>
   <link rel="stylesheet" href="../css/login.css">
-
 </head>
 
 <body>
-
-  <div class="top-box">
+  <!-- blank space begin -->
+  <section class="top-box">
     <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
-  </div>
-  <div class="middle-box">
+  </section>
+  
+  <!-- blank space end -->
+
+  <!-- middle space begin -->
+  <section class="middle-box">
+    <!-- Form that submit user info -->
     <div class="form-box">
-      <form id="login_form" method="POST" onsubmit="submitLogin()">
+      <form id="login_form" onsubmit='submitLogin()'>
         <label for="username">Username(8 characters):</label>
-        <input type="text" id="username" name="user_name" required
-        pattern=".{8,}" title="8 letters or more"><br>
+        <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="user_password" required
-        pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
-        <button type="submit">Enter</button>
+        <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+        <input type="submit"></input>
       </form>
       <a href="">Forget your password?</a>
     </div>
+
     <div class="below-box"></div>
-  </div>
+  </section>
+  <!-- middle space end -->
 
-
+  <!-- footer begin -->
   <div class="bottom-box">
-
+    <p>All rights reserved....</p>
   </div>
-
+  <!-- footer end -->
 </body>
 
 </html>
