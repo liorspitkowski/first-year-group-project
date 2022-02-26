@@ -24,6 +24,10 @@ function submitReg() {
             else {
                 alert('server response invalid value: ' + data);
             }
+            /* 
+                returning warning message at current version:
+                line 2, 3: undefined array key ""
+            */ 
         }
     });
     // prevent page reload, dunno the reason
