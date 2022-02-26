@@ -1,28 +1,43 @@
+<!--Written and maintained by Hanmin Liu-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>login</title>
-    <script type="text/javascript">
-      function enter() {
-        var username = document.getElementById("i_username").value;
-        var password = document.getElementById("i_password").value;
-        alert("Successfully entered, please click to continue");
-        document.getElementById("o_username").innerHTML = username;
-      }
-    </script>
-  </head>
-  <body>
-    This is the Login Page, where user enter their info and password <br>
-    we checkon whether they are in our database. <br>
-    1 hyperlink:
-    <a href="../index.html">Home</a><br>
-    Enter name: <input type="text" id="i_username"> <br>
-    Enter password: <input type="text" id="i_password"> <br>
-    <button onclick="enter()">Enter</button>
-    <p id="o_username">
-      this is the paragraph that shall display the username.
 
-    </p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>login</title>
+  <script src="../javaScript/jquery-3.6.0.js"></script>
+  <script src="../javaScript/login.js"></script>
+  <link rel="stylesheet" href="../css/login.css">
+
+</head>
+
+<body>
+
+  <div class="top-box">
+    <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
+  </div>
+  <div class="middle-box">
+    <div class="form-box">
+      <form id="login_form" method="POST" onsubmit="submitLogin()">
+        <label for="username">Username(8 characters):</label>
+        <input type="text" id="username" name="user_name" required
+        pattern=".{8,}" title="8 letters or more"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password" required
+        pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+        <button type="submit">Enter</button>
+      </form>
+      <a href="">Forget your password?</a>
+    </div>
+    <div class="below-box"></div>
+  </div>
+
+
+  <div class="bottom-box">
+
+  </div>
+
+</body>
+
 </html>
