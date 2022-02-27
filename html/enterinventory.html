@@ -20,11 +20,11 @@
     <h1>What is in your fridge?</h1>
     <h3>Add Links:</h3>
     <p>Enter the details below</p>
-    <form action="../linktest.php" method="post">
-        <input type="text" placeholder="URL:" name="url" required>
-        <input type="text" placeholder="Title:" name="title" required>
-        <input type="text" placeholder="Added By:" name="name" required style="width: 6.5em;">
+    <form id="inventory_form" onsubmit="submitInventory()">
+        <input type="text" placeholder="Foodname..." name="foodname" required>
+        <input type="text" placeholder="Quantities..." name="quantities" required style="width: 6.5em;">
         <input type="submit">
+    </form>
 </body>
 
 </html>

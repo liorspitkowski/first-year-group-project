@@ -7,14 +7,19 @@ $pass = "SpagetiC0de";
 $conn;
 
 //creates connection object to database
-function connect(){
+function connect(bool $debug = false){
 
   global $host, $dbname, $conn, $user, $pass;
 
   try
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
-    echo "Connected to $host successfully. \n";
+    if ($debug){
+      $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    }
+    //log messages WIP
+    //$ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : "Uknown";
+    //logMessage("Connected to $host successfully from " . $ip);
     return $conn;
   }
   catch (PDOException $pe)
@@ -41,19 +46,32 @@ function adminConnect(String $user, String $pass){
   }
 }
 
-function SQLquery($sql){
-
-  global $conn;
-
-  try{
-    $conn->query($sql);
-    echo "SQL query ran successfully \n";
-  }
-  catch (PDOException $pe)
-  {
-    echo "ERROR : SQLquery '$sql' failed to run \n";
-  }
-
+function logMessage($message){
+  $datetime = date("Y-m-d H:i:s") . " : ";
+  $log = $datetime . $message . "\n";
+  file_put_contents("logs/database_logs.log", $log, FILE_APPEND);
 }
 
- ?>
+/*
+require "DatabaseHandler.php";
+//creates connection object with debug mode on
+$conn = connect(true);
+
+//creates connection object with debug mode off
+$conn = connect(); // or $conn = connect(false);
+
+$sql = "CREATE table";
+
+//unsecure for user input only use for sql with not user input
+$conn->query($sql);
+
+//secure way of passing user inputed variable into sql pre-formated statments
+$pre_formated_sql = "SELECT FROM table (column1, column2) VALUES (:value1, :value2)"
+$stmt = $conn->prepare($sql);
+$stmt->execute([
+  'valu1' => $variable1,
+  'value2' => $variable2
+]);
+*/
+
+?>
