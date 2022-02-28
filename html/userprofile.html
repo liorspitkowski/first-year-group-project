@@ -1,2 +1,69 @@
-Show user their profile and let them change the profile.
-Use sidebar to goto whereever you wanna go.
+<!--Written and maintained by Hanmin Liu-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>myprofile</title>
+    <link rel="stylesheet" href="../css/myprofile.css">
+    <script src="../javaScript/myprofile.js"></script>
+</head>
+
+<body>
+    <!-- Main contect space -->
+    <section class="left-box">
+        <!-- blank space on top begin -->
+        <div class="topbox">
+            <div class="title-box">
+            Foogle
+            </div>
+            
+        </div>
+        <!-- blank space on top end -->
+
+        <!-- search space begin -->
+        <div class="row">
+            <div class="column-1">
+                <div class="sidebar">
+                    <div class="sidebar-title">
+                        Sidebar   
+                    </div>
+                    <ul>
+                        <li><a href="userprofile.html">My profile</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="samplerecipe.html">Samplerecipe</a></li>  
+                        <li><a href="newRecipe.html">Newrecipe</a></li> 
+                        <li><a href="shoppinglist.html">Shopping list</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="column-2">
+                <div class="search-result">
+                    <p>My profile</p>
+                    <form name="profile_form" action="" onsubmit="submitProfile()">
+                        <label for="Name">Name:</label>
+                        <input type="text" name="Name" id="user_name" required><br>
+                        <label for="Email">Email:</label>
+                        <input type="text" name="Email" id="user_email" required><br>
+                        <label for="Change-passwrod">Change password:</label>
+                        <input type="text" name="Change password" id="user_change-password" required><br>
+                        <label for="favourite">Favourite:</label>
+                        <input type="text" name="favourite" id="user_favourite" required><br>
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        <!-- search space end -->
+        
+        <!-- footer begin -->
+        <div class="bottom-box">
+            Perhaps some 'contact us' stuff?
+        </div>
+        <!-- footer end -->
+    </section>
+    <!-- The background image section -->
+    <section class="right-box">
+    </section>
+</body>
