@@ -12,7 +12,7 @@ function submitLogin() {
             if(data == "0" | data =="1"){
                 alert('username or password incorrect, \nplease check again');
             }
-            else if(data == "2"){
+            else if(data[0] == "2"){
                 alert('welcome back to Foogle');
             }
             else{
