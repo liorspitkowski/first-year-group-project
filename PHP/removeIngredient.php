@@ -2,41 +2,44 @@
 
 require "DatabaseHandler.php";
 
-// removes all ingredients of a recipe from a user's inventory
-function remove_ingredients() {
+// adds ingredient with quantity to user's inventory (checking if they already had it in which case it adds to the quantity)
+function remove_ingredient() {
     // retrieves variables from POST
-    $id = $_POST["id"];
-    $recipeName = $_POST["recipeName"];
-    $amount = $_POST["amount"];
+    // $id = $_POST["id"];
+    // $ingredient = $_POST["ingredient"];
+    // $quantity = $_POST["quantity"];
+
+    $id = 1;
+    $ingredient = "food1";
+    $quantity = 2;
 
     $conn = connect(True); // connects to database
 
-    $foodId = get_foodId($conn, $ingredient);
-
+    $foodId = get_foodId($conn, $ingredient)[0];
     $current_quantity = get_quantity($conn, $id, $foodId);
 
     if ($current_quantity > 0) {
-        // already have ingredient
-        if ($current_quantity == $amount) {
-            // delete record
-            $sql = "DELETE FROM inventory WHERE userId = :userId AND foodId = ;foodId";
+        // already have ingredient, update it
+        if ($current_quantity[0] <= $quantity) {
+            // if the current current quantity is less than or equal to amount to be deleted, delete record
+            $sql = "DELETE FROM inventory WHERE userId = :userId AND foodId = :foodId";
             $stmt = $conn->prepare($sql);
             $stmt ->execute([
               'userId' => $id,
               'foodId' => $foodId
             ]);
         } else {
-          // decrease amount
-          $amount = $amount - $current_quantity;
-          $sql = "UPDATE inventory
-                  SET amount = :amount
-                  WHERE userId = :userId AND foodId = :foodId";
-          $stmt = $conn->prepare($sql);
-          $stmt ->execute([
-            'userId' => $id,
-            'foodId' => $foodId,
-            'amount' => $amount
-          ]);
+            // if current quanitity is more than amount to be deleted, decrease by amount
+            $quantity = $current_quantity[0] - $quantity;
+            $sql = "UPDATE inventory
+                    SET amount = :amount
+                    WHERE userId = :userId AND foodId = :foodId";
+                    $stmt = $conn->prepare($sql);
+            $stmt->execute([
+              'userId' => $id,
+              'foodId' => $foodId,
+              'amount' => $quantity
+            ]);
         }
     }
 }
@@ -64,6 +67,6 @@ function get_quantity($conn, $id, $foodId) {
   return $results;
 }
 
-remove_ingredients();
+remove_ingredient();
 
 ?>
