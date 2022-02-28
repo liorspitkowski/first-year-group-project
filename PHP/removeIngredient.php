@@ -5,7 +5,7 @@ require "DatabaseHandler.php";
 // adds ingredient with quantity to user's inventory (checking if they already had it in which case it adds to the quantity)
 function remove_ingredient() {
     // retrieves variables from POST
-    $id = $_POST["id"];
+    $id = $_POST["user_id"];
     $ingredient = $_POST["ingredient"];
     $quantity = $_POST["quantity"];
 

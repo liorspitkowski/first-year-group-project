@@ -5,7 +5,7 @@ require "DatabaseHandler.php";
 // removes all ingredients of a recipe from a user's inventory
 function remove_recipe_ingredients() {
     // retrieves variables from POST
-    $id = $_POST["id"];
+    $id = $_POST["user_id"];
     $recipeName = $_POST["recipeName"];
 
     $conn = connect(True); // connects to database
