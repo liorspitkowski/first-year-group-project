@@ -2,64 +2,74 @@
 //change names to db proper ones
 	require "DatabaseHandler.php";
 
-	function displayInventory(){
+	mainFunction(1);
+
+	function mainFunction($user){
 		$conn = connect(true);
-	}
 
-	function getFoodId($conn, $ingredient){
+		$quantity = getFields($conn, $user, 'amount');
+		$foodNames = getFoodNames($conn, $user);
 
-	  $sql = "SELECT foodName FROM foods WHERE foodId = :ingredient";
-	  $stmt = $conn->prepare($sql);
+		var_dump($foodNames);
+		var_dump($quantity);
 
-	  //change this
-	  $stmt->execute([
-	    'ingredient' => $ingredient
-	  ]);
-	  return $stmt;
-	}
-
-	function getInventoryFoodNames($conn, $userId){
-		//$sql = "SELECT food_id, quantity FROM recipes WHERE user_id = :userId";
-		$sql = "SELECT food_name FROM food WHERE food_id = (SELECT food_id FROM Inventory WHERE user_id = :userId)";
-		$stmt = $conn->prepare($sql);
-
-		$stmt->execute([
-		  'userId' => $userId
-		]);
-
-		return $stmt;
-	}
-
-	function getQuantities($conn, $userId){
-		$sql = "SELECT quantity FROM Inventory WHERE user_id = :userId";
-		$stmt = $conn->prepare($sql);
-
-		$stmt->execute([
-		  'userId' => $userId
-		]);
-
-		return $stmt;
-	}
-
-	function main($user){
-		$conn = connect(true);
-		$data = getData($conn, $user);
-
-		$foodNames = $data->fetch()['foodName'];
-		$quantity = $data->fetch()['quantity'];
+		echo(formatData($foodNames, $quantity));
 
 		//return data to the hanmin
 	}
 
+	function getFields($conn, $user, $fieldName){
+		$stmt = getData($conn, $user);
+
+		$array1 = [];
+		if ($stmt != null){
+			while ($row = $stmt->fetch()){
+				array_push($array1, $row[$fieldName]);
+			}
+		}
+		return ($array1);
+	}
+
+	function formatData($a1, $a2){
+		$data = "";
+		for ($i=0; $i < (count($a1) - 1); $i++){
+			$data = $data . $a1[$i] . "#" . $a2[$i] . "#";
+		}
+		$data = $data . $a1[count($a1) - 1] . "#" . $a2[count($a1) - 1];
+		return $data;
+	}
+
+	function getFoodNames($conn, $user){
+		$foodId = getFields($conn, $user, 'foodId');//the food ids fetched
+
+		$array1 = [];
+		for ($i = 0; $i < count($foodId); $i++){
+			$sql = "SELECT foodName FROM foods WHERE foodId = :foodId";
+			$stmt = $conn->prepare($sql);
+
+			$stmt->execute([
+				'foodId' => $foodId[$i]
+			]);
+
+			if ($stmt != null){
+				while ($row = $stmt->fetch()){
+					array_push($array1, $row['foodName']);
+				}
+			}
+		}
+
+		return ($array1);
+	}
+
 	function getData($conn, $user){
-		$sql = "SELECT foodName, quantity FROM foods WHERE userName = :user";
+		$sql = "SELECT foodId, amount FROM inventory WHERE userId = :user";
 		$stmt = $conn->prepare($sql);
 
 		$stmt->execute([
 			'user' => $user
 		]);
 
-		return stmt;
+		return $stmt;
 	}
 
 
