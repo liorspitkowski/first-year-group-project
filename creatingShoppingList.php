@@ -1,7 +1,10 @@
 <?php
 	require "DatabaseHandler.php";
-	// $user = $_POST['userId'];
-	mainFunction(1);
+	$user = $_POST['userId'];
+	$recipeName = $_POST['recipeId'];
+
+	mainFunction($user, $recipeName);
+	//mainFunction(1, "Chicken Korma");
 
 	function getRecipeId($conn, $recipeName){
 		$sql = "SELECT recipeId FROM recipes WHERE recipeName = :recipeName";
@@ -91,21 +94,21 @@
 		}
 		return $arrayNames;
 	}
-	function formatData($a1, $a2){
+	function formatData($names, $amounts){
 		$data = "";
-		for ($i=0; $i < (count($a1) - 1); $i++){
-			$data = $data . $a1[$i] . "#" . $a2[$i] . "#";
+		for ($i=0; $i < (count($names) - 1); $i++){
+			$data = $data . $names[$i] . "#" . $amounts[$i] . "#";
 		}
 
-		if (count($a1) != 0){
-			$data = $data . $a1[count($a1) - 1] . "#" . $a2[count($a1) - 1];
+		if (count($names) != 0){
+			$data = $data . $names[count($names) - 1] . "#" . $amounts[count($names) - 1];
 		}
 		return $data;
 	}
-	function mainFunction($user){
+	function mainFunction($user, $recipe){
 		$conn = connect(true);
 
-		$recipeId = getRecipeId($conn, "Chicken Korma");
+		$recipeId = getRecipeId($conn, $recipe);
 		$ingredients = getIngredients($conn, $user, $recipeId);
 
 		$finalList = compareLists($conn, $user, $ingredients);
