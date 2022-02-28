@@ -4,7 +4,7 @@ require "DatabaseHandler.php";
 
 // adds ingredient with quantity to user's inventory (checking if they already had it in which case it adds to the quantity)
 function add_ingredient() {
-    //retrieves variables from POST
+    // //retrieves variables from POST
     $id = $_POST["id"];
     $ingredient = $_POST["ingredient"];
     $quantity = $_POST["quantity"];
@@ -60,6 +60,7 @@ function get_quantity($conn, $id, $foodId) {
 }
 
 // convert units to standard ones in database
+// WIP
 function unit_conversion($quantity, $unit) {
     switch ($unit) {
       case "lb":
