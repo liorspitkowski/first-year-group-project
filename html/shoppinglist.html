@@ -1,35 +1,68 @@
+<!--Written and maintained by Hanmin Liu-->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-       <title> shoppinglist</title>
-       <link rel="stylesheet"  href="..\css\shoppinglist.css" type="text/css">   
-    </head>
 
+<head>
+    <meta charset="UTF-8">
+    <title>myprofile</title>
+    <link rel="stylesheet" href="../css/shoppinglist.css">
+    <script src="../javaScript/shoppinglist.js"></script>
+</head>
 
-
-    <body>
-
-        <!--this is the part of sidebar-->
-        <div class="sidebar">
-            <!--sidebar title-->
-            <div class="sidebar-title">
-                <p>samplerecipe</p>
+<body>
+    <!-- Main contect space -->
+    <section class="left-box">
+        <!-- blank space on top begin -->
+        <div class="topbox">
+            <div class="title-box">
+            Foogle
             </div>
-            <!-- sidebar list-->
-            <ul>
-                <li><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-            </ul>
-            </div>
-        <!--this is the content-->
-        <div class="content">
-            <div class="content-title">
-                <p>this is the shoppinglist</p>
-            </div>
-            <div class="mainpage">
-                this is the content
-            </div>
+            
+        </div>
+        <!-- blank space on top end -->
 
-        </div>    
+        <!-- search space begin -->
+        <div class="row">
+            <div class="column-1">
+                <div class="sidebar">
+                    <div class="sidebar-title">
+                         Sidebar 
+                    </div>
+                    <ul>
+                        <li><a href="userprofile.html">My profile</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="samplerecipe.html">Samplerecipe</a></li>  
+                        <li><a href="newRecipe.html">Newrecipe</a></li> 
+                        <li><a href="shoppinglist.html">Shopping list</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="column-2"><div class="search-panel">
+                <div class="search-bar">
+                    <form name="search_form" action="" onsubmit="submitSearch()">
+                        <input type="text" name="user_search" id="user_search" placeholder="Search some food..." required>
+                        <input type="submit">
+                    </form>
+                </div>
+                <div class="search-result">
+                    <form name="profile_form" action="" onsubmit="submitProfile()">
+                        <label for="recipe">recipe</label>
+                        <input type="text" name="recipe" id="user_recipe" required>
+                        
+                    </form>
+                </div>
+            </div></div>
+        <!-- search space end -->
+        
+        <!-- footer begin -->
+        <div class="bottom-box">
+            Perhaps some 'contact us' stuff?
+        </div>
+        <!-- footer end -->
+    </section>
+    <!-- The background image section -->
+    <section class="right-box">
+    </section>
+</body>
