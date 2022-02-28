@@ -91,6 +91,17 @@
 		}
 		return $arrayNames;
 	}
+	function formatData($a1, $a2){
+		$data = "";
+		for ($i=0; $i < (count($a1) - 1); $i++){
+			$data = $data . $a1[$i] . "#" . $a2[$i] . "#";
+		}
+
+		if (count($a1) != 0){
+			$data = $data . $a1[count($a1) - 1] . "#" . $a2[count($a1) - 1];
+		}
+		return $data;
+	}
 	function mainFunction($user){
 		$conn = connect(true);
 
@@ -99,6 +110,7 @@
 
 		$finalList = compareLists($conn, $user, $ingredients);
 		$finalList[0] = getIngredientNames($conn, $finalList[0]);
-		var_dump($finalList);
+		
+		echo(formatData($finalList[0], $finalList[1]));
 	}
 ?>
