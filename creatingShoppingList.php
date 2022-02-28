@@ -1,117 +1,63 @@
 <?php
-	mainFunction(1, "beans");
+	require "DatabaseHandler.php";
 
-	//displayInventory();
+	mainFunction(1);
 
-
-	// displayInventory();
-
-	// function displayInventory(){
-	// 	$conn = connect(true);
-	// 	//$result = getFoodId($conn, "testfoo1");
-
-	// 	addInventoryId($conn, 1, 6, 56);
-
-	// }
-
-	// function addInventoryId($conn, $userId, $foodId, $amount){
-	// 	$sql = "INSERT INTO inventory (userId, foodId, amount) VALUES (:userId, :foodId, :userId)";
-	// 	$stmt = $conn->prepare($sql);
-
-	// 	$stmt->execute([
-	// 		'userId' => $userId,
-	// 		'foodId' => $foodId,
-	// 		'userId' => $userId
-	// 	]);
-	// }
-
-	//given recipe name (more than one eventually)
-	//find recipe id
-	//get food ids and quantities
-	//get inventory
-	//compare with inventory
-	//get food names
-	//make array and send
-
-
-	function mainFunction($userId, $name){
-		require "DatabaseHandler.php";
-		$conn = connect(true);
-
-		$recipeId = getRecipeId($conn, $name);
-		
-		$foods = getFoodIds($conn, $recipeId);
-		$recipeFoodIds = $foods->fetch()['foodId'];
-		$recipeQuantities = $foods->fetch()['quantiites'];
-
-		$inventory = getInventory($conn, $userId);
-		$inventoryFood = $inventory->fetch()['foodId'];
-		$inventoryQuantities = $foods->fetch()['quantiites'];
-
-
-
-	}
-
-	function getRecipeId($conn, $name){
-		$sql = "SELECT recipeName FROM recipes WHERE recipeName = :name";
+	function getRecipeId($conn, $recipeName){
+		$sql = "SELECT recipeId FROM recipes WHERE recipeName = :recipeName";
 		$stmt = $conn->prepare($sql);
 
-		$stmt->execute([
-			'name' => $name
-		]);
-		//could return at different point
+		$stmt->execute(['recipeName' => $recipeName]);
+
+		return $stmt->fetch()['recipeId'];
+	}
+	function getInventory($conn, $userId){
+		$sql = "SELECT foodId, amount FROM inventory WHERE userId = :userId";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(['userId' => $userId]);
+
+		//now look through records
+		$Ids = [];
+		$amount = [];
 		if ($stmt != null){
 			while ($row = $stmt->fetch()){
-				return $row["recipeId"];
+				array_push($Ids, $row['foodId']);
+				array_push($amount, $row['amount']);
 			}
 		}
-	}
 
-	function getFoodIds($conn, $recipeId){
-		$sql = "SELECT foodId, quantity FROM foods WHERE recipeId = :recipeId";
+		return array($Ids, $amount);
+	}	
+	function getIngredients($conn, $userId, $recipeId){
+		$sql = "SELECT foodId, amount FROM ingredients WHERE recipeId = :recipeId";
 		$stmt = $conn->prepare($sql);
+		$stmt->execute(['recipeId' => $recipeId]);
 
-		$stmt->execute([
-			'recipeId' => $recipeId
-		]);
+		//now look through records
+		$Ids = [];
+		$amount = [];
+		if ($stmt != null){
+			while ($row = $stmt->fetch()){
+				array_push($Ids, $row['foodId']);
+				array_push($amount, $row['amount']);
+			}
+		}
 
-		return $stmt;
+		return array($Ids, $amount);
+	}
+	function compareLists($conn, $userId, $ingredients){
+
 	}
 
-	function getInventory($conn, $userId){
-		$sql = "SELECT foodId, quantity FROM inventory WHERE userId = :userId";
-		$stmt = $conn->prepare($sql);
 
-		$stmt->execute([
-			'userId' => $userId
-		]);
+	function mainFunction($user){
+		$conn = connect(true);
 
-		// if ($stmt != null){
-		// 	while ($row = $stmt->fetch()){
-		// 		//format data
-		// 	}
-		// }
-		return $stmt;
-	}
+		$recipeId = getRecipeId($conn, "beans on toast");
+		//$inventory = getInventory($conn, $user);
+		$ingredients = getIngredients($conn, $user, $recipeId);
 
-	function getFoodNames($conn, $foods){
-		$sql = "SELECT foodName FROM foods WHERE foodId = :foods";
-		$stmt = $conn->prepare($sql);
-
-		$stmt->execute([
-			'foods' => $foods
-		]);
-
-		return $stmt;
-	}
-
-	function compareInventory($recipeIng, $inventory){
-		//first check if record is there
-		//if so, check the quantity
-		//update differences
-		//return the updated list with the names
-
-
+		$finalList = compareLists($conn, $userId, $ingredients)
 	}
 
 
