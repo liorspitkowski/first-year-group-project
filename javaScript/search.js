@@ -1,5 +1,6 @@
-function submitLogin() {
-    var url = "../PHP/login.php", data = $('#login_form').serialize();
+function submitSearch() {
+    alert('function called');
+    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
     console.log(data);
     $.ajax({
         // prevent page reload, dunno the reason
@@ -12,7 +13,7 @@ function submitLogin() {
             if(data == "0" | data =="1"){
                 alert('username or password incorrect, \nplease check again');
             }
-            else if(data[0] == "2"){
+            else if(data == "2"){
                 alert('welcome back to Foogle');
             }
             else{
