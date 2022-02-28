@@ -2,8 +2,13 @@
 
 $host = "dbhost.cs.man.ac.uk";
 $dbname = "2021_comp10120_x18";
+<<<<<<< HEAD
 $user = "f18903ls";
 $pass = "f18903lsf18903ls";
+=======
+$user = "y66466tl";
+$pass = "SpagetiC0de";
+>>>>>>> master
 $conn;
 
 //creates connection object to database
@@ -14,10 +19,19 @@ function connect(bool $debug = false){
   try
   {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
+<<<<<<< HEAD
     echo "Connected to $host successfully. \n";
     if ($debug){
       $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
     }
+=======
+    if ($debug){
+      $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+    }
+    //log messages WIP
+    //$ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : "Uknown";
+    //logMessage("Connected to $host successfully from " . $ip);
+>>>>>>> master
     return $conn;
   }
   catch (PDOException $pe)
@@ -44,6 +58,7 @@ function adminConnect(String $user, String $pass){
   }
 }
 
+<<<<<<< HEAD
 function SQLquery($sql){
 
   global $conn;
@@ -57,6 +72,12 @@ function SQLquery($sql){
     echo "ERROR : SQLquery '$sql' failed to run \n";
   }
 
+=======
+function logMessage($message){
+  $datetime = date("Y-m-d H:i:s") . " : ";
+  $log = $datetime . $message . "\n";
+  file_put_contents("logs/database_logs.log", $log, FILE_APPEND);
+>>>>>>> master
 }
 
 /*
@@ -81,4 +102,8 @@ $stmt->execute([
 ]);
 */
 
+<<<<<<< HEAD
  ?>
+=======
+?>
+>>>>>>> master

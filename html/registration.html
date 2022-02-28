@@ -1,0 +1,76 @@
+<!--Written and maintained by Hanmin Liu-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Registration</title>
+  <script src="../javaScript/jquery-3.6.0.js"></script>
+  <script src="../javaScript/registration.js"></script>
+  <link rel="stylesheet" href="../css/registration.css">
+</head>
+
+<body>
+  <!-- blank space begin -->
+  <section class="top-box">
+    <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
+  </section>
+  <!-- blank space end -->
+
+  <!-- middle block begin -->
+  <section class="middle-box">
+    <!-- container for form -->
+    <div class="form-box">
+      <form id="registration_form" onsubmit="submitReg()">
+        <!-- input username -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="user_name" required><br>
+
+        <label for="first_name">First name:</label>
+        <input type="text" id="first_name" name="first_name" required pattern="[A-Z][a-z]*}"><br>
+
+        <label for="last_name">Last name:</label>
+        <input type="text" id="last_name" name="last_name" required pattern="[A-Z][a-z]*"><br>
+
+        <!-- input email -->
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="user_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"><br>
+
+        <!-- input password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+
+        <!-- checking if password and repeat password begin -->
+        <label for="re_password">Repeat Password:</label>
+        <input type="password" id="re_password" name="user_repassword" required oninput="check(this)"><br>
+        <script language='javascript' type='text/javascript'>
+          function check(input) {
+            if (input.value != document.getElementById('password').value) {
+              input.setCustomValidity('Password Must be Matching.');
+            } else {
+              // input is valid -- reset the error message
+              input.setCustomValidity('');
+            }
+          }
+        </script>
+
+        <!-- submit button -->
+        <input type="submit"></input>
+      </form>
+    </div>
+
+    <!-- I dont really remember what this box is for... -->
+    <div class="below-box"></div>
+  </section>
+  <!-- middle block end -->
+
+  <!-- footer begin -->
+  <section class="bottom-box">
+    All rights reserved...
+  </section>
+  <!-- footer end -->
+
+</body>
+
+</html>

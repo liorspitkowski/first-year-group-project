@@ -1,0 +1,24 @@
+html{
+    height:100%;
+    background-color: honeydew;
+}
+body{
+    margin:0;
+    height:98%;
+}
+.top-box{
+    height: 10%;
+}
+.title-box{
+    height:100%;
+    width:20%;
+    float:left;
+}
+.bottom-box{
+    height:10%;
+}
+.row{
+    height:80%;
+    width:100%;
+    background-color: gold;
+}
