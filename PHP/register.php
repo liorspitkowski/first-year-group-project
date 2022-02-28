@@ -1,8 +1,8 @@
 <?php
-  $fname = $_POST[''];
-  $lname = $_POST[''];
-  $un = $_POST[''];
-  $pw = $_POST[''];
+  $fname = $_POST['first_name'];
+  $lname = $_POST['last_name'];
+  $un = $_POST['user_name'];
+  $pw = $_POST['user_password'];
 
   require "DatabaseHandler.php";
 
