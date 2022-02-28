@@ -1,6 +1,7 @@
 function submitLogin() {
     var url = "../PHP/login.php", data = $('#login_form').serialize();
     const formData = new FormData(document.querySelector('#login_form'))
+    alert(data);
     $.ajax({
         // prevent page reload, dunno the reason
         async: false,
