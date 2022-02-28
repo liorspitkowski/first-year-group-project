@@ -3,7 +3,7 @@
 require "DatabaseHandler.php";
 
 // removes all ingredients of a recipe from a user's inventory
-function remove_ingredients() {
+function remove_recipe_ingredients() {
     // retrieves variables from POST
     $id = $_POST["id"];
     $recipeName = $_POST["recipeName"];
@@ -13,29 +13,33 @@ function remove_ingredients() {
     $recipeId = get_recipeId($conn, $recipeName);
 
     $ingredientsAndQuantities = get_ingredients_and_quantities_recipe($conn, $recipeId);
-    $recipeIngredientsList = $ingredientsAndQuantities['foodId'];
-    $recipeAmountsList = $ingredientsAndQuantities['amount'];
+    $recipeIngredientsList = $ingredientsAndQuantities[0];
+    $recipeAmountsList = $ingredientsAndQuantities[1];
 
     // for every ingredient in the recipe, get the amount in the user's inventory and decrease the amount of the ingredient in the users' inventory, if theres not enough, set to 0
-    for ($i = 0; $x < count($recipeIngredientsList); $i++) {
-        $amountInInventory = get_amount_from_inventory($conn, $userId, $recipeIngredientsList[$i]);
+    for ($i = 0; $i < sizeof($recipeIngredientsList); $i++) {
+        $amountInInventory = get_amount_from_inventory($conn, $id, $recipeIngredientsList[$i]);
+
         if ($amountInInventory != null) {
-            if ($amountInInventory >= $recipeAmountsList[$i]) {
-                decrease_amount_from_inventory($conn, $userId, $recipeIngredientsList[$i], $amountInInventory - $recipeAmountsList[$i]);
+            $amountInInventory = $amountInInventory['amount'];
+            if ($amountInInventory > $recipeAmountsList[$i]) {
+                decrease_amount_from_inventory($conn, $id, $recipeIngredientsList[$i], $amountInInventory - $recipeAmountsList[$i]);
             } else {
-                decrease_amount_from_inventory($conn, $userId, $recipeIngredientsList[$i], 0);
+                delete_amount_from_inventory($conn, $id, $recipeIngredientsList[$i]);
             }
         }
     }
+}
 
 // gets recipeId of recipe from database
 function get_recipeId($conn, $recipeName) {
-    $sql = "SELECT recipeId From recipe Where recipeName = :recipeName";
+    $sql = "SELECT recipeId From recipes Where recipeName = :recipeName";
     $stmt = $conn->prepare($sql);
     $stmt ->execute([
       'recipeName' => $recipeName
     ]);
-    return $stmts['recipeId'];
+    $results = $stmt->fetch();
+    return $results['recipeId'];
 }
 
 // get a list of the ingredients and their quanitites in the recipe
@@ -45,7 +49,17 @@ function get_ingredients_and_quantities_recipe($conn, $recipeId) {
     $stmt ->execute([
       'recipeId' => $recipeId
     ]);
-    return mysql_fetch_assoc($stmts);
+
+    $recipeIngredientsList = [];
+    $recipeAmountsList = [];
+
+    if ($stmt != null) {
+        while($row = $stmt->fetch()) {
+            array_push($recipeIngredientsList, intval($row['foodId']));
+            array_push($recipeAmountsList, intval($row['amount']));
+        }
+    }
+    return array($recipeIngredientsList, $recipeAmountsList);
 }
 
 // fetches amount of ingredient in user's inventory
@@ -56,11 +70,12 @@ function get_amount_from_inventory($conn, $userId, $foodId) {
       'userId' => $userId,
       'foodId' => $foodId
     ]);
-    return $stmts['amount'];
+    $results = $stmt->fetch();
+    return $results;
 }
 
 // decreases the amount of an ingredient in user's inventory
-function decrease_amount_from_inventory($conn, $userId, $foodId, $amount) {
+function decrease_amount_from_inventory($conn, $id, $foodId, $amount) {
     $sql = "UPDATE inventory
             SET amount = :amount
             WHERE userId = :userId AND foodId = :foodId";
@@ -72,6 +87,15 @@ function decrease_amount_from_inventory($conn, $userId, $foodId, $amount) {
     ]);
 }
 
+function delete_amount_from_inventory($conn, $id, $foodId) {
+  $sql = "DELETE FROM inventory WHERE userId = :userId AND foodId = :foodId";
+  $stmt = $conn->prepare($sql);
+  $stmt ->execute([
+    'userId' => $id,
+    'foodId' => $foodId
+  ]);
+}
 
+remove_recipe_ingredients();
 
 ?>
