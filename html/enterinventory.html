@@ -1,28 +1,21 @@
 <!-- Written by Hanmin Liu -->
-<!-- Test purpose only feel free to delete -->
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>What is in your fridge?</title>
+    <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="./javaScript/getCookie.js"></script>
 </head>
 
 <body>
-    <p>
-        This is where the user can enter <br>
-        the inventory of food that they <br>
-        have.Maybe use a AI-regognize API <br>
-        to let the website do the job of <br>
-        finding food when scanning them. <br>
-        (This is more like a mobile-version feature.)
-    </p>
-
     <h1>What is in your fridge?</h1>
     <h3>Add Links:</h3>
     <p>Enter the details below</p>
     <form id="inventory_form" onsubmit="submitInventory()">
-        <input type="text" placeholder="Foodname..." name="foodname" required>
-        <input type="text" placeholder="Quantities..." name="quantities" required style="width: 6.5em;">
+        <input type="text" placeholder="Foodname..." name="ingredient" required>
+        <input type="text" placeholder="Quantities..." name="quantity" required style="width: 6.5em;">
+        <input type="text" placeholder="unit..." name="unit" required style="width: 6.5em;">
         <input type="submit">
     </form>
 </body>

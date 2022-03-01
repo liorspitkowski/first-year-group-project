@@ -7,7 +7,10 @@ body{
     margin:0px;
     height:98%;
 }
-.topbox{
+.header{
+    height: 10%;
+}
+.footer{
     height: 10%;
 }
 .title-box{
@@ -17,8 +20,19 @@ body{
 }
 .shopping-list{
     height:100%;
-    width:10%;
+    width:auto;
     float:right;
+}
+.shopping-list #inside-card{
+    height: 90%;
+    width: 90%;
+    padding: 0;
+    margin: 0;
+    background-color: gold;
+}
+.shopping-list #inside-card img{
+    width:100%;
+    height:100%;
 }
 
 .row{
@@ -30,7 +44,7 @@ body{
 
 .column-1{
     height:100%;
-    width:50%;
+    width:40%;
     float: left;
 }
 .block-row{
@@ -54,33 +68,44 @@ body{
     width:70%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-
-    display: flex; /*use flex to center the inner item*/
-    justify-content: center; /*vertical*/
-    align-items: center; /*horizontal*/
 }
 .card:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.column-2{
-    height:100%;
-    width:50%;
-    float:left;
-
+.row a{
     display: flex; /*use flex to center the inner item*/
     justify-content: center; /*vertical*/
     align-items: center; /*horizontal*/
+    height:100%;
+    width: 100%;
+    line-height: 100%;
+    /* border:1px black solid; */
+    background-color: gold;
+
+    text-align: center;
+    text-decoration: none;
+}
+.row a:hover{
+    background-color: goldenrod;
 }
 
-
+.column-2{
+    height:100%;
+    width:60%;
+    float:left;
+}
 .column-2 p{
-    margin:0;
-    line-height: 100%;
-    text-align: center;
+    display: flex; /*use flex to center the inner item*/
+    justify-content: center; /*vertical*/
+    align-items: center; /*horizontal*/
+
+    margin: 5%;
+    padding: 0;
+    width: 89%;
+    height: 88%;
     font-size: 32px;
     font-family: "Times New Roman", Times, serif;
     text-decoration:none;
-}
-.bottom-box{
-    height:10%;
+
+    border:1px black solid;
 }

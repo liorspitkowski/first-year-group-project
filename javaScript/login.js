@@ -1,6 +1,7 @@
 function submitLogin() {
     var url = "../PHP/login.php", data = $('#login_form').serialize();
     const formData = new FormData(document.querySelector('#login_form'))
+    alert(data);
     $.ajax({
         // prevent page reload, dunno the reason
         async: false,
@@ -21,7 +22,7 @@ function submitLogin() {
                     }
                 }
                 document.cookie = 'userid=' + data[1] + '; expires=18 Dec 2025 12:00:00 UTC;path=/';
-                window.location.pathname('./menu.html');
+                location.href = "../html/menu.html";
             }
             else {
                 alert('server response invalid value: ' + data);
