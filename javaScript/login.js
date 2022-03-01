@@ -22,7 +22,7 @@ function submitLogin() {
                     }
                 }
                 document.cookie = 'userid=' + data[1] + '; expires=18 Dec 2025 12:00:00 UTC;path=/';
-                window.location.pathname('./menu.html');
+                location.href = "../html/menu.html";
             }
             else {
                 alert('server response invalid value: ' + data);
