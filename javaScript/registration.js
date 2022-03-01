@@ -19,7 +19,8 @@ function submitReg() {
                 alert('user already exists\nplease go to login page');
             }
             else if ( data == "1") {
-                alert('welcome back to Foogle');
+                alert('Registered successfully!\nJumping to login page...');
+                location.href = '../html/login.html';
             }
             else {
                 alert('server response invalid value: ' + data);
