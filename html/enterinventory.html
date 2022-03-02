@@ -6,18 +6,47 @@
     <title>What is in your fridge?</title>
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="./javaScript/getCookie.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-    <h1>What is in your fridge?</h1>
-    <h3>Add Links:</h3>
-    <p>Enter the details below</p>
-    <form id="inventory_form" onsubmit="submitInventory()">
-        <input type="text" placeholder="Foodname..." name="ingredient" required>
-        <input type="text" placeholder="Quantities..." name="quantity" required style="width: 6.5em;">
-        <input type="text" placeholder="unit..." name="unit" required style="width: 6.5em;">
-        <input type="submit">
-    </form>
+    <!-- header start -->
+    <section class="header">
+        <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
+    </section>
+    <!-- header ends -->
+    <!-- middle space starts -->
+    <section class="middle-box">
+        <div class="form-box">
+            <p>What's in your fridge?</p>
+            <form id="inventory_form" onsubmit="return submitInventory()">
+                <div class="line">
+                    <label for="ingredient">Ingredient:</label><br>
+                    <input type="text" placeholder="Foodname..." name="ingredient" required>
+                </div>
+                <div class="line">
+                    <label for="quantity">Quantity:</label><br>
+                    <input type="text" placeholder="Quantities..." name="quantity" required>
+                </div>
+                <div class="line">
+                    <label for="line">Unit:</label><br>
+                    <input type="text" placeholder="unit..." name="unit" required style="width: 6.5em;">
+                </div>
+                <div class="line">
+                    <input type="submit">
+                </div>
+                
+            </form>
+        </div>
+        
+        <div class="below-box"></div>
+    </section>
+    <!-- middle space starts -->
+    <!-- footer starts -->
+    <div class="footer">
+        <p>All rights reserved....</p>
+    </div>
+    <!-- footer ends -->
 </body>
 
 </html>
