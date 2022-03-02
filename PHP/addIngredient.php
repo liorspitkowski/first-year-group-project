@@ -61,6 +61,7 @@ function get_quantity($conn, $id, $foodId) {
     return $results;
 }
 
+// checks to ensure record was updated and returns 0 for a fail or 1 if it was successful
 function confirmation($conn, $id, $foodId, $amountExpected) {
     $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
     $stmt = $conn->prepare($sql);
