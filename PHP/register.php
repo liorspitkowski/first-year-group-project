@@ -1,6 +1,6 @@
 <?php
 
-  public function GetID($uname)
+  function GetID($uname)
   {
     $conn = connect();
     $sql = 'SELECT userId FROM users WHERE username = :name';
