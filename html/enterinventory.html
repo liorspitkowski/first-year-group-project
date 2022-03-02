@@ -5,7 +5,8 @@
 <head>
     <title>What is in your fridge?</title>
     <script src="../javaScript/jquery-3.6.0.js"></script>
-    <script src="./javaScript/getCookie.js"></script>
+    <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/enterinventory.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 
@@ -29,16 +30,24 @@
                     <input type="text" placeholder="Quantities..." name="quantity" required>
                 </div>
                 <div class="line">
-                    <label for="line">Unit:</label><br>
-                    <input type="text" placeholder="unit..." name="unit" required style="width: 6.5em;">
+                    <!-- 
+                        food unit:
+                        ml,g,kg,slices,mug
+                     -->
+                    <h3>unit:</h3>
+                    <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
+                    <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
+                    <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
+                    <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
+                    <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
                 </div>
                 <div class="line">
                     <input type="submit">
                 </div>
-                
+
             </form>
         </div>
-        
+
         <div class="below-box"></div>
     </section>
     <!-- middle space starts -->
@@ -50,6 +59,3 @@
 </body>
 
 </html>
-
-
-<!-- <p>use a sidebar to go wherever you like.</p> -->
