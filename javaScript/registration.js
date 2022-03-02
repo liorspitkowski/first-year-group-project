@@ -15,10 +15,14 @@ function submitReg() {
         */
         success: function (data) {
             //alert(data);  show response from the php script.
-            if (data == "0") {
+            let flag = getValue("flag", data);
+            let userid = getValue("username", data);
+            alert(data);
+            alert("flag= "+flag+" userid= "+userid);
+            if (flag == "0") {
                 alert('user already exists\nplease go to login page');
             }
-            else if ( data == "1") {
+            else if ( flag == "1") {
                 alert('Registered successfully!\nJumping to login page...');
                 location.href = '../html/login.html';
             }
