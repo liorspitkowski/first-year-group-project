@@ -10,9 +10,9 @@ function submitLogin() {
         data: data,
         success: function (data) {
             let flag = getValue("flag", data);
-            let userid = getValue("userid", data);
-            alert("flag= "+flag);
-            alert("userid= "+userid);
+            let userid = getValue("username", data);
+            alert(data);
+            alert("flag= "+flag+" userid= "+userid);
             //alert(data);  show response from the php script.
             if (flag == "0" | flag == "1") {
                 alert('username or password incorrect, \nplease check again');
