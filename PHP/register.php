@@ -1,4 +1,16 @@
 <?php
+
+  public function GetID($uname)
+  {
+    $conn = connect();
+    $sql = 'SELECT userId FROM users WHERE username = :name';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([':name' => $uname]);
+    while($row = $stmt->fetch()) {
+      echo 'flag=1;username=' . $row["userId"] . ';';
+    }
+  }
+
   $fname = $_POST['first_name'];
   $lname = $_POST['last_name'];
   $un = $_POST['user_name'];
@@ -14,7 +26,7 @@
   $stmt->execute([':name' => $un]);
 
   if ($stmt->rowCount() > 0) {
-    echo 0;
+    echo 'flag=0;';
   }
   else {
     $sql = "INSERT INTO users (firstName, secondName, username, hashedPassword)
@@ -27,6 +39,6 @@
       ':usn' => $un,
       ':pass' => hash("sha256", $pw),
     ]);
-    echo 1;
+    GetID($un);
   }
 ?>
