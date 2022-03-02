@@ -1,10 +1,10 @@
 <?php
 	require "DatabaseHandler.php";
-	$user = $_POST['userId'];
-	$recipeName = $_POST['recipeId'];
+	// $user = $_POST['userId'];
+	// $recipeName = $_POST['recipeId'];
 
-	mainFunction($user, $recipeName);
-	//mainFunction(1, "Chicken Korma");
+	//mainFunction($user, $recipeName);
+	mainFunction(1, "Chicken Korma");
 
 	function getRecipeId($conn, $recipeName){
 		$sql = "SELECT recipeId FROM recipes WHERE recipeName = :recipeName";

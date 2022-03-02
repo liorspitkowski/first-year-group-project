@@ -2,16 +2,16 @@
 //change names to db proper ones
 	require "DatabaseHandler.php";
 
+
+	// $user = $_POST['user'];
 	mainFunction(1);
 
 	function mainFunction($user){
+
 		$conn = connect(true);
 
 		$quantity = getFields($conn, $user, 'amount');
 		$foodNames = getFoodNames($conn, $user);
-
-		var_dump($foodNames);
-		var_dump($quantity);
 
 		echo(formatData($foodNames, $quantity));
 
@@ -35,7 +35,10 @@
 		for ($i=0; $i < (count($a1) - 1); $i++){
 			$data = $data . $a1[$i] . "#" . $a2[$i] . "#";
 		}
-		$data = $data . $a1[count($a1) - 1] . "#" . $a2[count($a1) - 1];
+
+		if (count($a1) != 0){
+			$data = $data . $a1[count($a1) - 1] . "#" . $a2[count($a1) - 1];
+		}
 		return $data;
 	}
 
