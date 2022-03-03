@@ -1,15 +1,17 @@
+/*
+    Written by: Hanmin Liu;
+    send registration form, expect return value -0: exist user -1: success and redirect to login;
+*/
 function submitSearch() {
     alert('function called');
     var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
     console.log(data);
     $.ajax({
-        // prevent page reload, dunno the reason
         async:false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            //alert(data);  show response from the php script.
             if(data == "0" | data =="1"){
                 alert('username or password incorrect, \nplease check again');
             }
@@ -21,6 +23,5 @@ function submitSearch() {
             }
         }
     });
-    // prevent page reload, dunno the reason
     return false;
 }
