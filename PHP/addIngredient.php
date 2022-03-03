@@ -71,9 +71,9 @@ function confirmation($conn, $id, $foodId, $amountExpected) {
     ]);
     $results = $stmt->fetch()[0];
     if ($results == $amountExpected) {
-        return 1;
+        return "flag=1";
     } else {
-        return 0;
+        return "flag=0";
     }
 }
 

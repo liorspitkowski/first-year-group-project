@@ -5,13 +5,9 @@ require "DatabaseHandler.php";
 // adds ingredient with quantity to user's inventory (checking if they already had it in which case it adds to the quantity)
 function remove_ingredient() {
     // retrieves variables from POST
-    // $id = $_POST["user_id"];
-    // $ingredient = $_POST["ingredient"];
-    // $quantity = $_POST["quantity"];
-
-    $id = 6;
-    $ingredient = "beans";
-    $quantity = 200;
+    $id = $_POST["user_id"];
+    $ingredient = $_POST["ingredient"];
+    $quantity = $_POST["quantity"];
 
     $conn = connect(True); // connects to database
 
@@ -45,7 +41,7 @@ function remove_ingredient() {
         }
         $confirmationSignal = confirmation($conn, $deleted, $id, $foodId, $quantity);
     } else {
-        $confirmationSignal = 1;
+        $confirmationSignal = "flag=1";
     }
     echo($confirmationSignal);
 }
@@ -84,18 +80,18 @@ function confirmation($conn, $deleted, $id, $foodId, $amountExpected) {
     $results = $stmt->fetch();
     if ($deleted) {
         if ($results == null) {
-            return 1;
+            return "flag=1";
         } else {
-            return 0;
+            return "flag=0";
         }
-        return 1;
+        return "flag=1";
 
     } else {
         $results = $results[0];
         if ($results == $amountExpected) {
-            return 1;
+            return "flag=1";
         } else {
-            return 0;
+            return "flag=0";
         }
     }
 }
