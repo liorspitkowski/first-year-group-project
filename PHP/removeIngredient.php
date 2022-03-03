@@ -24,6 +24,7 @@ function remove_ingredient() {
               'userId' => $id,
               'foodId' => $foodId
             ]);
+            $deleted = True;
         } else {
             // if current quanitity is more than amount to be deleted, decrease by amount
             $quantity = $current_quantity[0] - $quantity;
@@ -36,8 +37,13 @@ function remove_ingredient() {
               'foodId' => $foodId,
               'amount' => $quantity
             ]);
+            $deleted = False;
         }
+        $confirmationSignal = confirmation($conn, $deleted, $id, $foodId, $quantity);
+    } else {
+        $confirmationSignal = "flag=1";
     }
+    echo($confirmationSignal);
 }
 
 // fetches foodId from name of ingredient
@@ -61,6 +67,33 @@ function get_quantity($conn, $id, $foodId) {
   ]);
   $results = $stmt->fetch();
   return $results;
+}
+
+// checks to ensure record was either updated or deleted and returns 0 for a fail or 1 if it was successful
+function confirmation($conn, $deleted, $id, $foodId, $amountExpected) {
+    $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'id' => $id,
+      'foodId' => $foodId
+    ]);
+    $results = $stmt->fetch();
+    if ($deleted) {
+        if ($results == null) {
+            return "flag=1";
+        } else {
+            return "flag=0";
+        }
+        return "flag=1";
+
+    } else {
+        $results = $results[0];
+        if ($results == $amountExpected) {
+            return "flag=1";
+        } else {
+            return "flag=0";
+        }
+    }
 }
 
 remove_ingredient();

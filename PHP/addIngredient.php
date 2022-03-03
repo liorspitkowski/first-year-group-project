@@ -8,12 +8,10 @@ function add_ingredient() {
     $id = $_POST["user_id"];
     $ingredient = $_POST["ingredient"];
     $quantity = $_POST["quantity"];
-    $unit = $_POST["unit"];
 
     $conn = connect(True); // connects to database
 
     $foodId = get_foodId($conn, $ingredient)[0];
-    $quantity = unit_conversion($quantity, $unit);
     $current_quantity = get_quantity($conn, $id, $foodId);
 
     if ($current_quantity > 0) {
@@ -34,6 +32,10 @@ function add_ingredient() {
       'foodId' => $foodId,
       'amount' => $quantity
     ]);
+
+    // confirmation check
+    $confirmationSignal = confirmation($conn, $id, $foodId, $quantity);
+    echo($confirmationSignal);
 }
 
 // fetches foodId from name of ingredient
@@ -49,28 +51,30 @@ function get_foodId($conn, $ingredient) {
 
 // fetches quantity of ingredient from database
 function get_quantity($conn, $id, $foodId) {
-  $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
-  $stmt = $conn->prepare($sql);
-  $stmt ->execute([
-    'id' => $id,
-    'foodId' => $foodId
-  ]);
-  $results = $stmt->fetch();
-  return $results;
+    $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'id' => $id,
+      'foodId' => $foodId
+    ]);
+    $results = $stmt->fetch();
+    return $results;
 }
 
-// convert units to standard ones in database
-// WIP
-function unit_conversion($quantity, $unit) {
-    switch ($unit) {
-      case "lb":
-          // convert lb to kg
-          $quantity = $quantity * 0.45;
-      case "gallon":
-          // convert gallons to litres
-          $quantity = $quantity * 3.79;
+// checks to ensure record was updated and returns 0 for a fail or 1 if it was successful
+function confirmation($conn, $id, $foodId, $amountExpected) {
+    $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'id' => $id,
+      'foodId' => $foodId
+    ]);
+    $results = $stmt->fetch()[0];
+    if ($results == $amountExpected) {
+        return "flag=1";
+    } else {
+        return "flag=0";
     }
-    return $quantity;
 }
 
 add_ingredient();
