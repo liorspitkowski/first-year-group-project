@@ -16,18 +16,36 @@ function remove_recipe_ingredients() {
     $recipeIngredientsList = $ingredientsAndQuantities[0];
     $recipeAmountsList = $ingredientsAndQuantities[1];
 
-    // for every ingredient in the recipe, get the amount in the user's inventory and decrease the amount of the ingredient in the users' inventory, if theres not enough, set to 0
-    for ($i = 0; $i < sizeof($recipeIngredientsList); $i++) {
-        $amountInInventory = get_amount_from_inventory($conn, $id, $recipeIngredientsList[$i]);
+    $ingredientCount = sizeof($recipeIngredientsList);
+    $confirmationCounter = 0; // used to ensure all ingredients are successfully updated in the databse
 
+    // for every ingredient in the recipe, get the amount in the user's inventory and decrease the amount of the ingredient in the users' inventory, if theres not enough, set to 0
+    for ($i = 0; $i < $ingredientCount; $i++) {
+        $amountInInventory = get_amount_from_inventory($conn, $id, $recipeIngredientsList[$i]);
         if ($amountInInventory != null) {
+            // if ingredient is in te user's inventory
             $amountInInventory = $amountInInventory['amount'];
             if ($amountInInventory > $recipeAmountsList[$i]) {
-                decrease_amount_from_inventory($conn, $id, $recipeIngredientsList[$i], $amountInInventory - $recipeAmountsList[$i]);
+                $updatedAmount = $amountInInventory - $recipeAmountsList[$i];
+                decrease_amount_from_inventory($conn, $id, $recipeIngredientsList[$i], $updatedAmount);
+                $deleted = False;
             } else {
+                $updatedAmount = 0;
                 delete_amount_from_inventory($conn, $id, $recipeIngredientsList[$i]);
+                $deleted = True;
             }
+            $confirmationCounter = confirmation($conn, $confirmationCounter, $deleted, $id, $recipeIngredientsList[$i], $updatedAmount);
+        } else {
+            // if the ingredient is not in the user's inventory, no need to check
+            ++$confirmationCounter;
         }
+    }
+
+    // sends flag as 1 if all ingredients were update correctly or 0 it not
+    if ($confirmationCounter == $ingredientCount) {
+        echo("flag=1");
+    } else {
+        echo("flag=0");
     }
 }
 
@@ -94,6 +112,28 @@ function delete_amount_from_inventory($conn, $id, $foodId) {
     'userId' => $id,
     'foodId' => $foodId
   ]);
+}
+
+// increments confirmationCounter if the correct update was completed (if the new amount is updated/deleted as expected)
+function confirmation($conn, $confirmationCounter, $deleted, $id, $foodId, $amountExpected) {
+    $sql = "SELECT amount FROM inventory WHERE userId = :id AND foodId = :foodId";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'id' => $id,
+      'foodId' => $foodId
+    ]);
+    $results = $stmt->fetch();
+    if ($deleted) {
+        if ($results == null) {
+            ++$confirmationCounter;
+        }
+    } else {
+        $results = $results[0];
+        if ($results == $amountExpected) {
+            ++$confirmationCounter;
+        }
+    }
+    return $confirmationCounter;
 }
 
 remove_recipe_ingredients();
