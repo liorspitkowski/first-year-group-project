@@ -1,6 +1,6 @@
 /*
     Written by: Hanmin Liu;
-    send registration form, expect return value -0: exist user -1: success and redirect to login;
+    send search form, expect a string to be displayed in the search bar.
 */
 function submitSearch() {
     alert('function called');
@@ -12,15 +12,7 @@ function submitSearch() {
         type: 'POST',
         data: data,
         success: function (data) {
-            if(data == "0" | data =="1"){
-                alert('username or password incorrect, \nplease check again');
-            }
-            else if(data == "2"){
-                alert('welcome back to Foogle');
-            }
-            else{
-                alert('server response invalid value: ' + data);
-            }
+            alert(data);
         }
     });
     return false;
