@@ -1,3 +1,5 @@
+// JS for new Recipe page
+
 function addIngredientFeild(){
 
   var table = document.getElementById("ingredientTable");

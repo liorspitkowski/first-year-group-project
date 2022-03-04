@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
+    <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/search.js"></script>
     <link rel="stylesheet" href="../css/search.css">
 </head>
 
@@ -23,7 +25,7 @@
 
         <div class="row">
             <div class="column-1">
-                
+
                 <div class="sidebar-panel">
                     This is sidebar.
                 </div>
@@ -32,6 +34,9 @@
                 <div class="search-panel">
                     <div class="search-bar">
                         This is the search bar.
+                        <form id="search-form" method="post">
+                          <h2>By Name : <input type="text" name="recipeSearchName" value=""><input id="searchRecipe" type="submit"></h2>
+                        </form>
                     </div>
                     <div class="search-result">
                         <p>
