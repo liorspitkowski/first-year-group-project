@@ -59,7 +59,7 @@ function levenshteinDistance($w1, $w2){
 }
 
 function main(){
-  $searchName = $_POST['recipeSearchName'];
+  $searchName = $_POST['user_search'];
   search($searchName);
 }
 
