@@ -1,3 +1,7 @@
+/*
+    Written by Hanmin Liu;
+    send inventory form, append userid;
+*/
 function submitInventory() {
     alert('function called');
     let user_id = getCookie('userid');

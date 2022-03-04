@@ -8,7 +8,6 @@
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/search.js"></script>
     <link rel="stylesheet" href="../css/search.css">
-    <script src="../javaScript/search.js"></script>
 </head>
 
 <body>
@@ -39,13 +38,13 @@
             </div>
             <div class="column-2"><div class="search-panel">
                 <div class="search-bar">
-                    <form name="search_form" action="" onsubmit="submitSearch()">
-                        <input type="text" name="user_search" id="user_search" placeholder="Search some food..." required>
+                    <form name="search_form" action="" onsubmit="return submitSearch()">
+                        <input type="text" name='recipeSearchName' id="user_search" placeholder="Search some food..." required>
                         <input type="submit">
                     </form>
                 </div>
                 <div class="search-result">
-                    <p>
+                    <p id="displayresult">
                         Search page, where you get to search for recipe <br>
                         with the food you have. maybe add a function of <br>
                         adding the food in the inventory to the search bar. <br>
