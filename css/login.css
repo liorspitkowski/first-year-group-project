@@ -6,8 +6,15 @@ body{
     margin:0;
     height:98%;
 }
-.top-box{
+.header{
     height: 10%;
+}
+.footer{
+    height: 10%;
+}
+.footer p{
+    margin: 0;
+    padding: 0;
 }
 .middle-box{
     height: 80%;
@@ -18,14 +25,25 @@ body{
 
     position:relative;
 }
-.bottom-box{
-    height:10%;
-}
 .form-box{
     height:100%;
     width:50%;
+    /* border: 1px black solid; */
     position:absolute;
     z-index: 100;
+
+    text-align: center;
+}
+.form-box p{
+    font-size: 6vh;
+    font-weight: 800;
+    margin: 0;
+    padding: 10px 0;
+}
+.line{
+    padding: 5px 0;
+    margin: 0;
+    /* border: 1px black solid; */
 }
 .below-box{
     height:100%;

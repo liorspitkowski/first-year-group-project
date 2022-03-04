@@ -14,17 +14,16 @@
   if ($stmt->rowCount() > 0) {
     while($row = $stmt->fetch()) {
       if ($row["hashedPassword"] == hash("sha256", $pw)) {
-        echo 2;
-        echo $row["userId"];
+        echo 'flag=2;username=' . $row["userId"] . ';';
       }
       else {
         // wrong password
-        echo 1;
+        echo 'flag=1;';
       }
     }
   }
   else {
     // wrong username
-    echo 0;
+    echo 'flag=0;';
   }
 ?>

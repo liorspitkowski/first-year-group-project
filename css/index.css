@@ -41,14 +41,43 @@ the initial code I wrote had it. --Hanmin Liu
     /*Put it at the top*/
     z-index: 100;
 
-    left:15%;
+    left:10%;
     top:30%;
 
     font-size: 10vw;
     font-weight: 800;
 }
+.div-title_icon .character{
+    float: left;
+    text-shadow: 5px 5px black;
+}
+.div-title_icon #f {
+    color: rgb(66,133,244);
+}
+.div-title_icon #o1 {
+    color: rgb(219,68,55);
+}
+.div-title_icon #o2 {
+    color: rgb(244,180,0);
+}
+.div-title_icon #g {
+    color: rgb(66,133,244);
+}
+.div-title_icon #l {
+    color: rgb(15,157,88);
+}
+.div-title_icon #e {
+    color: rgb(219,68,55);
+}
+
 .div-title_bg_img{
     /*Put it at second*/
+    background-image: url("../src/index_front.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+    background-size: cover;
+    height: 100%;
     z-index: 80;
 }
 .column-2{
@@ -61,20 +90,34 @@ the initial code I wrote had it. --Hanmin Liu
 }
 .column-2 ul{
     list-style: none; /*delete circle*/
-    text-align: center;
     padding: 0;
     margin: 0;
-    height:100%;
+    width: 100%;
+    height: 100%;
 }
-.column-2 li{
-    display: flex; /*use flex to center the inner item*/
-    justify-content: center; /*vertical*/
-    align-items: center; /*horizontal*/
-
+ .column-2 li{
+    display: block;
+    padding: 0;
+    margin: 0;
     height: 25%;
-}
+    overflow: hidden;
+} 
 .column-2 a{
+    display:inline-block;
+    width: 100%;
+    height: 40%;
+
+    line-height: 100%;
+    text-align:center;
+    text-decoration:none;
+    padding:30% 0; 
+    overflow: hidden;
+
+    background-color: gold;
     font-size: 32px;
     font-family: "Times New Roman", Times, serif;
-    text-decoration:none;
+}
+.column-2 a:hover{
+    background-color: goldenrod;
+    border: rgb(185, 92, 15);
 }

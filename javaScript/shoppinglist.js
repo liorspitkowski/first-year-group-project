@@ -1,6 +1,6 @@
-function submitSearch() {
+function submitShoppinglist() {
     alert('function called');
-    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
+    var url = "#", data = $('#shopping_form').serialize();
     console.log(data);
     $.ajax({
         // prevent page reload, dunno the reason

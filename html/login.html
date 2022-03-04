@@ -7,37 +7,54 @@
   <title>login</title>
   <script src="../javaScript/jquery-3.6.0.js"></script>
   <script src="../javaScript/login.js"></script>
+  <script src="../javaScript/getValue.js"></script>
   <link rel="stylesheet" href="../css/login.css">
-
 </head>
 
 <body>
-
-  <div class="top-box">
+  <!-- blank space begin -->
+  <section class="header">
     <a href="../index.html"><img src="../src/title-image.png" alt="title-image"></a>
-  </div>
-  <div class="middle-box">
+  </section>
+  
+  <!-- blank space end -->
+
+  <!-- middle space begin -->
+  <section class="middle-box">
+    <!-- 
+      submit user info 
+      user_name
+      user_password
+    -->
     <div class="form-box">
-      <form id="login_form" method="POST" onsubmit="submitLogin()">
-        <label for="username">Username(8 characters):</label>
-        <input type="text" id="username" name="user_name" required
-        pattern=".{8,}" title="8 letters or more"><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="user_password" required
-        pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
-        <button type="submit">Enter</button>
+      <p>Login</p>
+      <form id="login_form" onsubmit='return submitLogin()'>
+        <div class="line">
+          <label for="username">Username(8 characters):</label> <br>
+        <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
+        </div>
+        <div class="line">
+          <label for="password">Password:</label> <br>
+        <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+        </div>
+        <div class="line">
+          <input type="submit"></input>
+        </div>
+        
       </form>
-      <a href="">Forget your password?</a>
+      <a href="#">Forget your password?</a>
     </div>
+
     <div class="below-box"></div>
+  </section>
+  <!-- middle space end -->
+
+  <!-- footer begin -->
+  <div class="footer">
+    <p>All rights reserved....</p>
   </div>
-
-
-  <div class="bottom-box">
-
-  </div>
-
+  <!-- footer end -->
 </body>
 
 </html>
