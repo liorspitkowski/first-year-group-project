@@ -31,7 +31,7 @@ function submitSearch() {
             clearPage();
             for (let i = 1; i <= max_show; i++) {
                 // write recipes;
-                addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
+                addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
             }
             // write index;
             indexUpdate();
@@ -54,6 +54,29 @@ function addElement(
         // when the recipe is clicked.
         console.log("this is the page " + current_page + " number " + id);
         console.log("recipe name is:" + content);
+        let url = '../html/samplerecipe_testHanmin.html';
+        sessionStorage.setItem("recipeName", content);
+        location.href = url;
+
+        /*
+        var payload = { name: newdivname };
+        var formtosend = document.createElement('form');
+        
+        console.log("sending \'" + payload + "\' to " + url);
+
+        formtosend.style.visibility = 'hidden';
+        formtosend.method = 'POST';
+        formtosend.action = url;
+        for (key in Object.keys(payload)) {
+            var input = document.createElement('input');
+            input.name = key;
+            input.value = payload[key];
+            formtosend.appendChild(input); // add key/value pair to form
+        }
+        document.body.appendChild(formtosend); // forms cannot be submitted outside of body
+        formtosend.submit(); // send the payload and navigate
+        */
+        
     };
     let newContent = document.createTextNode(content);
     newDiv.appendChild(newContent);
@@ -64,15 +87,15 @@ function addElement(
 /* delete current results */
 function delElement(deldivname, parentdiv) {
     // error: not 'node'
-    console.log("deleting "+deldivname);
+    console.log("deleting " + deldivname);
     var d = document.getElementsByName(deldivname);
-    console.log("d is "+d);
+    console.log("d is " + d);
     for (var i = 0; i < d.length; ++i) {
         var item = d[i];  // 调用 myNodeList.item(i) 是没有必要的
         console.log(item);
         document.getElementById(parentdiv).removeChild(item);
     }
-    
+
 }
 
 /* convert list to n elements per row. */
@@ -96,7 +119,7 @@ function nextPage() {
     current_page += 1;
     for (let i = 1; i <= max_show; i++) {
         // write recipes;
-        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
+        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
     }
     // write index;
     indexUpdate();
@@ -110,7 +133,7 @@ function prevPage() {
     current_page -= 1;
     for (let i = 1; i <= max_show; i++) {
         // write recipes;
-        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
+        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
     }
     // write index;
     indexUpdate();
@@ -121,6 +144,6 @@ function clearPage() {
         delElement("result-" + i, "search-results");
     }
 }
-function indexUpdate(){
+function indexUpdate() {
     document.getElementById('index').innerHTML = current_page + '/' + page_num;
 }
