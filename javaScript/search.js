@@ -4,8 +4,8 @@
 */
 function submitSearch() {
     alert('function called');
-    console.log(document.querySelector('#search_form'));
-    var url = "../PHP/SearchRecipe_testHanmin.php", data = $('#search_form').serialize();
+    // console.log(document.querySelector('#search_form'));
+    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
     console.log(data);
     $.ajax({
         async:false,
