@@ -14,6 +14,9 @@ function submitSearch() {
         data: data,
         success: function (data) {
             console.log(data);
+            // 16 beans on toast;fancy beans on toast;beans in toast;beanz;beanz+;test recipe;Chicken Korma
+            let recipename = getValue_noName(data);
+            console.log(recipename);
         }
     });
     return false;
