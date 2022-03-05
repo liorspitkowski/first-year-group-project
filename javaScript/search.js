@@ -30,9 +30,10 @@ function submitSearch() {
             current_page = 1;
             for (let i = 1; i <= max_show; i++) {
                 // write recipes;
-                addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
-                // write index;
+                addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
             }
+            // write index;
+            indexUpdate();
         }
     });
     return false;
@@ -92,9 +93,10 @@ function nextPage() {
     current_page += 1;
     for (let i = 1; i <= max_show; i++) {
         // write recipes;
-        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
-        // write index;
+        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
     }
+    // write index;
+    indexUpdate();
 }
 function prevPage() {
     if (current_page - 1 <= 0) {
@@ -105,14 +107,17 @@ function prevPage() {
     current_page -= 1;
     for (let i = 1; i <= max_show; i++) {
         // write recipes;
-        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
-        // write index;
+        addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
     }
+    // write index;
+    indexUpdate();
 }
 function clearPage() {
     for (let i = 1; i <= max_show; i++) {
         // delete recipes;
         delElement("result-" + i, "search-results");
-        // write index;
     }
+}
+function indexUpdate(){
+    document.getElementById('index').innerHTML = current_page + '/' + page_num;
 }
