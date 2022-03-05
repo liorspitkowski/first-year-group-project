@@ -1,6 +1,6 @@
 /*
     Written by: Hanmin Liu;
-    send search form, expect a string to be displayed in the search bar.
+    send search form, expect a list of buttons to be displayed in the search bar.
 */
 var page_num/* total pages num */, current_page/* current_page/page_num */, recipe_array/* results string array */, max_show = 5/* max elements per page */;
 function submitSearch() {

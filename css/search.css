@@ -84,13 +84,9 @@ body{
     height:100%;
     width:80%;
     float:left;
-
     position:relative;
-
     overflow: visible;
-
-     display: flex; 
-    
+    display: flex; 
     align-items: center;  
 }
 .column-2 p{
@@ -127,7 +123,7 @@ body{
     height:10%;
     border: 1px solid black;
 }
-.search-result{
+.search-display{
     margin:1%;
     height:85%;
     border: 1px solid black;
