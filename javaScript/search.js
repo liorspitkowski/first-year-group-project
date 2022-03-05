@@ -28,6 +28,7 @@ function submitSearch() {
             console.log(recipe_array);
             /* DEBUG END */
             current_page = 1;
+            clearPage();
             for (let i = 1; i <= max_show; i++) {
                 // write recipes;
                 addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");    
@@ -48,7 +49,9 @@ function addElement(
 ) {
     let newDiv = document.createElement(divtype);
     newDiv.name = newdivname;
+    newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
     newDiv.onclick = function () {
+        // when the recipe is clicked.
         console.log("this is the page " + current_page + " number " + id);
         console.log("recipe name is:" + content);
     };

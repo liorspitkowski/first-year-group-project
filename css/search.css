@@ -120,13 +120,31 @@ body{
 
 .search-bar{
     margin:1%;
-    height:10%;
+    height:9%;
     border: 1px solid black;
+    padding: 5px;
+}
+.search-bar form{
+    margin: 5px 1%;
+    height: 40%;
 }
 .search-display{
     margin:1%;
     height:85%;
     border: 1px solid black;
+}
+#search-results{
+    text-align: center;
+    height:90%;
+}
+#index, #buttons{
+    text-align: center;
+}
+.filter{
+    margin: 5px 1%;
+    height:30%;
+    border: 1px solid black;
+    overflow: hidden;
 }
 
 
