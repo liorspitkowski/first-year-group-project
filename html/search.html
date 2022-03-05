@@ -44,17 +44,15 @@
                         <input type="submit">
                     </form>
                 </div>
-                <div class="search-result">
-                    <p id="displayresult">
-                        Search page, where you get to search for recipe <br>
-                        with the food you have. maybe add a function of <br>
-                        adding the food in the inventory to the search bar. <br>
-                        there will be list of recipe where you can <br>
-                        click into them </p>
-                    <p><a href="./samplerecipe.html">Sample</a></p>
-                    <p>
-                        and find out the content.
-                    </p>
+                <div class="search-results" >
+                    <div id="search-results"></div>
+                    <!-- <button class="result-line" id="result1" onclick="displayRecipe(id)">this is the 1st recipe</button><br>
+                    <button class="result-line" id="result2" onclick="displayRecipe(id)">this is the 2nd recipe</button><br>
+                    <button class="result-line" id="result3" onclick="displayRecipe(id)">this is the 3rd recipe</button><br>
+                    <button class="result-line" id="result4" onclick="displayRecipe(id)">this is the 4th recipe</button><br>
+                    <button class="result-line" id="result5" onclick="displayRecipe(id)">this is the 5th recipe</button> -->
+                    <button id="prev_page_button" onclick="prevPage()">Previous Page</button>
+                    <button id="next_page_button" onclick="nextPage()">Next page</button>
                 </div>
             </div></div>
         </div>
