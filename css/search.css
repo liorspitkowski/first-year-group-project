@@ -84,13 +84,9 @@ body{
     height:100%;
     width:80%;
     float:left;
-
     position:relative;
-
     overflow: visible;
-
-     display: flex; 
-    
+    display: flex; 
     align-items: center;  
 }
 .column-2 p{
@@ -114,7 +110,7 @@ body{
     
     height:90%;
     width:150%;
-    margin-left:10%;
+    margin-left:4%;
     background-color: rgba(255, 255, 255, 0.5);
 }
 .bottom-box{
@@ -124,11 +120,67 @@ body{
 
 .search-bar{
     margin:1%;
-    height:10%;
+    height:9%;
     border: 1px solid black;
+    padding: 5px;
 }
-.search-result{
+.search-bar form{
+    margin: 5px 1%;
+    height: 40%;
+}
+.search-display{
     margin:1%;
     height:85%;
     border: 1px solid black;
 }
+#search-results{
+    text-align: center;
+    height:90%;
+}
+#index, #buttons{
+    text-align: center;
+}
+.filter{
+    margin: 5px 1%;
+    height:30%;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+
+/* side bar written by Yuhan begin*/
+    .sidebar{
+    position:absolute;
+    margin-left: 6%;
+    height:90%;
+    width:90%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.sidebar .sidebar-title{
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+}
+ul{
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 16px;
+ }
+li a{
+    display:    block;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+}
+li a:hover{
+    background-color: aliceblue;
+    color: #222;
+}
+/* side bar written by Yuhan end */
