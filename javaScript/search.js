@@ -4,7 +4,8 @@
 */
 function submitSearch() {
     alert('function called');
-    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
+    console.log(document.querySelector('#search_form'));
+    var url = "../PHP/SearchRecipe_testHanmin.php", data = $('#search_form').serialize();
     console.log(data);
     $.ajax({
         async:false,
@@ -12,7 +13,7 @@ function submitSearch() {
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            console.log(data);
         }
     });
     return false;
