@@ -7,6 +7,10 @@
     // $ID = $_POST[''];
     // $email = $_POST[''];
 
+    // delete
+    $ID = 16;
+    $email = 'zigzh112@gmail.com';
+
     $conn = connect();
 
     $sql = 'SELECT hashedEmail FROM users WHERE userId = :ID';
@@ -17,6 +21,7 @@
     while($row = $stmt->fetch()) {
       if ($row["hashedEmail"] == hash("sha256", $email)) {
         $code = rand(1000, 9999);
+        // replace with mail manager
         mail($email, "verify", $code);
         echo 'flag=1;code=' . $code . ';';
       }
@@ -45,11 +50,13 @@
 
   }
 
+  part1();
+
   // selection to check if doinp part 1 or 2
-  if ($_POST[''] == null) {
-    part1();
-  }
-  else {
-    part2();
-  }
+  // if ($_POST[''] == null) {
+  //   part1();
+  // }
+  // else {
+  //   part2();
+  // }
 ?>
