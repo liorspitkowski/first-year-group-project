@@ -15,6 +15,7 @@
   $lname = $_POST['last_name'];
   $un = $_POST['user_name'];
   $pw = $_POST['user_password'];
+  $email = $_POST['user_email'];
 
   require "DatabaseHandler.php";
 
@@ -29,8 +30,8 @@
     echo 'flag=0;';
   }
   else {
-    $sql = "INSERT INTO users (firstName, secondName, username, hashedPassword)
-    VALUES (:fn, :lan, :usn, :pass)";
+    $sql = "INSERT INTO users (firstName, secondName, username, hashedPassword, hashedEmail)
+    VALUES (:fn, :lan, :usn, :pass, :em)";
     $stmt = $conn->prepare($sql);
 
     $stmt->execute([
@@ -38,6 +39,7 @@
       ':lan' => $lname,
       ':usn' => $un,
       ':pass' => hash("sha256", $pw),
+      ':em' => hash("sha256", $email),
     ]);
     GetID($un);
   }
