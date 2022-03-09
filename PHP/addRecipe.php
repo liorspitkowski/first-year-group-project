@@ -2,7 +2,8 @@
 
 /* to do
  - add vegi/vegan options
- - add time to cook */
+ - add time to cook
+ - fix first ingridient not working */
 
 require "DatabaseHandler.php";
 

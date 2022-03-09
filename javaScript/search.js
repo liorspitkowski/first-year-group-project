@@ -55,8 +55,11 @@ function addElement(
         console.log("this is the page " + current_page + " number " + id);
         console.log("recipe name is:" + content);
         let url = '../html/samplerecipe_testHanmin.html';
-        sessionStorage.setItem("recipeName", content);
-        location.href = url;
+        
+        // sessionStorage.setItem("recipeName", content);
+        // #.php?name1=value1&name2=value2
+        let urlphp = '../PHP/DisplayRecipe.php';
+        location.href = urlphp + '?recipeName=' + content;
 
         /*
         var payload = { name: newdivname };
