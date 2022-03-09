@@ -1,26 +1,29 @@
-function submitProfile() {
-    alert('function called');
-    var url = "#", data = $('profile_form').serialize();
+/*
+    submitProfile:
+    Written by Hanmin Liu;
+    send userID and newUsername;
+    expect return value:    flag=0 -> username taken;
+                            flag=1 -> successful;
+*/
+function submitUsernameChangeRequest() {
+    alert('function call');
+    let user_id = getCookie('userid');
+    alert(user_id);
+    var item = document.createElement("input");
+    item.type = "hidden";
+    item.value = user_id;
+    document.getElementById('username_form').appendChild(item);
+    var url = "../PHP/changeUsername_testHanmin.php", data = $('username_form').serialize();
     console.log(data);
+    alert(data);
     $.ajax({
-        // prevent page reload, dunno the reason
-        async:false,
+        async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            //alert(data);  show response from the php script.
-            if(data == "0" | data =="1"){
-                alert('username or password incorrect, \nplease check again');
-            }
-            else if(data == "2"){
-                alert('welcome back to Foogle');
-            }
-            else{
-                alert('server response invalid value: ' + data);
-            }
+            alert(data);
         }
     });
-    // prevent page reload, dunno the reason
     return false;
 }
