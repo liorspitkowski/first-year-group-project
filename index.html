@@ -19,7 +19,9 @@
       let user_id = getCookie('userid');
       console.log(user_name + ' ' + user_id);
       if (user_id != '') {
-        alert('Hello ' + user_name);
+        document.getElementById('currentuser').innerHTML = "Welcome back! " + user_name;
+        document.getElementById('changeButton').innerHTML = 'Menu';
+        document.getElementById('changeButton').href = './html/menu.html';
       }
       else{
         alert('You haven\'t login! You must have forget! ');
@@ -29,6 +31,11 @@
   <div class="row">
     <!--Welcome page left part - image and icon-->
     <div class="column-1">
+      <!-- display current logged in user -->
+      <div class="div-currentuser" id="currentuser">
+
+      </div>
+
       <!-- 'FOOGLE' in color -->
       <div class="div-title_icon">
         <div id="f" class="character">F</div>
@@ -46,7 +53,7 @@
     <div class="column-2">
       <ul>
         <li><a href="./html/login.html">Login</a></li>
-        <li><a href="./html/guest.html">Guest</a></li>
+        <li><a href="./html/guest.html" id="changeButton">Guest</a></li>
         <li><a href="./html/registration.html">Registration</a></li>
         <li><a href="./html/aboutus.html">About Us</a></li>
       </ul>
