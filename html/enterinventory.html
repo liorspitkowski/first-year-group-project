@@ -4,10 +4,12 @@
 
 <head>
     <title>What is in your fridge?</title>
+    <!-- javascript files -->
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/enterinventory.js"></script>
+    <!-- style files -->
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/enterinventory.css">
 </head>
@@ -27,6 +29,10 @@
                 this should be a box that shows what ingredient the user has added.
             </div>
             <div class="addinventory">
+
+                <button>Add Ingredient</button>
+                <button>Remove Ingredient</button>
+
                 <form id="inventory_form" onsubmit="return submitInventory()">
                     <div class="line">
                         <label for="ingredient">Ingredient:</label><br>
