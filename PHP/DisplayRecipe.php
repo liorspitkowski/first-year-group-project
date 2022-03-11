@@ -2,8 +2,10 @@
 
 require "DatabaseHandler.php";
 
-$name = $_GET['recipeName'];
-//$name = "Chicken Korma";
+$page_result = -1;
+
+//$name = $_GET['recipeName'];
+$name = "tortillas";
 
 $conn = connect();
 
@@ -14,19 +16,114 @@ $stmt->execute([
 ]);
 
 if($row = $stmt->fetch()){
+  $page_result = 200;
   $id = $row['recipeId'];
   $instructions = $row['instructions'];
-  echo $name . "\n";
-  echo "portions : " . $row['portions'] . "\n";
+  $TTM = $row['timeToMake'];
+  $foods = [];
+  $portions = $row['portions'];
   $sql = "SELECT foods.*, ingredients.amount from ingredients JOIN foods ON ingredients.foodId=foods.foodId and ingredients.recipeId = $id";
   $result = $conn->query($sql);
+  var_dump($result);
   while($food = $result->fetch()){
-    echo $food['amount'] . $food['defaultMeasurmentUnits'] . " " . $food['foodName'] . "\n";
+    echo"inside";
+    $foodStr = $food['amount'] . $food['defaultMeasurmentUnits'] . " " . $food['foodName'];
+    echo $foodStr;
+    array_push($foods, $foodStr);
   }
-  echo $instructions;
+
 }
 else{
-  echo "404 not found";
+  echo"failure";
+  $page_result = 404;
 }
 
  ?>
+
+<!--Written and maintained by Hanmin Liu-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>myprofile</title>
+    <link rel="stylesheet" href="../css/samplerecipe.css">
+    <script src="../javaScript/samplerecipe.js"></script>
+</head>
+
+<body>
+    <!-- Main contect space -->
+    <section class="left-box">
+        <!-- blank space on top begin -->
+        <div class="topbox">
+            <div class="title-box">
+            Foogle
+            </div>
+            
+        </div>
+        <!-- blank space on top end -->
+
+        <!-- search space begin -->
+        <div class="row">
+            <div class="column-1">
+                <div class="sidebar">
+                    <div class="sidebar-title">
+                         Sidebar 
+                    </div>
+                    <ul>
+                        <li><a href="userprofile.html">My profile</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="samplerecipe.html">Samplerecipe</a></li>  
+                        <li><a href="newRecipe.html">Newrecipe</a></li> 
+                        <li><a href="shoppinglist.html">Shopping list</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="column-2"><div class="search-panel">
+                <div class="search-bar">
+                    new search button?
+                </div>
+                <div class="recipe-result">
+
+                <?php
+                echo "$page_result";
+                  if ($page_result == 200){
+                    echo"<div id='result-recipe-name'>\n";
+                      echo"<h1>$name</h1>\n";
+                    echo"</div>\n";
+                    echo"<div id='result-recipe-info'>\n";
+                      echo"<h2>Portions: $portions</h2>\n";
+                      echo"<h2>Time To Make: $TTM</h2>\n"; 
+                    echo"</div>\n";
+                    echo"<div id='result-recipe-instructions'>\n";
+                    var_dump($foods);
+                      foreach ($foods as $ingridient){
+                        echo "<p>$ingridient</p>\n";
+                      }
+                    echo"</div>";
+                    echo"<div id='result-recipe-instructions'>";
+                      echo"<p>$instructions</p>";
+                    echo"</div>";
+                  }
+                  else {
+                    echo "<h1>404 Not found</h1>";
+                    echo "<p>$result</p>";
+                  }
+                ?>
+                  
+                </div>
+            </div></div>
+        <!-- search space end -->
+        
+        <!-- footer begin -->
+        <div class="bottom-box">
+            Perhaps some 'contact us' stuff?
+        </div>
+        <!-- footer end -->
+    </section>
+    <!-- The background image section -->
+    <section class="right-box">
+    </section>
+</body>

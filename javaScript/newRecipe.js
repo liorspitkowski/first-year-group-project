@@ -3,7 +3,7 @@
 function addIngredientFeild(){
 
   var table = document.getElementById("ingredientTable");
-  var lenTable = table.rows.length;
+  var lenTable = table.rows.length+1;
   var row = table.insertRow();
 
   var cell1 = row.insertCell(0);

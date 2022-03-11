@@ -2,6 +2,7 @@
 
 require "DatabaseHandler.php";
 
+//search based on recipe name
 function search($search){
 
   $conn = connect(true);
@@ -31,6 +32,7 @@ function search($search){
 
 }
 
+//calculates how different two words are
 function levenshteinDistance($w1, $w2){
 
   $w1 = strtolower($w1);
