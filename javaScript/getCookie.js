@@ -1,3 +1,9 @@
+/*
+  Written by Hanmin Liu;
+  get value named as 'cname' from cookie;
+  example:
+    let x = getCookie('username');
+*/ 
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

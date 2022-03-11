@@ -1,3 +1,7 @@
+/*
+    Written by Hanmin Liu;
+    send inventory form, append userid;
+*/
 function submitInventory() {
     alert('function called');
     let user_id = getCookie('userid');
@@ -12,6 +16,16 @@ function submitInventory() {
         data: data,
         success: function (data) {
             alert(data);
+            let flag = getValue('flag', data);
+            if(flag == '1'){
+                alert('Added successfully');
+            }
+            else if(flag == '0'){
+                alert('Falty, no such food');
+            }
+            else{
+                alert('server respond invald value: '+ data);
+            }
         }
     });
     return false;

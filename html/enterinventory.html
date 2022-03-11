@@ -6,8 +6,10 @@
     <title>What is in your fridge?</title>
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/enterinventory.js"></script>
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/enterinventory.css">
 </head>
 
 <body>
@@ -19,33 +21,36 @@
     <!-- middle space starts -->
     <section class="middle-box">
         <div class="form-box">
-            <p>What's in your fridge?</p>
-            <form id="inventory_form" onsubmit="return submitInventory()">
-                <div class="line">
-                    <label for="ingredient">Ingredient:</label><br>
-                    <input type="text" placeholder="Foodname..." name="ingredient" required>
-                </div>
-                <div class="line">
-                    <label for="quantity">Quantity:</label><br>
-                    <input type="text" placeholder="Quantities..." name="quantity" required>
-                </div>
-                <div class="line">
-                    <!-- 
-                        food unit:
-                        ml,g,kg,slices,mug
-                     -->
-                    <h3>unit:</h3>
-                    <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
-                    <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
-                    <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
-                    <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
-                    <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
-                </div>
-                <div class="line">
-                    <input type="submit">
-                </div>
+            
+            <div class="displayinventory">
+                <p>What's in your fridge</p>
+                this should be a box that shows what ingredient the user has added.
+            </div>
+            <div class="addinventory">
+                <form id="inventory_form" onsubmit="return submitInventory()">
+                    <div class="line">
+                        <label for="ingredient">Ingredient:</label><br>
+                        <input type="text" placeholder="Foodname..." name="ingredient" required>
+                    </div>
+                    <div class="line">
+                        <label for="quantity">Quantity:</label><br>
+                        <input type="text" placeholder="Quantities..." name="quantity" required>
+                    </div>
+                    <div class="line">
+                        <h3>unit:</h3>
+                        <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
+                        <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
+                        <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
+                        <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
+                        <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
+                    </div>
+                    <div class="line">
+                        <input type="submit">
+                    </div>
 
-            </form>
+                </form>
+            </div>
+
         </div>
 
         <div class="below-box"></div>
