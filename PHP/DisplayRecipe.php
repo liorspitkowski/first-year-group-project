@@ -4,8 +4,8 @@ require "DatabaseHandler.php";
 
 $page_result = -1;
 
-//$name = $_GET['recipeName'];
-$name = "tortillas";
+$name = $_GET['recipeName'];
+//$name = "tortillas";
 
 $conn = connect();
 
@@ -24,17 +24,13 @@ if($row = $stmt->fetch()){
   $portions = $row['portions'];
   $sql = "SELECT foods.*, ingredients.amount from ingredients JOIN foods ON ingredients.foodId=foods.foodId and ingredients.recipeId = $id";
   $result = $conn->query($sql);
-  var_dump($result);
   while($food = $result->fetch()){
-    echo"inside";
     $foodStr = $food['amount'] . $food['defaultMeasurmentUnits'] . " " . $food['foodName'];
-    echo $foodStr;
     array_push($foods, $foodStr);
   }
 
 }
 else{
-  echo"failure";
   $page_result = 404;
 }
 
@@ -88,7 +84,6 @@ else{
                 <div class="recipe-result">
 
                 <?php
-                echo "$page_result";
                   if ($page_result == 200){
                     echo"<div id='result-recipe-name'>\n";
                       echo"<h1>$name</h1>\n";
@@ -98,7 +93,6 @@ else{
                       echo"<h2>Time To Make: $TTM</h2>\n"; 
                     echo"</div>\n";
                     echo"<div id='result-recipe-instructions'>\n";
-                    var_dump($foods);
                       foreach ($foods as $ingridient){
                         echo "<p>$ingridient</p>\n";
                       }
