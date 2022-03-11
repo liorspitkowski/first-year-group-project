@@ -2,14 +2,13 @@
 
 /* to do
  - add vegi/vegan options
- - add time to cook
- - fix first ingridient not working */
+*/
 
 require "DatabaseHandler.php";
 
 //add recipe to database in for (String, int, String[], double[], String[], String)
 //example addRecipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
-function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $instructions){
+function addRecipe($recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions){
 
   $conn = connect(true);
 
@@ -22,8 +21,8 @@ function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $inst
   }
 
   //adds data to recipe table
-  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions)
-          VALUES (:recipeName, :num, :instructions, :portions)";
+  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions, timeToMake)
+          VALUES (:recipeName, :num, :instructions, :portions, :timeToMake)";
   $numIngredients = count($ingredients);
 
   $stmt = $conn->prepare($sql);
@@ -31,7 +30,8 @@ function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $inst
     'recipeName' => $recipeName,
     'num' => $numIngredients,
     'instructions' => $instructions,
-    'portions' => $portions
+    'portions' => $portions,
+    'timeToMake' => $timeToMake
   ]);
 
   $recipeId = getrecipeId($conn, $recipeName)->fetch()['recipeId'];
@@ -70,6 +70,7 @@ function addRecipe($recipeName, $portions, $ingredients, $amounts, $units, $inst
     }
 
   }
+
   return "1 | Recipe $recipeName successfully added to database";
 
 }
@@ -118,6 +119,7 @@ function main(){
 
   $recipeName = $_POST["recipeName"];
   $portions = $_POST["portions"];
+  $timeToMake = $_POST["timeToCook"];
   $ingredients = [];
   $amounts = [];
   $units = [];
@@ -131,7 +133,7 @@ function main(){
     $i++;
   }
 
-  echo addRecipe($recipeName,$portions, $ingredients, $amounts, $units, $instructions);
+  echo addRecipe($recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
 
 }
 
