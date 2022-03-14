@@ -4,8 +4,7 @@ require "DatabaseHandler.php";
 
 function get_profile() {
     // retrieves variables from POST
-    // $id = $_POST["user_id"];
-    $id = 50;
+    $id = $_POST["user_id"];
 
     $conn = connect(True); // connects to database
 
