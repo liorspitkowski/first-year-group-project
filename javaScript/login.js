@@ -52,20 +52,62 @@ function submitLogin() {
 function setupResetPassword(){
     var parentform = document.getElementById('forgetpasswordform')
     parentform.removeChild(document.getElementById('removedbutton'));
-    parentform.appendChild();
+    // add form begin
+    // form
+    let newDiv = document.createElement("form");
+    newDiv.name = "resetpw_form";
+    newDiv.id = "resetpw_form";
+    newDiv.onsubmit = "return submitResetPassword()";
+
+    parentform.appendChild(newDiv);
+    // label1
+    let label1 = document.createElement("label");
+    label1.appendChild(document.createTextNode("Username: "));
+    label1.for="username";
+
+    newDiv.appendChild(label1);
+    // input1
+    let input1 = document.createElement("input");
+    input1.type = "text";
+    input1.name = "username";
+    input1.id = "username";
+    input1.required;
+    input1.placeholder = "your username";
+
+    newDiv.appendChild(input1);
+    // new line
+    newDiv.appendChild(document.createElement("br"));
+    // label2
+    let label2 = document.createElement("label");
+    label2.appendChild(document.createTextNode("Email: "));
+    label2.for="username";
+
+    newDiv.appendChild(label2);
+    // input2
+    let input2 = document.createElement("input");
+    input2.type = "text";
+    input2.name = "email";
+    input2.id = "email";
+    input2.required;
+    input2.placeholder = "example@example.com";
+
+    newDiv.appendChild(input2);
+    newDiv.appendChild(document.createElement("br"));
+    // submit
+    let input3 = document.createElement("input");
+    input3.type = "submit";
+
+    newDiv.appendChild(input3);
+    newDiv.appendChild(document.createElement("br"));
+
+    newDiv.appendChild(document.createTextNode("We will send you a email include a 6-digit confirmation code"));
+    // add form end
+    return false;
 }
 
 function submitResetPassword() {
-    alert('reset pw');
-
-
-
-
-
-    let email = prompt("Please enter your email", "example@example.com");
-
     if (email != null) {
-        var url = "../PHP/forgotPassword.php", data = 'email=' + email + "&user_id=" + user_id;
+        var url = "../PHP/forgotPassword.php", data = $('#resetpw_form').serialize();
         console.log(data);
         $.ajax({
             // prevent page reload, dunno the reason
