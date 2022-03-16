@@ -8,7 +8,7 @@ require "DatabaseHandler.php";
 
 //add recipe to database in for (String, int, String[], double[], String[], String)
 //example addRecipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
-function addRecipe($recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions){
+function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions){
 
   $conn = connect(true);
 
@@ -117,6 +117,7 @@ function addIngredient($conn, $recipeId, $foodId, $amount){
 
 function main(){
 
+  $userId = $_POST['userId'];
   $recipeName = $_POST["recipeName"];
   $portions = $_POST["portions"];
   $timeToMake = $_POST["timeToCook"];
@@ -133,7 +134,8 @@ function main(){
     $i++;
   }
 
-  echo addRecipe($recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
+  echo $userId;
+  //echo addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
 
 }
 
