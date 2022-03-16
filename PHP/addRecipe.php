@@ -21,8 +21,8 @@ function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $
   }
 
   //adds data to recipe table
-  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions, timeToMake)
-          VALUES (:recipeName, :num, :instructions, :portions, :timeToMake)";
+  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions, timeToMake, userId)
+          VALUES (:recipeName, :num, :instructions, :portions, :timeToMake, :userId)";
   $numIngredients = count($ingredients);
 
   $stmt = $conn->prepare($sql);
@@ -31,7 +31,8 @@ function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $
     'num' => $numIngredients,
     'instructions' => $instructions,
     'portions' => $portions,
-    'timeToMake' => $timeToMake
+    'timeToMake' => $timeToMake,
+    'userId' => $userId
   ]);
 
   $recipeId = getrecipeId($conn, $recipeName)->fetch()['recipeId'];
@@ -117,7 +118,12 @@ function addIngredient($conn, $recipeId, $foodId, $amount){
 
 function main(){
 
-  $userId = $_POST['userId'];
+  if (isset($_POST['userId'])){
+    $userId = $_POST['userId'];
+  }
+  else {
+    $userId = 0;
+  }
   $recipeName = $_POST["recipeName"];
   $portions = $_POST["portions"];
   $timeToMake = $_POST["timeToCook"];
@@ -134,8 +140,8 @@ function main(){
     $i++;
   }
 
-  echo $userId;
-  //echo addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
+  //echo $userId;
+  echo addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
 
 }
 
