@@ -14,8 +14,8 @@ function submitReg() {
         success: function (data) {
             let flag = getValue("flag", data);
             let userid = getValue("username", data);
-            // alert(data);
-            // alert("flag= "+flag+" userid= "+userid);
+            console.log(data);
+            console.log("flag= "+flag+" userid= "+userid);
             if (flag == "0") {
                 alert('user already exists\nplease go to login page');
             }
