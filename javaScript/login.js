@@ -48,15 +48,24 @@ function submitLogin() {
     receive:    flag = 0 -> server error;
                 flag = 1 -> successful;  
 */
+/* create the form and delete the button */
+function setupResetPassword(){
+    var parentform = document.getElementById('forgetpasswordform')
+    parentform.removeChild(document.getElementById('removedbutton'));
+    parentform.appendChild();
+}
 
 function submitResetPassword() {
     alert('reset pw');
+
+
+
+
+
     let email = prompt("Please enter your email", "example@example.com");
 
     if (email != null) {
-        let user_id = getCookie('userid');
-        // add user_id into data stream.
-        var url = "../php/forgotPassword.php", data = 'email=' + email + "&user_id=" + user_id;
+        var url = "../PHP/forgotPassword.php", data = 'email=' + email + "&user_id=" + user_id;
         console.log(data);
         $.ajax({
             // prevent page reload, dunno the reason
@@ -96,7 +105,7 @@ function submitCode(){
     if (reset_pw != null) {
         let user_id = getCookie('userid');
         // add user_id into data stream.
-        var url = "../php/forgotPassword.php", data = 'newPassword=' + reser_pw + "&user_id=" + user_id;
+        var url = "../PHP/forgotPassword.php", data = 'newPassword=' + reser_pw + "&user_id=" + user_id;
         console.log(data);
         $.ajax({
             // prevent page reload, dunno the reason
