@@ -26,7 +26,7 @@ function receiveInventory() {
         success: function (data) {
             alert(data);
             let allInventory = listToMatrix(data.split('#'), 3);
-            console.log(allInventory);
+            console.log("received:"+allInventory);
             maxrow = allInventory.length;
             displaydiv = document.getElementsByClassName('displayinventory');
             for (let i = 0; i < maxrow; ++i) {

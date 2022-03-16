@@ -40,28 +40,26 @@
                 
             </div>
             <div class="addinventory">
-
-                <button>Add Ingredient</button>
-                <button>Remove Ingredient</button>
-
-                <form id="inventory_form" onsubmit="return submitInventory()">
-                    <div class="line">
-                        <label for="ingredient">Ingredient:</label><br>
+                <form class="inventory_form" onsubmit="return submitInventory()">
+                    <div class="inventoryline">
+                        Add an ingredient
+                    </div>
+                    <div class=" inventoryline">
+                        <label for="ingredient">Ingredient:</label>
                         <input type="text" placeholder="Foodname..." name="ingredient" required>
                     </div>
-                    <div class="line">
-                        <label for="quantity">Quantity:</label><br>
+                    <div class=" inventoryline">
+                        <label for="quantity">Quantity:</label>
                         <input type="text" placeholder="Quantities..." name="quantity" required>
                     </div>
-                    <div class="line">
-                        <h3>unit:</h3>
+                    <div class=" inventoryline">
                         <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
                         <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
                         <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
                         <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
                         <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
-                    </div>
-                    <div class="line">
+                    </div> 
+                    <div class=" inventoryline">
                         <input type="submit">
                     </div>
 
