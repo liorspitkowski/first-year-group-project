@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../css/icon.css">
 </head>
 
-<body>
+<body onload="return receiveInventory()">
     <!-- header start -->
     <section class="header">
         <a href="../index.html">
@@ -35,9 +35,9 @@
     <section class="middle-box">
         <div class="form-box">
 
-            <div class="displayinventory">
+            <div class="displayinventory scroller" id="displayinventory">
                 <p>What's in your fridge</p>
-                this should be a box that shows what ingredient the user has added.
+                
             </div>
             <div class="addinventory">
 
