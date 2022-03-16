@@ -97,7 +97,7 @@ function submitRecipe(submitButton){
     }
 
     var url = "../PHP/AddRecipe.php";
-    var data = $('#newRecipe').serialize() + "&userId" + getCookie('userid');
+    var data = $('#newRecipe').serialize() + "&userId=" + getCookie('userid');
     $.ajax({
         url: url,
         type: 'post',
