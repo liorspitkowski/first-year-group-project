@@ -66,18 +66,16 @@ function listToMatrix(list, elementsPerSubArray) {
     return matrix;
 }
 function submitInventory() {
-    alert('function called');
     let user_id = getCookie('userid');
-    // add user_id into data stream.
     var url = "../PHP/addIngredient.php", data = $('#inventory_form').serialize() + "&user_id=" + user_id;
-    console.log(data);
+    console.log("data sent is: "+data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            console.log("data received is: "+data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
