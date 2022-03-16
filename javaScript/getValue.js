@@ -18,6 +18,20 @@ function getValue(cname, inputdata) {
   }
   return "";
 }
+function getValue(cname, inputdata, seperateletter) {
+  let name = cname + "=";
+  let ca = inputdata.split(seperateletter);
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 /*
   get all value names from data stream 'input data' as a array;
   example:

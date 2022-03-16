@@ -38,6 +38,14 @@ the initial code I wrote had it. --Hanmin Liu
 
     overflow: hidden;
 }
+.div-currentuser{
+    position: absolute;
+    left:0;
+    top:0;
+    color: bisque;
+    font-size: small;
+    font-weight: 100;
+}
 .div-title_icon{
     position: absolute;
     /*Put it at the top*/

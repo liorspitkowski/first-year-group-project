@@ -1,22 +1,36 @@
+/*
+    - Returns the ingredients needed so that a recipe can be made
+- this will be compared with the user's inventory
+
+RECEIVE :
+- "userId"
+- "recipeName"
+RETURN :
+- Return each property one after another as shown in the previous example
+- e.g. Chicken#4#kg......
+
+
+*/
+
 function submitShoppinglist() {
     alert('function called');
     var url = "#", data = $('#shopping_form').serialize();
     console.log(data);
     $.ajax({
         // prevent page reload, dunno the reason
-        async:false,
+        async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
             //alert(data);  show response from the php script.
-            if(data == "0" | data =="1"){
+            if (data == "0" | data == "1") {
                 alert('username or password incorrect, \nplease check again');
             }
-            else if(data == "2"){
+            else if (data == "2") {
                 alert('welcome back to Foogle');
             }
-            else{
+            else {
                 alert('server response invalid value: ' + data);
             }
         }
