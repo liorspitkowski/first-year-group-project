@@ -13,7 +13,7 @@ function submitUsernameChangeRequest() {
     item.type = "hidden";
     item.value = user_id;
     document.getElementById('username_form').appendChild(item);
-    var url = "../PHP/changeUsername_testHanmin.php", data = $('username_form').serialize();
+    var url = "../PHP/changeUsername.php", data = $('username_form').serialize();
     console.log(data);
     alert(data);
     $.ajax({

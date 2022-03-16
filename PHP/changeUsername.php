@@ -1,6 +1,6 @@
 <?php
-  $newUN = $_POST[''];
-  $ID = $_POST[''];
+  $newUN = $_POST['user_changed_name'];
+  $ID = $_POST['user_id'];
 
   require "DatabaseHandler.php";
 
