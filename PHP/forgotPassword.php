@@ -5,19 +5,19 @@
 
   function part1()
   {
-    // $ID = $_POST[''];
+    // $un = $_POST[''];
     // $email = $_POST[''];
 
-    // delete
-    $ID = 17;
+    // delete/for testing
+    $un = 'Username1';
     $email = 'ziggy.hughes@student.manchester.ac.uk';
 
     $conn = connect();
 
-    $sql = 'SELECT hashedEmail FROM users WHERE userId = :ID';
+    $sql = 'SELECT hashedEmail FROM users WHERE username = :UN';
     $stmt = $conn->prepare($sql);
 
-    $stmt->execute([':ID' => $ID]);
+    $stmt->execute([':UN' => $un]);
 
     while($row = $stmt->fetch()) {
       if ($row["hashedEmail"] == hash("sha256", $email)) {
@@ -44,17 +44,17 @@
 
   function part2()
   {
-    // $ID = $_POST[''];
+    // $un = $_POST[''];
     // $newPW = hash("sha256", $_POST['']);
 
     $conn = connect();
 
-    $sql = "UPDATE users SET hashedPassword = :pw WHERE userId = :id";
+    $sql = "UPDATE users SET hashedPassword = :pw WHERE username = :UN";
     $stmt = $conn->prepare($sql);
 
     $stmt->execute([
       ':usn' => $newPW,
-      ':id' => $ID,
+      ':UN' => $un,
     ]);
     echo 'flag=1;';
 
@@ -62,7 +62,7 @@
 
   part1();
 
-  // selection to check if doinp part 1 or 2
+  // selection to check if doing part 1 or 2
   // if ($_POST[''] == null) {
   //   part1();
   // }
