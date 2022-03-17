@@ -27,11 +27,9 @@ function submitUsernameChangeRequest() {
     alert('function call');
     let user_id = getCookie('userid');
     alert(user_id);
-    var item = document.createElement("input");
-    item.type = "hidden";
-    item.value = user_id;
-    document.getElementById('username_form').appendChild(item);
-    var url = "../PHP/changeUsername.php", data = $('username_form').serialize();
+    $('#username_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
+    var url = "../PHP/changeUsername.php";
+    var data = $('#username_form').serialize();
     console.log(data);
     alert(data);
     $.ajax({
@@ -49,11 +47,8 @@ function submitFirstnameChangeRequest() {
     alert('function call');
     let user_id = getCookie('userid');
     alert(user_id);
-    var item = document.createElement("input");
-    item.type = "hidden";
-    item.value = user_id;
-    document.getElementById('firstname_form').appendChild(item);
-    var url = "../PHP/changeFirstname.php", data = $('firstname_form').serialize();
+    $('#firstname_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
+    var url = "../PHP/changeFirstname.php", data = $('#firstname_form').serialize();
     console.log(data);
     alert(data);
     $.ajax({
@@ -71,11 +66,8 @@ function submitLastnameChangeRequest() {
     alert('function call');
     let user_id = getCookie('userid');
     alert(user_id);
-    var item = document.createElement("input");
-    item.type = "hidden";
-    item.value = user_id;
-    document.getElementById('lastname_form').appendChild(item);
-    var url = "../PHP/changeLastname.php", data = $('lastname_form').serialize();
+    $('#lastname_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
+    var url = "../PHP/changeLastname.php", data = $('#lastname_form').serialize();
     console.log(data);
     alert(data);
     $.ajax({
