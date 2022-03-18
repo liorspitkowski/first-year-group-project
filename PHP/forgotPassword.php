@@ -5,12 +5,8 @@
 
   function part1()
   {
-    // $un = $_POST[''];
-    // $email = $_POST[''];
-
-    // delete/for testing
-    $un = 'Username1';
-    $email = 'ziggy.hughes@student.manchester.ac.uk';
+    $un = $_POST['username'];
+    $email = $_POST['email'];
 
     $conn = connect();
 
