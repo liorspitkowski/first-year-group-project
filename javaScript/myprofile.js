@@ -81,3 +81,24 @@ function submitLastnameChangeRequest() {
     });
     return false;
 }
+
+function submitDeleteRequest() {
+  alert('function call');
+  let user_id = getCookie('userid');
+  alert(user_id);
+  $('#delete_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
+  var url = "../PHP/deleteUser.php", data = $('#delete_form').serialize();
+  console.log(data);
+  alert(data);
+  $.ajax({
+      async: false,
+      url: url,
+      type: 'POST',
+      data: data,
+      success: function (data) {
+          alert(data);
+      }
+  });
+  window.location.replace("../index.html");
+  return false;
+}
