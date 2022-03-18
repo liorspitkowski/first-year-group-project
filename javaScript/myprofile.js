@@ -99,7 +99,6 @@ function submitDeleteRequest() {
           alert(data);
       }
   });
-  // delete/reset cookie
   window.location.replace("../index.html");
   return false;
 }
