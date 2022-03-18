@@ -1,6 +1,6 @@
 <?php
-  $newFN = $_POST[''];
-  $ID = $_POST[''];
+  $newFN = $_POST['user_changed_fname'];
+  $ID = $_POST['user_id'];
 
   require "DatabaseHandler.php";
 

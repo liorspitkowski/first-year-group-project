@@ -1,6 +1,6 @@
 <?php
 
-  $ID = $_POST[''];
+  $ID = $_POST['user_id'];
 
   if ($ID == 0) {
     //can't delete admin

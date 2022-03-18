@@ -1,6 +1,6 @@
 <?php
-  $newLN = $_POST[''];
-  $ID = $_POST[''];
+  $newLN = $_POST['user_changed_lname'];
+  $ID = $_POST['user_id'];
 
   require "DatabaseHandler.php";
 
