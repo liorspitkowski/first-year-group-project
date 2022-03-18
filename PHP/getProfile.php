@@ -1,5 +1,7 @@
 <?php
 
+// written and maintained by Lior Spitkowski
+
 require "DatabaseHandler.php";
 
 function get_profile() {
