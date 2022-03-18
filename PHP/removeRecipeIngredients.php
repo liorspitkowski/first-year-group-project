@@ -1,5 +1,7 @@
 <?php
 
+// written and maintained by Lior Spitkowski
+
 require "DatabaseHandler.php";
 
 // removes all ingredients of a recipe from a user's inventory
