@@ -2,8 +2,8 @@
 
   $ID = $_POST['user_id'];
 
-  if ($ID == 0) {
-    //can't delete admin
+  if ($ID == 0 || $ID == 1) {
+    //can't delete admin/guest
     echo 'flag=0;';
   }
   else {
