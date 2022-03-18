@@ -55,31 +55,8 @@ function addElement(
         console.log("this is the page " + current_page + " number " + id);
         console.log("recipe name is:" + content);
         let url = '../html/samplerecipe_testHanmin.html';
-        
-        // sessionStorage.setItem("recipeName", content);
-        // #.php?name1=value1&name2=value2
         let urlphp = '../PHP/DisplayRecipe.php';
         location.href = urlphp + '?recipeName=' + content;
-
-        /*
-        var payload = { name: newdivname };
-        var formtosend = document.createElement('form');
-        
-        console.log("sending \'" + payload + "\' to " + url);
-
-        formtosend.style.visibility = 'hidden';
-        formtosend.method = 'POST';
-        formtosend.action = url;
-        for (key in Object.keys(payload)) {
-            var input = document.createElement('input');
-            input.name = key;
-            input.value = payload[key];
-            formtosend.appendChild(input); // add key/value pair to form
-        }
-        document.body.appendChild(formtosend); // forms cannot be submitted outside of body
-        formtosend.submit(); // send the payload and navigate
-        */
-        
     };
     let newContent = document.createTextNode(content);
     newDiv.appendChild(newContent);
