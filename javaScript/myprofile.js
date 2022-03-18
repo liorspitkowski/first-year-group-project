@@ -96,9 +96,14 @@ function submitDeleteRequest() {
       type: 'POST',
       data: data,
       success: function (data) {
-          alert(data);
+          let flag = getValue("flag", data);
+          if (flag == "1") {
+            window.location.replace("../index.html");
+          }
+          else {
+            alert("Unabe to delete this user");
+          }
       }
   });
-  window.location.replace("../index.html");
   return false;
 }
