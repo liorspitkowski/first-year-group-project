@@ -98,6 +98,16 @@ function submitDeleteRequest() {
       success: function (data) {
           let flag = getValue("flag", data);
           if (flag == "1") {
+            var url = "../PHP/deleteUserIngredients.php"
+            $.ajax({
+                async: false,
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    alert("successful")
+                }
+            });
             window.location.replace("../index.html");
           }
           else {
