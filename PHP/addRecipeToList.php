@@ -17,7 +17,7 @@
 
 		//checks record doesn't already exist
 		if (recordExists($conn, $userId, $recipeId)){
-			return "flag-2";
+			return "flag=0";
 		}
 
 		//record will now be added
@@ -25,9 +25,9 @@
 
 		//check that record now exists
 		if (recordExists($conn, $userId, $recipeId)){
-			return "flag-1";
+			return "flag=1";
 		}else{
-			return "flag-0";
+			return "flag=0";
 		}
 	}
 
