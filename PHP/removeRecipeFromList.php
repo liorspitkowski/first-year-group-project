@@ -22,6 +22,7 @@
 		$stmt->execute(['user' => $userId, 'recipe' => $recipeId]);
 	}
 
+	}
 	function checkRecordRemoved($conn, $userId, $recipeId){
 		$sql = "SELECT * FROM shopRecipes WHERE userId = :user AND recipeId = :recipe";
 		$stmt = $conn->prepare($sql);
@@ -29,10 +30,10 @@
 
 		//check if successful
 		while ($row = $stmt->fetch()){
-			return "flag-0";
+			return "flag=0";
 		}
 		//this means nothing was returned
-		return "flag-1";
+		return "flag=1";
 	}
 
 ?>
