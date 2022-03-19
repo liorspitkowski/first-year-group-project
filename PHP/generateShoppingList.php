@@ -1,3 +1,4 @@
+//Written and Maintained by Daniel Makin
 <?php
 
 	require "DatabaseHandler.php";

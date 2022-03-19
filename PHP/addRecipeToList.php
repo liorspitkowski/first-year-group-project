@@ -1,3 +1,4 @@
+//Written and Maintained by Daniel Makin
 <?php
 
 	require "DatabaseHandler.php";
@@ -28,7 +29,6 @@
 		}else{
 			return "flag-0";
 		}
-
 	}
 
 	function addRecord($conn, $userId, $recipeId){
