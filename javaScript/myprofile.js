@@ -5,24 +5,48 @@
     display profile:
     send userID;
     expect return value: Username, Firstname, Lastname, users recipies;
-
-    change Username:
-    send userID and newUsername;
-    expect return value:    flag=0 -> username taken;
-                            flag=1 -> successful;
-    change First name:
-    send userID and newFirstname;
-    expect return value:    flag=1 -> successful;
-
-    change Last name:
-    send userID and newLastname;
-    expect return value:    flag=1 -> successful;
-
-    delete User:
-    send userID
-    expect return value:    flag=0 -> can't delete this user (admin);
-                            flag=1 -> successful;
 */
+
+window.onload = populate;
+
+function populate() {
+    alert('function call');
+    let user_id = getCookie('userid');
+    alert(user_id);
+    var url = "../PHP/getProfile.php";
+    var data = $('<input type="hidden" name="user_id" value="'+user_id+'" /> ').serialize();
+    console.log(data);
+    alert(data);
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (data) {
+            alert(data);
+            let info = data.split('#');
+            var un = info[0];
+            var fn = info[1];
+            var ln = info[2];
+            document.getElementById('user_changed_name').value = un;
+            document.getElementById('user_changed_fname').value = fn;
+            document.getElementById('user_changed_lname').value = ln;
+            if (info.length > 3) {
+              for (var i = 3; i < info.length; i++) {
+                var node = document.createElement('li');
+                var textnode = document.createTextNode(info[i]);
+                node.appendChild(textnode);
+                document.getElementById("displayRecipiesList").appendChild(node);
+              }
+            }
+            else {
+
+            }
+        }
+    });
+    return false;
+}
+
 function submitUsernameChangeRequest() {
     alert('function call');
     let user_id = getCookie('userid');
