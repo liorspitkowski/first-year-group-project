@@ -14,7 +14,7 @@ RETURN :
 
 function getShoppingList(){
     alert('getting shopping list');
-    var url = "../PHP/generateList.php", data = 'userid='+getCookie('userid');
+    var url = "../PHP/generateList.php", data = 'userId='+getCookie('userid');
     console.log(data);
     $.ajax({
         async: false,
