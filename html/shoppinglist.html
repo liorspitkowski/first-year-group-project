@@ -7,12 +7,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>myprofile</title>
+    <title>Foogle - Shopping List</title>
     <link rel="stylesheet" href="../css/shoppinglist.css">
+    <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/shoppinglist.js"></script>
+    <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/getValue.js"></script>
 </head>
 
-<body>
+<body onload="return getShoppingList()">
     <!-- Main contect space -->
     <section class="left-box">
         <!-- blank space on top begin -->
@@ -42,18 +45,8 @@
                 </div>
             </div>
             <div class="column-2"><div class="search-panel">
-                <div class="search-bar">
-                    <form name="search_form" action="" onsubmit="submitSearch()">
-                        <input type="text" name="user_search" id="user_search" placeholder="Search some food..." required>
-                        <input type="submit">
-                    </form>
-                </div>
                 <div class="search-result">
-                    <form name="profile_form" action="" onsubmit="submitProfile()">
-                        <label for="recipe">recipe</label>
-                        <input type="text" name="recipe" id="user_recipe" required>
-                        
-                    </form>
+                    
                 </div>
             </div></div>
         <!-- search space end -->

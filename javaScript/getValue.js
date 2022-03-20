@@ -23,8 +23,12 @@ function getValue(cname, inputdata) {
   example:
     let x = getValue_noName(data);
 */
-function getValue_noName(inputdata) {
-  let ca = inputdata.split(';');
+function seperateBy(seperate, inputdata){
+  let ca = inputdata.split(seperate);
+  return ca;
+}
+function getValue_noName(seperate, inputdata) {
+  let ca = inputdata.split(seperate);
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
