@@ -12,12 +12,29 @@ RETURN :
 
 */
 
+function getShoppingList(){
+    alert('getting shopping list');
+    var url = "../PHP/generateList.php", data = 'userid='+getCookie('userid');
+    console.log(data);
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (data) {
+            var shoppinglist = seperateBy('#',data);
+            console.log(shoppinglist);
+            
+        }
+    });
+    return false;
+}
+
 function submitShoppinglist() {
     alert('function called');
     var url = "#", data = $('#shopping_form').serialize();
     console.log(data);
     $.ajax({
-        // prevent page reload, dunno the reason
         async: false,
         url: url,
         type: 'POST',
@@ -35,6 +52,5 @@ function submitShoppinglist() {
             }
         }
     });
-    // prevent page reload, dunno the reason
     return false;
 }
