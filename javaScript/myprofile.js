@@ -89,6 +89,7 @@ function submitDeleteRequest() {
   $('#delete_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
   var url = "../PHP/deleteUser.php", data = $('#delete_form').serialize();
   console.log(data);
+  var temp = data;
   alert(data);
   $.ajax({
       async: false,
@@ -103,7 +104,7 @@ function submitDeleteRequest() {
                 async: false,
                 url: url,
                 type: 'POST',
-                data: data,
+                data: temp,
                 success: function (data) {
                     alert("successful")
                 }
