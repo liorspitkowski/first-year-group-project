@@ -1,5 +1,7 @@
 <?php
 
+// written and maintained by Lior Spitkowski
+
 require "DatabaseHandler.php";
 
 // adds ingredient with quantity to user's inventory (checking if they already had it in which case it adds to the quantity)
