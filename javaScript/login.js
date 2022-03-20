@@ -49,21 +49,25 @@ function submitLogin() {
                 flag = 1 -> successful;  
 */
 /* create the form and delete the button */
-function setupResetPassword(){
+function setupResetPassword() {
+    console.log("setupResetPassword()");
     var parentform = document.getElementById('forgetpasswordform')
-    parentform.removeChild(document.getElementById('removedbutton'));
+    // remove the button
+    //parentform.removeChild(document.getElementById('removedbutton'));
     // add form begin
     // form
     let newDiv = document.createElement("form");
     newDiv.name = "resetpw_form";
     newDiv.id = "resetpw_form";
-    newDiv.onsubmit = "return submitResetPassword()";
+    // when submiting the form, it should call the function 'submitResetPassword()'
+    newDiv.addEventListener("submit",submitResetPassword);
+    //newDiv.onsubmit = "return submitResetPassword()";
 
     parentform.appendChild(newDiv);
     // label1
     let label1 = document.createElement("label");
     label1.appendChild(document.createTextNode("Username: "));
-    label1.for="username";
+    label1.for = "username";
 
     newDiv.appendChild(label1);
     // input1
@@ -80,7 +84,7 @@ function setupResetPassword(){
     // label2
     let label2 = document.createElement("label");
     label2.appendChild(document.createTextNode("Email: "));
-    label2.for="username";
+    label2.for = "username";
 
     newDiv.appendChild(label2);
     // input2
@@ -106,6 +110,7 @@ function setupResetPassword(){
 }
 
 function submitResetPassword() {
+    alert("function called");
     if (email != null) {
         var url = "../PHP/forgotPassword.php", data = $('#resetpw_form').serialize();
         console.log(data);
@@ -121,8 +126,8 @@ function submitResetPassword() {
                 if (flag == '1') {
                     let server_code = getValue('code', data);
                     let user_code = prompt("Please enter the code we sent to you", "123456");
-                    if(user_code == server_code){
-                        submitCode();    
+                    if (user_code == server_code) {
+                        return submitCode();
                     }
                 }
                 else if (flag == '0') {
@@ -133,15 +138,15 @@ function submitResetPassword() {
                 }
             }
         });
+        alert("end of the function");
         return false;
     }
-    else {
-        alert('please enter a valid email address');
-        return false;
-    }
+    alert('please enter a valid email address');
+    
+    return false;
 }
 
-function submitCode(){
+function submitCode() {
     let reset_pw = prompt("Please enter a new password", "your new password");
 
     if (reset_pw != null) {
