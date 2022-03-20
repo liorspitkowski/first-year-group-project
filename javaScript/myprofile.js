@@ -33,8 +33,14 @@ function populate() {
             document.getElementById('user_changed_lname').value = ln;
             if (info.length > 3) {
               for (var i = 3; i < info.length; i++) {
-                info[i]
+                var node = document.createElement('li');
+                var textnode = document.createTextNode(info[i]);
+                node.appendChild(textnode);
+                document.getElementById("displayRecipiesList").appendChild(node);
               }
+            }
+            else {
+
             }
         }
     });
