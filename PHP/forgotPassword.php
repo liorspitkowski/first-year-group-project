@@ -5,8 +5,11 @@
 
   function part1()
   {
-    $un = $_POST['username'];
-    $email = $_POST['email'];
+    // $un = $_POST['username'];
+    // $email = $_POST['email'];
+
+    $un = "Username1";
+    $email = "ziggy.hughes@student.manchester.ac.uk";
 
     $conn = connect();
 
