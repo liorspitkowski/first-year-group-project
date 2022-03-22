@@ -3,11 +3,11 @@
 
 	require "DatabaseHandler.php";
 
-	$user = $_POST['userId'];
+	$userId = $_POST['userId'];
 	$reicpeName = $_POST['recipe'];
 
 	//echo flag returned
-	echo(mainFunction($user, $recipeName));
+	echo(mainFunction($userId, $recipeName));
 
 
 	function mainFunction($user, $recipeName){
