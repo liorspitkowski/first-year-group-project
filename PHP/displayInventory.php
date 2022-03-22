@@ -3,9 +3,9 @@
 	require "DatabaseHandler.php";
 
 
-	$user = $_POST['user'];
+	$userId = $_POST['user'];
 
-	mainFunction($user);
+	mainFunction($userId);
 
 	function mainFunction($user){
 

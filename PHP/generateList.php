@@ -2,9 +2,9 @@
 <?php
 
 	require "DatabaseHandler.php";
-	$user = $_POST['userId'];
+	$userId = $_POST['userId'];
 
-	echo(mainFunction($user));
+	echo(mainFunction($userId));
 
 	function mainFunction($user){
 		$conn = connect(true);
