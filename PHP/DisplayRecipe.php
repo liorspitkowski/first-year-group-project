@@ -45,6 +45,7 @@ else{
     <title>myprofile</title>
     <link rel="stylesheet" href="../css/samplerecipe.css">
     <script src="../javaScript/samplerecipe.js"></script>
+    <script src="../javaScript/jquery-3.6.0.js"></script>
 </head>
 
 <body>
@@ -106,11 +107,17 @@ else{
                     echo "<p>$result</p>";
                   }
                 ?>
+
+                <form id="add_to_list" onsubmit="event.preventDefault(); add_to_shopping_list();"><button type="submit">add to shopping list</button> 
+                portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></form><br>
+                <button onclick="remove_from_shopping_list()">remove from shopping list</button><br>
+                <button onclick="remove_from_inventory()">remove from inventory</button> 
                   
                 </div>
-            </div></div>
+            </div>
+        </div>
         <!-- search space end -->
-        
+
         <!-- footer begin -->
         <div class="bottom-box">
             Perhaps some 'contact us' stuff?

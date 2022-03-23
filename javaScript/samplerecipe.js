@@ -24,3 +24,16 @@ function submitSample() {
     // prevent page reload, dunno the reason
     return false;
 }
+
+function add_to_shopping_list(){
+    data = $('#add_to_list').serialize();
+    console.log(data);
+}
+
+function remove_from_shopping_list(){
+    console.log("remove list");
+}
+
+function remove_from_inventory(){
+    console.log("remove inventory");
+}
