@@ -1,17 +1,11 @@
 /*
     Written by Hanmin Liu;
-    send inventory form, append userid;
+    Display inventory;
+    Allow user add ingredients;
 
-
-    display:
-    RECEIVE :
-        - "user"
-    RETURN :
-        - Returns the information in one string.
-        - in the order : Name, qty, units
-        - one record after another and each record separated by #
-        - so e.g. "Chicken#2#kg#rice#3#kg
-
+    - Returns the inventory in one string.
+    - in the order : Name, qty, units separated by #
+    - e.g. "Chicken#2#kg#rice#3#kg
 
 */
 function receiveInventory() {
@@ -24,35 +18,35 @@ function receiveInventory() {
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
             let allInventory = listToMatrix(data.split('#'), 3);
-            console.log("received:"+allInventory);
-            maxrow = allInventory.length;
-            displaydiv = document.getElementsByClassName('displayinventory');
-            for (let i = 0; i < maxrow; ++i) {
-                addElement(i, "p", "result-" + i, allInventory[i], "displayinventory");
+            console.log("received: "+allInventory);
+            
+            parentTable = document.getElementById('inventory-table');
+            for( i=0; i<allInventory.length; ++i){
+                addRow(parentTable,allInventory[i]);
             }
-
         }
     });
     return false;
 }
-/* create inventory results */
-function addElement(
-    id, // unique identifier in the page
-    divtype, // this case, button.
-    newdivname, //the created div name
-    content, // the content inside
-    parentdiv // where to insert
-) {
-    let newDiv = document.createElement(divtype);
-    newDiv.name = newdivname;
-    newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
-    let newContent = document.createTextNode(content);
-    newDiv.appendChild(newContent);
-    let currentDiv = document.getElementById(parentdiv);
-    currentDiv.appendChild(newDiv);
+
+function addRow(parentTable, rawItem) {
+    // name quantity unit
+    let row = document.createElement("tr");
+    addThToTr(row, rawItem[0]);
+    addThToTr(row, rawItem[1]);
+    addThToTr(row, rawItem[2]);
+    //addBuToTr(row,rawItem);
+    parentTable.appendChild(row);
 }
+function addThToTr(row, rawContent) {
+    let box = document.createElement("th");
+    let content = document.createTextNode(rawContent);
+    box.appendChild(content);
+    row.appendChild(box);
+}
+
+
 /* convert list to n elements per row. */
 function listToMatrix(list, elementsPerSubArray) {
     var matrix = [], i, k;
