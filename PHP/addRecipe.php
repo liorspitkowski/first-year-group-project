@@ -1,14 +1,10 @@
 <?php
 
-/* to do
- - add vegi/vegan options
-*/
-
 require "DatabaseHandler.php";
 
 //add recipe to database in for (String, int, String[], double[], String[], String)
 //example addRecipe("beans on toast", 2, ["toast", "beans"], [2, 400], ["", "g"], "put beans on toast")
-function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions){
+function addRecipe($userId, $recipeName, $portions, $timeToMake, $dietry, $ingredients, $amounts, $units, $instructions){
 
   $conn = connect(true);
 
@@ -21,9 +17,11 @@ function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $
   }
 
   //adds data to recipe table
-  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions, timeToMake, userId)
-          VALUES (:recipeName, :num, :instructions, :portions, :timeToMake, :userId)";
+  $sql = "INSERT INTO recipes (recipeName, numIngredients, instructions, portions, timeToMake, vegetarian, vegan, userId)
+          VALUES (:recipeName, :num, :instructions, :portions, :timeToMake, :vegetarian, :vegan, :userId)";
   $numIngredients = count($ingredients);
+  $vegi = ($dietry[1] != NULL) ? 1 : 0;
+  $vegan = ($dietry[0] != NULL) ? 1 : 0;
 
   $stmt = $conn->prepare($sql);
   $stmt->execute([
@@ -32,6 +30,8 @@ function addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $
     'instructions' => $instructions,
     'portions' => $portions,
     'timeToMake' => $timeToMake,
+    'vegetarian' => $vegi,
+    'vegan' => $vegan,
     'userId' => $userId
   ]);
 
@@ -126,6 +126,7 @@ function main(){
   }
   $recipeName = $_POST["recipeName"];
   $portions = $_POST["portions"];
+  $dietry = [$_POST["vegan"], $_POST["vegetarian"]];
   $timeToMake = $_POST["timeToCook"];
   $ingredients = [];
   $amounts = [];
@@ -140,8 +141,8 @@ function main(){
     $i++;
   }
 
-  //echo $userId;
-  echo addRecipe($userId, $recipeName, $portions, $timeToMake, $ingredients, $amounts, $units, $instructions);
+  //var_dump($dietry);
+  echo addRecipe($userId, $recipeName, $portions, $timeToMake, $dietry, $ingredients, $amounts, $units, $instructions);
 
 }
 
