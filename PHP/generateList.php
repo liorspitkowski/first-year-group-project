@@ -2,13 +2,12 @@
 	//Written and Maintained by Daniel Makin
 
 	require "DatabaseHandler.php";
-	//$userId = $_POST['userId'];
-	$userId = 14;
+	$userId = $_POST['userId'];
 
 	echo(mainFunction($userId));
 
 	function mainFunction($userId){
-		$conn = connect(true);
+		$conn = connect();
 
 		//returns the recipeIds
 		$recipeIds = getRecipeIds($conn, $userId);
@@ -107,7 +106,6 @@
 
 		//round due to wierd numbers produced by portions multiplier
 		$items = roundAmounts($items);
-
 		return $items;
 	}
 
@@ -140,9 +138,12 @@
 			$index = array_search($bIng[$i], $aIng);
 			//echo $index;
 
-			if ($index != -1){
+			if ($index != false){
 				//modify the index to add the new items
 				$aAmounts[$index] += $bAmounts[$i];
+			}else{
+				array_push($aIng, $bIng[$i]);
+				array_push($aAmounts, $bAmounts[$i]);
 			}
 		}
 		return array($aIng, $aAmounts);
@@ -170,6 +171,7 @@
 	}
 
 	function compareListsWithInventory($conn, $userId, $ingredients, $amounts){
+
 		for ($i = 0; $i < count($ingredients); $i++){
 			//try to select the ingredient in the inventory list
 			$sql = "SELECT amount FROM inventory WHERE userId = :userId AND foodId = :foodId";
