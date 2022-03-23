@@ -1,16 +1,17 @@
-//Written and Maintained by Daniel Makin
 <?php
+	//Written and Maintained by Daniel Makin
 
 	require "DatabaseHandler.php";
-	$user = $_POST['userId'];
+	//$userId = $_POST['userId'];
+	$userId = 14;
 
-	echo(mainFunction($user));
+	echo(mainFunction($userId));
 
-	function mainFunction($user){
+	function mainFunction($userId){
 		$conn = connect(true);
 
 		//returns the recipeIds
-		$recipeIds = getRecipeIds($conn, $user);
+		$recipeIds = getRecipeIds($conn, $userId);
 
 		//return nothing
 		if (sizeof($recipeIds) == 0){
@@ -18,9 +19,12 @@
 		}
 
 		//commented out for test purposes
-		//$ingredients = getAllIngredients($conn, $recipeIds);
 
-		$ingredients = compareListsWithInventory($conn, $userId, $ingredients);
+		$portions = getPortions($conn, $userId);
+		$ingredients = getAllIngredients($conn, $recipeIds, $portions);
+
+
+		$ingredients = compareListsWithInventory($conn, $userId, $ingredients[0], $ingredients[1]);
 
 		//now the names and units are retrieved
 		$ingredients = getIngredientNames($conn, $ingredients[0], $ingredients[1]);
@@ -30,6 +34,18 @@
 		//then returned to user
 		return $endString;
 
+	}
+
+	function getPortions($conn, $userId){
+		$portions = [];
+		$sql = "SELECT portions FROM shopRecipes WHERE userId = :user";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(['user' => $userId]);
+
+		while ($row = $stmt->fetch()){
+			array_push($portions, $row['portions']);
+		}
+		return $portions;
 	}
 
 	function getIngredientNames($conn, $Ids, $amounts){
@@ -69,43 +85,70 @@
 		return $Ids;
 	}
 
-	function getAllIngredients($conn, $recipeIds){
+	function getAllIngredients($conn, $recipeIds, $portions){
 		//can not return
-		if (sizeof($recipeIds)) == 0{
+		if (sizeof($recipeIds) == 0){
 			return;
 		}
 
 		//get the first ingredients as these don't need to be compared
-		$items = getRecipeIngredients($recipeIds);
+		$multiplier = getPortionMultiplier($conn, $recipeIds[0], $portions[0]);
+		$items = getRecipeIngredients($conn, $recipeIds[0], $multiplier);
 
-		for ($i=1; $i < sizeof($recipeIds)){
+		for ($i=1; $i < sizeof($recipeIds); $i++){
+			//this gets the amount of times the recipe is needed
+			$multiplier = getPortionMultiplier($conn, $recipeIds[$i], $portions[$i]);
 			//get next list of items
-			$newItems = getRecipeIngredients($recipeIds[$i]);
+			$newItems = getRecipeIngredients($conn, $recipeIds[$i], $multiplier);
 
 			//now compare lists
-			$items = compareLists($items, $newItems);
+			$items = compareLists($items[0], $items[1], $newItems[0], $newItems[1]);
 		}
+
+		//round due to wierd numbers produced by portions multiplier
+		$items = roundAmounts($items);
 
 		return $items;
 	}
 
-	function compareLists($a, $b){
+	function roundAmounts($ingredients){
+		for ($i = 0; $i < count($ingredients[1]); $i++){
+			//then round every value up for ingredients to nearest one?
+			$ingredients[1][$i] = ceil($ingredients[1][$i]);
+		}
+
+		return $ingredients;
+	}
+
+	function getPortionMultiplier($conn, $recipeId, $portions){
+		//get original portions amount
+		$sql = "SELECT portions FROM recipes WHERE recipeId = :recipe";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(['recipe' => $recipeId]);
+		//will only return one value, should never be null
+		$recipePortions = $stmt->fetch()['portions'];
+
+		return ($portions / $recipePortions);
+	}
+
+	function compareLists($aIng, $aAmounts, $bIng, $bAmounts){
 		//a is the original list, b is the new list
-		for ($i = 0; $i < sizeof($b[0])){
+		for ($i = 0; $i < sizeof($bIng); $i++){
 			//loops through each item in new list
 
 			//search new list for index
-			$index = array_search($b[0][$i], $a[0];
+			$index = array_search($bIng[$i], $aIng);
+			//echo $index;
 
 			if ($index != -1){
 				//modify the index to add the new items
-				$a[1][$index] += $b[1][$i];
+				$aAmounts[$index] += $bAmounts[$i];
 			}
 		}
-		return $a;
+		return array($aIng, $aAmounts);
 	}
 
-	function getRecipeIngredients($conn, $recipeId){
+	function getRecipeIngredients($conn, $recipeId, $multiplier){
 		$Ids = [];
 		$amounts = [];
 		$sql = "SELECT foodId, amount FROM ingredients WHERE recipeId = :recipe";
@@ -117,28 +160,34 @@
 			array_push($amounts, $row['amount']);
 		}
 
+		//this adjusts for amount of portions
+
+		for ($i = 0; $i < count($amounts); $i++){
+			$amounts[$i] = $amounts[$i] * $multiplier;
+		}
+
 		return array($Ids, $amounts);
 	}
 
-	function compareListsWithInventory($conn, $userId, $ingredients){
-		for ($i = 0; $i <= count($ingredients); $i++){
+	function compareListsWithInventory($conn, $userId, $ingredients, $amounts){
+		for ($i = 0; $i < count($ingredients); $i++){
 			//try to select the ingredient in the inventory list
 			$sql = "SELECT amount FROM inventory WHERE userId = :userId AND foodId = :foodId";
 			$stmt = $conn->prepare($sql);
-			$stmt->execute(['userId' => $userId, 'foodId' => $ingredients[0][$i]]);
+			$stmt->execute(['userId' => $userId, 'foodId' => $ingredients[$i]]);
 			//checks if the user has any
 			while ($row = $stmt->fetch()){
-				$ingredients[1][$i] -= $row['amount']; //will only have one record
+				$amounts[$i] -= $row['amount']; //will only have one record
 			}
 		}
 		$newAmounts = [];
 		$newIngredients = [];
 
-		for ($i = 0; $i < count($ingredients[0]); $i++){
+		for ($i = 0; $i < count($ingredients); $i++){
 			//check each element whether it is below or equal to 0
-			if ($ingredients[1][$i] > 0){
-				array_push($newAmounts, $ingredients[1][$i]);
-				array_push($newIngredients, $ingredients[0][$i]);
+			if ($amounts[$i] > 0){
+				array_push($newAmounts, $amounts[$i]);
+				array_push($newIngredients, $ingredients[$i]);
 			}
 		}
 

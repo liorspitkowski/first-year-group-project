@@ -1,19 +1,20 @@
-//Written and Maintained by Daniel Makin
 <?php
+	//Written and Maintained by Daniel Makin
 
 	require "DatabaseHandler.php";
 
-	$user = $_POST['userId'];
+	$userId = $_POST['userId'];
 	$reicpeName = $_POST['recipe'];
+	$portions = $_POST['portions'];
 
 	//echo flag returned
-	echo(mainFunction($user, $recipeName));
+	echo(mainFunction($userId, $recipeName, $portions));
 
 
-	function mainFunction($user, $recipeName){
+	function mainFunction($userId, $recipeName, $portions){
 		$conn = connect(true);
 
-		$recipe = getRecipeId($conn, $recipeName);
+		$recipeId = getRecipeId($conn, $recipeName);
 
 		//checks record doesn't already exist
 		if (recordExists($conn, $userId, $recipeId)){
@@ -21,7 +22,7 @@
 		}
 
 		//record will now be added
-		addRecord($conn, $userId, $recipeId);
+		addRecord($conn, $userId, $recipeId, $portions);
 
 		//check that record now exists
 		if (recordExists($conn, $userId, $recipeId)){
@@ -31,11 +32,11 @@
 		}
 	}
 
-	function addRecord($conn, $userId, $recipeId){
-		$sql = "INSERT INTO shopRecipes (userId, recipeId) VALUES (:user, :recipe)";
+	function addRecord($conn, $userId, $recipeId, $portions){
+		$sql = "INSERT INTO shopRecipes (userId, recipeId, portions) VALUES (:user, :recipe, :portions)";
 		$stmt = $conn->prepare($sql);
 
-		$stmt->execute(['user' => $userId, 'recipe' => $recipeId]);
+		$stmt->execute(['user' => $userId, 'recipe' => $recipeId, 'portions' => $portions]);
 	}
 
 	function getRecipeId($conn, $name){
@@ -49,6 +50,7 @@
 	}
 
 	//used for confirmation and error checking at beginning
+	//doesn't need to check portions
 	function recordExists($conn, $userId, $recipeId){
 		$sql = "SELECT * FROM shopRecipes WHERE userId = :user AND recipeId = :recipe";
 		$stmt = $conn->prepare($sql);
