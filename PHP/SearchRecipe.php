@@ -37,6 +37,7 @@ function search($search){
 
 }
 
+//calculates how well recipe matches what is in inventory
 function inIventory($conn, $recipeid, $uid){
 
   //fetches data from inventory
@@ -85,6 +86,22 @@ function inIventory($conn, $recipeid, $uid){
 
 }
 
+function matchesDietry($conn, $recipeid, $dietry){
+
+  //fetches dietry info
+  $sql = "SELECT $dietry FROM recipes WHERE recipeId = :recipeId";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([
+    'recipeId' => $recipeid
+  ]);
+
+  if ($result = $stmt->fetch()){
+    return ($result[$dietry] == 1);
+  }
+  return false;
+
+}
+
 //calculates how different two words are
 function levenshteinDistance($w1, $w2){
 
@@ -119,6 +136,6 @@ function main(){
 }
 
 //main();
-inIventory(connect(true), 24, 14);
+//inIventory(connect(true), 24, 14);
 
  ?>
