@@ -8,11 +8,15 @@ require "DatabaseHandler.php";
 function remove_recipe_ingredients() {
     // retrieves variables from POST
     $id = $_POST["user_id"];
-    $recipeName = $_POST["recipeName"];
+    $recipeId = $_POST["recipe_id"];
+
+    // can be changed back to work with recipe name
+    // $recipeName = $_POST["recipeName"];
+    // $recipeId = get_recipeId($conn, $recipeName);
 
     $conn = connect(True); // connects to database
 
-    $recipeId = get_recipeId($conn, $recipeName);
+
 
     $ingredientsAndQuantities = get_ingredients_and_quantities_recipe($conn, $recipeId);
     $recipeIngredientsList = $ingredientsAndQuantities[0];
