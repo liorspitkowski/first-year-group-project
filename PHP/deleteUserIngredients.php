@@ -12,8 +12,9 @@ function delete_and_confirm() {
 
     delete_user_ingredients($conn, $id);
     reassign_recipes($conn, $id);
+    delete_user_ingredients($conn, $id);
 
-    if (ingredients_confirmation($conn, $id) && recipes_confirmation($conn, $id)) {
+    if (ingredients_confirmation($conn, $id) && recipes_confirmation($conn, $id) && shoppingList_confirmation($conn, $id)) {
         echo("flag=1");
     } else {
         echo("flag=0");
@@ -32,6 +33,15 @@ function delete_user_ingredients($conn, $id) {
 // ressagins recipes with the user id to the admin
 function reassign_recipes($conn, $id) {
     $sql = "UPDATE recipes SET userId = 0 WHERE userId = :userId";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'userId' => $id
+    ]);
+}
+
+// deletes user shopping list
+function delete_user_ingredients($conn, $id) {
+    $sql = "DELETE FROM shopRecipes WHERE userId = :userId";
     $stmt = $conn->prepare($sql);
     $stmt ->execute([
       'userId' => $id
@@ -57,6 +67,22 @@ function ingredients_confirmation($conn, $id) {
 // ensures there are no recipes made by the deleted user
 function recipes_confirmation($conn, $id) {
     $sql = "SELECT userId FROM recipes WHERE userId = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute([
+      'id' => $id
+    ]);
+    $results = $stmt->fetch();
+    if ($results == null) {
+        $message = True;
+    } else {
+        $message = False;
+    }
+    return $message;
+}
+
+// ensures there are no recipes made by the deleted user
+function shoppingList_confirmation($conn, $id) {
+    $sql = "SELECT userId FROM shopRecipes WHERE userId = :id";
     $stmt = $conn->prepare($sql);
     $stmt ->execute([
       'id' => $id
