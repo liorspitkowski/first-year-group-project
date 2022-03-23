@@ -18,6 +18,8 @@ $stmt->execute([
 if($row = $stmt->fetch()){
   $page_result = 200;
   $id = $row['recipeId'];
+  // so javaScript can access recipeId
+  echo ("<label id='recipe_id' hidden>$id</label><br>");
   $instructions = $row['instructions'];
   $TTM = $row['timeToMake'];
   $foods = [];
@@ -46,6 +48,7 @@ else{
     <link rel="stylesheet" href="../css/samplerecipe.css">
     <script src="../javaScript/samplerecipe.js"></script>
     <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/removeFromInventory.js"></script>
     <script src="../javaScript/editShoppingList.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
