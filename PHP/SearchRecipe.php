@@ -7,28 +7,98 @@ function search($search){
 
   $conn = connect(true);
 
-  $sql = "SELECT recipeName FROM recipes";
+  $sql = "SELECT recipeId, recipeName FROM recipes";
   $result = $conn->query($sql);
   $names = explode(" ", $search);
 
   $results = [];
   while ($row = $result->fetch()){
     $dbNames = explode(" ", $row['recipeName']);
-    $total = 0;
+    $score = 0;
+
     foreach ($names as $name){
-      $tests = [];
-      foreach ($dbNames as $testName){
-        array_push($tests, levenshteinDistance($name, $testName));
+      //scores how well recipe matches search
+      if ($search != ""){
+        $tests = [];
+        foreach ($dbNames as $testName){
+          array_push($tests, levenshteinDistance($name, $testName));
+        }
+        $score += min($tests);
       }
-      $total += min($tests);
     }
-    //echo $row['recipeName']." : ". $total . "\n";
-    $results += [$row['recipeName'] => $total];
+
+
+    $results += [$row['recipeName'] => $score];
   }
 
   asort($results);
   $printReturn = implode(";", array_keys($results));
   echo $printReturn;
+
+}
+
+//calculates how well recipe matches what is in inventory
+function inIventory($conn, $recipeid, $uid){
+
+  //fetches data from inventory
+  $sql = "SELECT foodId, amount FROM inventory WHERE userId = :userid";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([
+    'userid' => $uid
+  ]);
+
+  $foods = [];
+
+  while($row = $stmt->fetch()){
+    $foods += [$row['foodId'] => $row['amount']];
+  }
+
+  //fetches data of recipe
+  $sql = "SELECT foodId,amount FROM ingredients WHERE recipeId = :recipeId";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([
+    'recipeId' => $recipeid
+  ]);
+
+  $ingridients = [];
+
+  while($row = $stmt->fetch()){
+    $ingridients += [$row['foodId'] => $row['amount']];
+  }
+
+  $score = 100.0;
+  foreach ($ingridients as $ingridient => $amount){
+    if (isset($foods[$ingridient])){
+      if ($foods[$ingridient] < $amount){
+        $score -= ($amount - $foods[$ingridient])/$amount * 100/count($ingridients);
+        echo $amount - $foods[$ingridient] . "\n";
+      }
+    }
+    else {
+      $score -= 100/count($ingridients);
+    }
+    echo $score . "\n";
+  }
+
+  echo http_build_query($foods) . "\n";
+  echo http_build_query($ingridients) . "\n";
+  echo $score . "%\n";
+
+}
+
+function matchesDietry($conn, $recipeid, $dietry){
+
+  //fetches dietry info
+  $sql = "SELECT $dietry FROM recipes WHERE recipeId = :recipeId";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([
+    'recipeId' => $recipeid
+  ]);
+
+  if ($result = $stmt->fetch()){
+    return ($result[$dietry] == 1);
+  }
+  return false;
 
 }
 
@@ -65,7 +135,7 @@ function main(){
   search($searchName);
 }
 
-//search("beans");
-main();
+//main();
+//inIventory(connect(true), 24, 14);
 
  ?>

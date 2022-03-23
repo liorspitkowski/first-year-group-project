@@ -45,6 +45,10 @@ else{
     <title>myprofile</title>
     <link rel="stylesheet" href="../css/samplerecipe.css">
     <script src="../javaScript/samplerecipe.js"></script>
+    <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/editShoppingList.js"></script>
+    <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/getValue.js"></script>
 </head>
 
 <body>
@@ -55,7 +59,7 @@ else{
             <div class="title-box">
             Foogle
             </div>
-            
+
         </div>
         <!-- blank space on top end -->
 
@@ -64,17 +68,17 @@ else{
             <div class="column-1">
                 <div class="sidebar">
                     <div class="sidebar-title">
-                         Sidebar 
+                         Sidebar
                     </div>
                     <ul>
                         <li><a href="userprofile.html">My profile</a></li>
                         <li><a href="menu.html">Menu</a></li>
                         <li><a href="search.html">Search</a></li>
-                        <li><a href="samplerecipe.html">Samplerecipe</a></li>  
-                        <li><a href="newRecipe.html">Newrecipe</a></li> 
+                        <li><a href="samplerecipe.html">Samplerecipe</a></li>
+                        <li><a href="newRecipe.html">Newrecipe</a></li>
                         <li><a href="shoppinglist.html">Shopping list</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
             <div class="column-2"><div class="search-panel">
@@ -90,7 +94,7 @@ else{
                     echo"</div>\n";
                     echo"<div id='result-recipe-info'>\n";
                       echo"<h2>Portions: $portions</h2>\n";
-                      echo"<h2>Time To Make: $TTM</h2>\n"; 
+                      echo"<h2>Time To Make: $TTM</h2>\n";
                     echo"</div>\n";
                     echo"<div id='result-recipe-instructions'>\n";
                       foreach ($foods as $ingridient){
@@ -106,11 +110,17 @@ else{
                     echo "<p>$result</p>";
                   }
                 ?>
-                  
+
+                <form id="add_to_list" onsubmit="event.preventDefault(); addToSL();"><button type="submit">add to shopping list</button>
+                portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></form><br>
+                <form id="remove_from_list" onsubmit="event.preventDefault(); removeFromSL();"><button type="submit">remove from shopping list</button></form><br>
+                <button onclick="remove_from_inventory()">remove from inventory</button>
+
                 </div>
-            </div></div>
+            </div>
+        </div>
         <!-- search space end -->
-        
+
         <!-- footer begin -->
         <div class="bottom-box">
             Perhaps some 'contact us' stuff?
