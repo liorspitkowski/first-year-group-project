@@ -15,7 +15,7 @@
     <script src="../javaScript/getValue.js"></script>
 </head>
 
-<body onload="return getShoppingList()">
+<body onload="return loadShoppingList()">
     <!-- Main contect space -->
     <section class="left-box">
         <!-- blank space on top begin -->
@@ -46,12 +46,18 @@
             </div>
             <div class="column-2"><div class="search-panel">
                 <div class="search-result" id="display-div">
-                    <table id="display-table">
+                    <table id="recipes-table">
                         <tr>
-                            <th>Name</th>
+                            <th>Recipe Name</th>
+                            <th>Portion</th>
+                            <th>Delete</th>
+                        </tr>
+                    </table>
+                    <table id="ingredients-table">
+                        <tr>
+                            <th>Ingredient Name</th>
                             <th>Quantity</th>
                             <th>Unit</th>
-                            <th>Delete</th>
                         </tr>
                     </table>
                 </div>
