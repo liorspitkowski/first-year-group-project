@@ -78,7 +78,7 @@ function listToMatrix(list, elementsPerSubArray) {
 function getShoppingList_recipes() {
     alert('getting recipes');
     var url = "../PHP/displayRecipesOnList.php", data = 'userId=' + getCookie('userid');
-    console.log(data);
+    console.log('recipes posting: '+data);
     $.ajax({
         async: false,
         url: url,
