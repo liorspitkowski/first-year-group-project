@@ -16,7 +16,7 @@ function submitSearch() {
             console.log(data);
             // 16 beans on toast;fancy beans on toast;beans in toast;beanz;beanz+;test recipe;Chicken Korma
             // initiate recipe_array, page_num, current_page
-            recipe_array = getValue_noName(data);
+            recipe_array = getValue_noName(';',data);
             // let totalresult = recipe_array.length;
             recipe_array = listToMatrix(recipe_array, max_show);
             // Get how many pages

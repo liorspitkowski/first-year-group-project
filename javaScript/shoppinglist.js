@@ -1,20 +1,20 @@
 /*
-    - Returns the ingredients needed so that a recipe can be made
-- this will be compared with the user's inventory
+    Written by Hanmin Liu;
 
-RECEIVE :
-- "userId"
-- "recipeName"
-RETURN :
-- Return each property one after another as shown in the previous example
-- e.g. Chicken#4#kg......
-
+    -Display all recipes that user has added to the shopping list;
+    -Allow user to remove certain recipe;
+    -Display all ingredients that needed for user to cook the recipes
+    on the shopping list;
 
 */
-
-function getShoppingList(){
-    alert('getting shopping list');
-    var url = "../PHP/generateList.php", data = 'userid='+getCookie('userid');
+function loadShoppingList() {
+    getShoppingList_ingredients();
+    getShoppingList_recipes();
+    return false;
+}
+function getShoppingList_ingredients() {
+    alert('getting ingredients');
+    var url = "../PHP/generateList.php", data = 'userId=' + getCookie('userid');
     console.log(data);
     $.ajax({
         async: false,
@@ -22,12 +22,12 @@ function getShoppingList(){
         type: 'POST',
         data: data,
         success: function (data) {
-            var shoppinglist = seperateBy('#',data);
+            var shoppinglist = seperateBy('#', data);
             console.log(shoppinglist);
             /*
                 ['bluefish', '431', 'g\r\n', 'rice', '300', 'g\r\n', 'seaweed', '10', 'g']
                 show a table of it
-                name quantity unit delete_button
+                name quantity unit
             */
             displayShoppingList(shoppinglist);
             console.log("shopping list display complete");
@@ -36,38 +36,28 @@ function getShoppingList(){
     return false;
 }
 
-function displayShoppingList(rawList){
-    rawList = listToMatrix(rawList,3);
+function displayShoppingList(rawList) {
+    rawList = listToMatrix(rawList, 3);
     console.log("the list being preprocessed is: " + rawList);
-    for(i = 0; i<rawList.length;++i){
-        addElementtoPage(rawList[i]);
+    for (i = 0; i < rawList.length; ++i) {
+        addElementToPage(rawList[i]);
     }
 }
 
-function addElementtoPage(rawItem){
+function addElementToPage(rawItem) {
     // name quantity unit
-    let parentTable = document.getElementById('display-table');
+    let parentTable = document.getElementById('ingredients-table');
     let row = document.createElement("tr");
-    addThToTr(row,rawItem[0]);
-    addThToTr(row,rawItem[1]);
-    addThToTr(row,rawItem[2]);
-    addBuToTr(row,rawItem);
+    addThToTr(row, rawItem[0]);
+    addThToTr(row, rawItem[1]);
+    addThToTr(row, rawItem[2]);
+    //addBuToTr(row,rawItem);
     parentTable.appendChild(row);
-
 }
-function addThToTr(row, rawContent){
+function addThToTr(row, rawContent) {
     let box = document.createElement("th");
     let content = document.createTextNode(rawContent);
     box.appendChild(content);
-    row.appendChild(box);
-}
-function addBuToTr(row, info){
-    let box = document.createElement("th");
-    let button = document.createElement("button");
-    let content = document.createTextNode("delete");
-    button.onclick = "return deleteRecipe("+info[0]+")";
-    button.appendChild(content);
-    box.appendChild(button);
     row.appendChild(box);
 }
 
@@ -84,9 +74,10 @@ function listToMatrix(list, elementsPerSubArray) {
     return matrix;
 }
 
-function deleteRecipe(name){
-    console.log("deleting"+name);
-    var url = "#", data = '#';
+
+function getShoppingList_recipes() {
+    alert('getting recipes');
+    var url = "../PHP/displayRecipesOnList.php", data = 'userId=' + getCookie('userid');
     console.log(data);
     $.ajax({
         async: false,
@@ -94,15 +85,77 @@ function deleteRecipe(name){
         type: 'POST',
         data: data,
         success: function (data) {
-            //alert(data);  show response from the php script.
-            if (data == "0" | data == "1") {
-                alert('username or password incorrect, \nplease check again');
+            if (data == '') {
+                alert('empty data stream');
             }
-            else if (data == "2") {
-                alert('welcome back to Foogle');
-            }
-            else {
-                alert('server response invalid value: ' + data);
+            var shoppinglist = seperateBy('#', data);
+            console.log(shoppinglist);
+            /*
+                ['bluefish', '431', 'g\r\n', 'rice', '300', 'g\r\n', 'seaweed', '10', 'g']
+                show a table of it
+                name quantity unit
+            */
+            displayShoppingList_recipes(shoppinglist);
+            console.log("shopping list display complete");
+        }
+    });
+    return false;
+}
+
+function displayShoppingList_recipes(rawList) {
+    rawList = listToMatrix(rawList, 2);
+    console.log("[recipe] the list being preprocessed is: " + rawList);
+    for (i = 0; i < rawList.length; ++i) {
+        addElementToPage_recipes(rawList[i]);
+    }
+}
+
+function addElementToPage_recipes(rawItem) {
+    // name quantity unit
+    let parentTable = document.getElementById('recipes-table');
+    let row = document.createElement("tr");
+    addThToTr(row, rawItem[0]);
+    addThToTr(row, rawItem[1]);
+    addBuToTr(row, rawItem);
+    parentTable.appendChild(row);
+}
+function addBuToTr(row, info) {
+    let box = document.createElement("th");
+    let button = document.createElement("button");
+    let content = document.createTextNode("delete");
+    //button.onclick = "return deleteRecipe("+info[0]+")";
+    button.addEventListener("click", function () { submitDelRecipe(info[0]) });
+    button.appendChild(content);
+    box.appendChild(button);
+    row.appendChild(box);
+}
+
+
+function submitDelRecipe(name) {
+    console.log("deleting" + name);
+    var url = "removeRecipeFromList.php", data = 'userId=' + getCookie('userId') + '&recipeId=' + name;
+    console.log("posting data: " + data);
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (data) {
+            let flag = getValue('flag');
+            /* 
+                - "flag=0" : SQL fail
+                - "flag=1" : recipe not in shopping list
+                - "flag=2" : successful
+            
+            */
+            if (flag == '0') {
+                alert('SQL fail');
+            } else if (flag == '1') {
+                alert('there is no such recipe in your shopping list');
+            } else if (flag == '2') {
+                alert('deleted successfully');
+            } else {
+                alert('server respond invalid value: ' + data);
             }
         }
     });
