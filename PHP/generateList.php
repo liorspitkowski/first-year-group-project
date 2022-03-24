@@ -2,8 +2,8 @@
 	//Written and Maintained by Daniel Makin
 
 	require "DatabaseHandler.php";
-	//$userId = $_POST['userId'];
-	$userId = 14;
+	$userId = $_POST['userId'];
+	//$userId = 14;
 	echo(mainFunction($userId));
 
 	function mainFunction($userId){
