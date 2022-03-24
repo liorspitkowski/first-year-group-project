@@ -10,6 +10,14 @@
   <script src="../javaScript/login.js"></script>
   <script src="../javaScript/getCookie.js"></script>
   <script  src="../javaScript/getValue.js"></script>
+  <script>
+    document.getElementById('login_form').addEventListener('submit',function(){
+      return submitLogin();
+    });
+    document.getElementById('removedbutton').addEventListener('click',function(){
+      return setupResetPassword();
+    })
+  </script>
   <!-- style sheet -->
   <link rel="stylesheet" href="../css/login.css">
   <link rel="stylesheet" href="../css/icon.css">
@@ -42,7 +50,7 @@
     -->
     <div class="form-box">
       <p>Login</p>
-      <form id="login_form" onsubmit='return submitLogin()'>
+      <form id="login_form" >
         <div class="line">
           <label for="username">Username(8 characters):</label> <br>
         <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
@@ -59,7 +67,7 @@
       </form>
       <!-- create the form for submit reset password info -->
       <div class="forgetpasswordform" id="forgetpasswordform">
-        <button id="removedbutton" onclick="return setupResetPassword()">Forget your password?</button>
+        <button id="removedbutton">Forget your password?</button>
       </div>
       <!-- create the form for submit reset password info END -->
       

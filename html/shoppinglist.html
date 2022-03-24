@@ -8,22 +8,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Foogle - Shopping List</title>
+    <!-- style sheets -->
     <link rel="stylesheet" href="../css/shoppinglist.css">
+    <link rel="stylesheet" href="../css/icon.css">
+    <!-- JavaScript -->
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/shoppinglist.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            return loadShoppingList();
+        });
+    </script>
 </head>
 
-<body onload="return loadShoppingList()">
+<body">
     <!-- Main contect space -->
     <section class="left-box">
         <!-- blank space on top begin -->
         <div class="topbox">
-            <div class="title-box">
-            Foogle
-            </div>
-            
+            <a href="../index.html">
+                <div class="div-title_icon">
+                    <div id="f" class="character">F</div>
+                    <div id="o1" class="character">O</div>
+                    <div id="o2" class="character">O</div>
+                    <div id="g" class="character">G</div>
+                    <div id="l" class="character">L</div>
+                    <div id="e" class="character">E</div>
+                </div>
+            </a>
         </div>
         <!-- blank space on top end -->
 
@@ -32,45 +46,47 @@
             <div class="column-1">
                 <div class="sidebar">
                     <div class="sidebar-title">
-                         Sidebar 
+                        Sidebar
                     </div>
                     <ul>
                         <li><a href="userprofile.html">My profile</a></li>
                         <li><a href="menu.html">Menu</a></li>
                         <li><a href="search.html">Search</a></li>
-                        <li><a href="newRecipe.html">Newrecipe</a></li> 
+                        <li><a href="newRecipe.html">Newrecipe</a></li>
                         <li><a href="shoppinglist.html">Shopping list</a></li>
                     </ul>
-                    
+
                 </div>
             </div>
-            <div class="column-2"><div class="search-panel">
-                <div class="search-result" id="display-div">
-                    <table id="recipes-table">
-                        <tr>
-                            <th>Recipe Name</th>
-                            <th>Portion</th>
-                            <th>Delete</th>
-                        </tr>
-                    </table>
-                    <table id="ingredients-table">
-                        <tr>
-                            <th>Ingredient Name</th>
-                            <th>Quantity</th>
-                            <th>Unit</th>
-                        </tr>
-                    </table>
+            <div class="column-2">
+                <div class="search-panel">
+                    <div class="search-result" id="display-div">
+                        <table id="recipes-table">
+                            <tr>
+                                <th>Recipe Name</th>
+                                <th>Portion</th>
+                                <th>Delete</th>
+                            </tr>
+                        </table>
+                        <table id="ingredients-table">
+                            <tr>
+                                <th>Ingredient Name</th>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div></div>
-        <!-- search space end -->
-        
-        <!-- footer begin -->
-        <div class="bottom-box">
-            Perhaps some 'contact us' stuff?
-        </div>
-        <!-- footer end -->
+            </div>
+            <!-- search space end -->
+
+            <!-- footer begin -->
+            <div class="bottom-box">
+                Perhaps some 'contact us' stuff?
+            </div>
+            <!-- footer end -->
     </section>
     <!-- The background image section -->
     <section class="right-box">
     </section>
-</body>
+    </body>

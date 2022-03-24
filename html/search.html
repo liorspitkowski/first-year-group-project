@@ -9,6 +9,11 @@
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/search.js"></script>
     <script src="../javaScript/getValue.js"></script>
+    <script type="text/javascript">
+        document.getElementById('search_form').addEventListener('submit',function(){
+            return submitSearch();
+        });
+    </script>
     <!-- style sheets -->
     <link rel="stylesheet" type="text/css" href="../css/search.css">
     <link rel="stylesheet" href="../css/icon.css">
@@ -61,7 +66,7 @@
             <div class="column-2">
                 <div class="search-panel">
                     <div class="search-bar">
-                        <form id="search_form" onsubmit="return submitSearch()">
+                        <form id="search_form">
                             <input type="text" name='user_search' id="user_search" placeholder="Search some food..."
                                 required>
                             <input type="submit">

@@ -7,9 +7,24 @@
   <title>Registration</title>
   <script src="../javaScript/jquery-3.6.0.js"></script>
   <script src="../javaScript/registration.js"></script>
+  <script>
+    document.getElementById('registration_form').addEventListener('submit', function () {
+      return submitReg();
+    });
+    document.getElementById('re_password').addEventListener('input', function () {
+      if (input.value != document.getElementById('password').value) {
+        input.setCustomValidity('Password Must be Matching.');
+      } else {
+        // input is valid -- reset the error message
+        input.setCustomValidity('');
+      }
+      return false;
+    })
+  </script>
   <script src="../javaScript/getValue.js"></script>
   <link rel="stylesheet" href="../css/login.css">
   <link rel="stylesheet" href="../css/registration.css">
+  <link rel="stylesheet" href="../css/icon.css">
 </head>
 
 <body>
@@ -33,7 +48,7 @@
   <section class="middle-box">
     <!-- container for form -->
     <div class="form-box">
-      <form id="registration_form" onsubmit="return submitReg()">
+      <form id="registration_form">
         <div class="line">
           <p>Registration</p>
         </div>
@@ -67,18 +82,7 @@
         <div class="line">
           <!-- checking if password and repeat password begin -->
           <label for="re_password">Repeat Password:</label><br>
-          <input type="password" id="re_password" name="user_repassword" required oninput="return check(this)"><br>
-          <script language='javascript' type='text/javascript'>
-            function check(input) {
-              if (input.value != document.getElementById('password').value) {
-                input.setCustomValidity('Password Must be Matching.');
-              } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-              }
-              return false
-            }
-          </script>
+          <input type="password" id="re_password" name="user_repassword" required><br>
         </div>
         <div class="line">
           <!-- submit button -->
