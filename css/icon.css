@@ -4,10 +4,10 @@
     z-index: 100;
 
     left:1px;
-    top:1px;
+    top:0;
 
     font-size: 5vw;
-    font-weight: 5vw;
+    font-weight: 800;
 }
 .div-title_icon .character{
     float: left;

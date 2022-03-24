@@ -27,36 +27,3 @@ body{
     background-color: gold;
 }
 
-.div-title_icon{
-    position: absolute;
-    /*Put it at the top*/
-    z-index: 100;
-
-    left:10%;
-    top:30%;
-
-    font-size: 10vw;
-    font-weight: 800;
-}
-.div-title_icon .character{
-    float: left;
-    text-shadow: 5px 5px black;
-}
-.div-title_icon #f {
-    color: rgb(66,133,244);
-}
-.div-title_icon #o1 {
-    color: rgb(219,68,55);
-}
-.div-title_icon #o2 {
-    color: rgb(244,180,0);
-}
-.div-title_icon #g {
-    color: rgb(66,133,244);
-}
-.div-title_icon #l {
-    color: rgb(15,157,88);
-}
-.div-title_icon #e {
-    color: rgb(219,68,55);
-}
