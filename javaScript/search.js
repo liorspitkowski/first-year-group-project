@@ -8,36 +8,36 @@ function submitSearch() {
     var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
     console.log(data);
     $.ajax({
-        async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            console.log(data);
-            // 16 beans on toast;fancy beans on toast;beans in toast;beanz;beanz+;test recipe;Chicken Korma
-            // initiate recipe_array, page_num, current_page
-            recipe_array = getValue_noName(';',data);
-            // let totalresult = recipe_array.length;
-            recipe_array = listToMatrix(recipe_array, max_show);
-            // Get how many pages
-            page_num = recipe_array.length;
-            /* DEBUG START */
-            // console.log("num=" + totalresult);
-            // let totalpage = Math.ceil(totalresult / max_show);
-            // console.log("totalpage=" + page_num);
-            console.log(recipe_array);
-            /* DEBUG END */
-            current_page = 1;
-            clearPage();
-            for (let i = 1; i <= max_show; i++) {
-                // write recipes;
-                addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
+            console.log('receiving:' + data);
+
+            if (data != '') {
+                recipe_array = getValue_noName(';', data);
+                // let totalresult = recipe_array.length;
+                recipe_array = listToMatrix(recipe_array, max_show);
+                // Get how many pages
+                page_num = recipe_array.length;
+                current_page = 1;
+                clearPage();
+                for (let i = 1; i <= max_show; i++) {
+                    // write recipes;
+                    addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
+                }
+                // write index;
+                indexUpdate();
+            }else{
+                outputEmptyMessage();
             }
-            // write index;
-            indexUpdate();
         }
     });
     return false;
+}
+/* when server return empty string */ 
+function outputEmptyMessage(){
+    addElement('1',"p","result-1","No result to be shown","search-results");
 }
 /* create search results */
 function addElement(

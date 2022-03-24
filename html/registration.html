@@ -8,18 +8,22 @@
   <script src="../javaScript/jquery-3.6.0.js"></script>
   <script src="../javaScript/registration.js"></script>
   <script>
-    document.getElementById('registration_form').addEventListener('submit', function () {
-      return submitReg();
-    });
-    document.getElementById('re_password').addEventListener('input', function () {
-      if (input.value != document.getElementById('password').value) {
-        input.setCustomValidity('Password Must be Matching.');
-      } else {
-        // input is valid -- reset the error message
-        input.setCustomValidity('');
-      }
-      return false;
-    })
+    window.onload = function () {
+      document.getElementById('registration_form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitReg();
+      });
+      document.getElementById('re_password').addEventListener('input', function (e) {
+        e.preventDefault();
+        if (input.value != document.getElementById('password').value) {
+          input.setCustomValidity('Password Must be Matching.');
+        } else {
+          // input is valid -- reset the error message
+          input.setCustomValidity('');
+        }
+      });
+    }
+
   </script>
   <script src="../javaScript/getValue.js"></script>
   <link rel="stylesheet" href="../css/login.css">
@@ -28,23 +32,12 @@
 </head>
 
 <body>
-  <!-- blank space begin -->
-  <section class="header">
-    <a href="../index.html">
-      <!-- <img src="../src/title-image.png" alt="title-image"> -->
-      <div class="div-title_icon">
-        <div id="f" class="character">F</div>
-        <div id="o1" class="character">O</div>
-        <div id="o2" class="character">O</div>
-        <div id="g" class="character">G</div>
-        <div id="l" class="character">L</div>
-        <div id="e" class="character">E</div>
-      </div>
-    </a>
+  <!-- header -->
+  <section class="header" id="header">
+    <script>$("#header").load("./header.html");</script>
   </section>
-  <!-- blank space end -->
 
-  <!-- middle block begin -->
+  <!-- main content begin -->
   <section class="middle-box">
     <!-- container for form -->
     <div class="form-box">
@@ -96,11 +89,10 @@
   </section>
   <!-- middle block end -->
 
-  <!-- footer begin -->
+  <!-- footer -->
   <section class="footer">
-    All rights reserved...
+    <script>$(".footer").load("./footer.html");</script>
   </section>
-  <!-- footer end -->
 
 </body>
 

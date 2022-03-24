@@ -9,14 +9,19 @@
   <script src="../javaScript/jquery-3.6.0.js"></script>
   <script src="../javaScript/login.js"></script>
   <script src="../javaScript/getCookie.js"></script>
-  <script  src="../javaScript/getValue.js"></script>
+  <script src="../javaScript/getValue.js"></script>
   <script>
-    document.getElementById('login_form').addEventListener('submit',function(){
-      return submitLogin();
-    });
-    document.getElementById('removedbutton').addEventListener('click',function(){
-      return setupResetPassword();
-    })
+    window.onload = function () {
+      document.getElementById('login_form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitLogin();
+      });
+      document.getElementById('removedbutton').addEventListener('click', function (e) {
+        e.preventDefault();
+        setupResetPassword();
+      });
+    }
+
   </script>
   <!-- style sheet -->
   <link rel="stylesheet" href="../css/login.css">
@@ -24,22 +29,10 @@
 </head>
 
 <body>
-  <!-- blank space begin -->
-  <section class="header">
-    <a href="../index.html">
-      <!-- <img src="../src/title-image.png" alt="title-image"> -->
-      <div class="div-title_icon">
-        <div id="f" class="character">F</div>
-        <div id="o1" class="character">O</div>
-        <div id="o2" class="character">O</div>
-        <div id="g" class="character">G</div>
-        <div id="l" class="character">L</div>
-        <div id="e" class="character">E</div>
-      </div>
-    </a>
+  <!-- header -->
+  <section class="header" id="header">
+    <script>$("#header").load("./header.html");</script>
   </section>
-  
-  <!-- blank space end -->
 
   <!-- middle space begin -->
   <section class="middle-box">
@@ -50,38 +43,37 @@
     -->
     <div class="form-box">
       <p>Login</p>
-      <form id="login_form" >
+      <form id="login_form">
         <div class="line">
           <label for="username">Username(8 characters):</label> <br>
-        <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
+          <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
         </div>
         <div class="line">
           <label for="password">Password:</label> <br>
-        <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
+          <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
         </div>
         <div class="line">
           <input type="submit"></input>
         </div>
-        
+
       </form>
       <!-- create the form for submit reset password info -->
       <div class="forgetpasswordform" id="forgetpasswordform">
         <button id="removedbutton">Forget your password?</button>
       </div>
       <!-- create the form for submit reset password info END -->
-      
+
     </div>
 
     <div class="below-box"></div>
   </section>
   <!-- middle space end -->
 
-  <!-- footer begin -->
+  <!-- footer -->
   <div class="footer">
-    <p>All rights reserved....</p>
+    <script>$(".footer").load("./footer.html");</script>
   </div>
-  <!-- footer end -->
 </body>
 
 </html>
