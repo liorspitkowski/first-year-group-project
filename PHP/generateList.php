@@ -3,15 +3,32 @@
 
 	require "DatabaseHandler.php";
 	$userId = $_POST['userId'];
-
+	//$userId = 14;
 	echo(mainFunction($userId));
 
 	function mainFunction($userId){
 		$conn = connect();
 
-		//returns the recipeIds
-		$recipeIds = getRecipeIds($conn, $userId);
+		$ingredients = getInformationFromDB($conn, $userId); //been seperated so can be accessed in other files
 
+		//check for empty string returned
+		if ($ingredients == ""){
+			return ""; //no ingredients
+		}
+
+		//now the names and units are retrieved
+		$ingredients = getIngredientNames($conn, $ingredients[0], $ingredients[1]);
+
+		$endString = formatData($ingredients[0], $ingredients[1], $ingredients[2]);
+
+		//then returned to user
+		return $endString;
+
+	}
+
+	function getInformationFromDB($conn, $userId){
+		$recipeIds = getRecipeIds($conn, $userId);
+		echo $recipeIds;
 		//return nothing
 		if (sizeof($recipeIds) == 0){
 			return "";
@@ -25,14 +42,7 @@
 
 		$ingredients = compareListsWithInventory($conn, $userId, $ingredients[0], $ingredients[1]);
 
-		//now the names and units are retrieved
-		$ingredients = getIngredientNames($conn, $ingredients[0], $ingredients[1]);
-
-		$endString = formatData($ingredients[0], $ingredients[1], $ingredients[2]);
-
-		//then returned to user
-		return $endString;
-
+		return array($ingredients[0], $ingredients[1]);
 	}
 
 	function getPortions($conn, $userId){
@@ -80,6 +90,8 @@
 		while ($row = $stmt->fetch()){
 			array_push($Ids, $row['recipeId']);
 		}
+
+		var_dump($Ids);
 
 		return $Ids;
 	}
