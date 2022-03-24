@@ -7,7 +7,6 @@ function submitLogin() {
     const formData = new FormData(document.querySelector('#login_form'))
     console.log(data);
     $.ajax({
-        async: false,
         url: url,
         type: 'POST',
         data: data,

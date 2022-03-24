@@ -23,23 +23,14 @@
     </script>
 </head>
 
-<body">
-    <!-- Main contect space -->
+<body id="import">
+    <!-- Main contect space begin-->
     <section class="left-box">
-        <!-- blank space on top begin -->
-        <div class="topbox">
-            <a href="../index.html">
-                <div class="div-title_icon">
-                    <div id="f" class="character">F</div>
-                    <div id="o1" class="character">O</div>
-                    <div id="o2" class="character">O</div>
-                    <div id="g" class="character">G</div>
-                    <div id="l" class="character">L</div>
-                    <div id="e" class="character">E</div>
-                </div>
-            </a>
+        <!-- header begin -->
+        <div class="topbox" id="header">
+            <script>$("#header").load("./header.html");</script>
         </div>
-        <!-- blank space on top end -->
+        <!-- header end -->
 
         <!-- search space begin -->
         <div class="row">
@@ -79,14 +70,13 @@
                 </div>
             </div>
             <!-- search space end -->
-
             <!-- footer begin -->
-            <div class="bottom-box">
-                Perhaps some 'contact us' stuff?
+            <div class="footer">
+                <script>$(".footer").load("./footer.html");</script>
             </div>
             <!-- footer end -->
     </section>
+    <!-- Main content space end-->
     <!-- The background image section -->
-    <section class="right-box">
-    </section>
-    </body>
+    <section class="right-box"></section>
+</body>
