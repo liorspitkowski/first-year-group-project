@@ -11,6 +11,23 @@
     <script src="../javaScript/myprofile.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
+    <script>
+        // Ziggy:
+        // having error in vs code hence fixed;
+        // --Hanmin
+        document.addEventListener('username_form').addEventListener('submit',function(){
+            return submitUsernameChangeRequest();
+        });
+        document.addEventListener('firstname_form').addEventListener('submit',function(){
+            return submitFirstnameChangeRequest();
+        });
+        document.addEventListener('lastname_form').addEventListener('submit',function(){
+            return submitLastnameChangeRequest();
+        });
+        document.addEventListener('delete_form').addEventListener('submit',function(){
+            return submitDeleteRequest();
+        });
+    </script>
 </head>
 
 <body>
@@ -51,25 +68,25 @@
             <div class="column-2">
                 <div class="search-result">
                     <p>My profile</p>
-                    <form id="username_form" onsubmit="return submitUsernameChangeRequest()">
+                    <form id="username_form">
                         <label for="user_changed_name">Username</label>
                         <input type="text" name="user_changed_name" id="user_changed_name" value=""
                          required pattern=".{8,}" title="8 letters or more">
                         <input type="submit">
                     </form>
-                    <form id="firstname_form" onsubmit="return submitFirstnameChangeRequest()">
+                    <form id="firstname_form">
                         <label for="user_changed_fname">Firstname</label>
                         <input type="text" name="user_changed_fname" id="user_changed_fname" value=""
                          required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit">
                     </form>
-                    <form id="lastname_form" onsubmit="return submitLastnameChangeRequest()">
+                    <form id="lastname_form">
                         <label for="user_changed_lname">Lastname</label>
                         <input type="text" name="user_changed_lname" id="user_changed_lname" value=""
                          required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit">
                     </form>
-                    <form id="delete_form" onsubmit="return submitDeleteRequest()">
+                    <form id="delete_form">
                         <input type="submit" value="Delete user">
                     </form>
                 </div>
