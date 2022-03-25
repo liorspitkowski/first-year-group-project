@@ -32,10 +32,9 @@
 
 	function returnData($names, $portions){
 		$endString = "";
-		for ($i = 0; $i < (count($names) - 1); $i++){
+		for ($i = 0; $i < (count($names)); $i++){
 			$endString = $endString . $names[$i] . "#" . $portions[$i] . "#";
 		}
-		$endString = $endString . $names[count($names) - 1] . "#" . $portions[count($names) - 1];
 		return $endString;
 	}
 

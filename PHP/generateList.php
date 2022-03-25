@@ -28,7 +28,6 @@
 
 	function getInformationFromDB($conn, $userId){
 		$recipeIds = getRecipeIds($conn, $userId);
-		echo $recipeIds;
 		//return nothing
 		if (sizeof($recipeIds) == 0){
 			return "";
