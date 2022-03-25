@@ -18,19 +18,20 @@
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
             } else {
-                document.addEventListener('username_form').addEventListener('submit', function (e) {
+                populate();
+                document.getElementById('username_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitUsernameChangeRequest();
                 });
-                document.addEventListener('firstname_form').addEventListener('submit', function (e) {
+                document.getElementById('firstname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitFirstnameChangeRequest();
                 });
-                document.addEventListener('lastname_form').addEventListener('submit', function (e) {
+                document.getElementById('lastname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitLastnameChangeRequest();
                 });
-                document.addEventListener('delete_form').addEventListener('submit', function (e) {
+                document.getElementById('delete_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitDeleteRequest();
                 });
@@ -72,19 +73,19 @@
                         <label for="user_changed_name">Username</label>
                         <input type="text" name="user_changed_name" id="user_changed_name" value="" required
                             pattern=".{8,}" title="8 letters or more">
-                        <input type="submit">
+                        <input type="submit" value="change">
                     </form>
                     <form id="firstname_form">
                         <label for="user_changed_fname">Firstname</label>
                         <input type="text" name="user_changed_fname" id="user_changed_fname" value="" required
                             pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
-                        <input type="submit">
+                        <input type="submit" value="change">
                     </form>
                     <form id="lastname_form">
                         <label for="user_changed_lname">Lastname</label>
                         <input type="text" name="user_changed_lname" id="user_changed_lname" value="" required
                             pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
-                        <input type="submit">
+                        <input type="submit" value="change">
                     </form>
                     <form id="delete_form">
                         <input type="submit" value="Delete user">

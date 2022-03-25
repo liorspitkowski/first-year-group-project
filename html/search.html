@@ -58,14 +58,16 @@
             </div>
             <div class="column-2">
                 <div class="search-panel">
-                    <div class="search-bar">
-                        <form id="search_form">
-                            <input type="text" name='user_search' id="user_search" placeholder="Search some food..."
-                                required>
-                            <input type="submit">
-                        </form>
-                        <div class="filter"> this is the place for filter</div>
-                    </div>
+                    <form id="search_form" class="search-bar">
+                        <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
+                        <input type="submit">
+                        <div class="filter" id="filter-box">
+                            <input type="checkbox" id="filter1" name="filter1" value="vegi">
+                            <label for="filter1">Vegi</label>
+                            <input type="checkbox" id="filter2" name="filter2" value="vegan">
+                            <label for="filter2">Vegan</label>
+                        </div>
+                    </form>
                     <div class="search-display">
                         <div id="search-results"></div>
                         <div id="buttons">
