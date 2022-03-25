@@ -10,6 +10,15 @@ Use side bar to go to any page you have been to. -->
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/newRecipe.js"></script>
     <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/guestUser.js"></script>
+    <script>
+      window.onload = function () {
+            if (!checkUser()) {
+                alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+                window.history.go(-1);
+            }
+      }
+    </script>
     <link rel="stylesheet" href="../css/newRecipe.css">
 
   </head>

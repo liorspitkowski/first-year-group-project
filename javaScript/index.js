@@ -3,7 +3,7 @@
     when user enter the index page, check if the user has a cookie, and force logged in as a guest user if not;
     Allow users log out. By setting cookie to guestuser
 */ 
-function checkUser() {
+function checkIndexUser() {
     let user_name = getCookie('username');
     let user_id = getCookie('userid');
     console.log(user_name + ' ' + user_id);

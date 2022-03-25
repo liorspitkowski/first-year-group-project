@@ -9,14 +9,21 @@
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/enterinventory.js"></script>
+    <script src="../javaScript/guestUser.js"></script>
     <script>
-        window.onload = function(){
-            receiveInventory();
-            document.getElementById('inventory_form').addEventListener('submit',function(e){
-                e.preventDefault();
-                submitInventory();
-            });
+        window.onload = function () {
+            if (checkUser()) {
+                receiveInventory();
+                document.getElementById('inventory_form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    submitInventory();
+                });
+            }else{
+                alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+                window.history.go(-1);
+            }
         }
+
     </script>
     <!-- style files -->
     <link rel="stylesheet" href="../css/login.css">
@@ -63,7 +70,7 @@
                         <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
                         <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
                         <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
-                    </div> 
+                    </div>
                     <div class=" inventoryline">
                         <input type="submit">
                     </div>
@@ -77,7 +84,7 @@
     </section>
     <!-- middle space starts -->
 
-    
+
     <!-- footer -->
     <div class="footer">
         <script>$(".footer").load("./footer.html");</script>
