@@ -22,19 +22,34 @@ function receiveInventory() {
         type: 'POST',
         data: data,
         success: function (data) {
-            let allInventory = listToMatrix(data.split('#'), 3);
-            console.log("received: "+allInventory);
-            
-            parentTable = document.getElementById('inventory-table');
-            for( i=0; i<allInventory.length; ++i){
-                addRow(parentTable,allInventory[i],i);
+            if (data!='') {
+                let allInventory = listToMatrix(data.split('#'), 3);
+                console.log("received: " + allInventory);
+
+                parentTable = document.getElementById('inventory-table');
+                for (i = 0; i < allInventory.length; ++i) {
+                    addRow(parentTable, allInventory[i], i);
+                }
+            } else {
+                outputEmpty();
             }
+
         }
     });
     return false;
 }
 
-function addRow(parentTable, rawItem,i) {
+function outputEmpty(){
+    console.log("deleting");
+    let parentTable = document.getElementById('displayinventory');
+    let d = document.getElementById('inventory-table');
+    let content = document.createTextNode("You really have a clean fridge!");
+    parentTable.removeChild(d);
+    parentTable.appendChild(content);
+
+}
+
+function addRow(parentTable, rawItem, i) {
     // name quantity unit
     let row = document.createElement("tr");
     addThToTr(row, rawItem[0]);
@@ -54,14 +69,14 @@ function addInToTr(row, number, id) {
     box.appendChild(input);
     row.appendChild(box);
 }
-function addBuToTr(row, rawContent, id){
+function addBuToTr(row, rawContent, id) {
     let box = document.createElement("th");
     let button = document.createElement("button");
     let content = document.createTextNode("change");
-    button.addEventListener('click',function(e){
+    button.addEventListener('click', function (e) {
         e.preventDefault();
-        orinum = parseInt(document.getElementById("input_number-"+id).placeholder);
-        changeIngredient(rawContent[0],parseInt(document.getElementById("input_number-"+id).value),rawContent[2]);
+        orinum = parseInt(document.getElementById("input_number-" + id).placeholder);
+        changeIngredient(rawContent[0], parseInt(document.getElementById("input_number-" + id).value), rawContent[2]);
     });
     button.appendChild(content);
     box.appendChild(button);
@@ -90,14 +105,14 @@ function listToMatrix(list, elementsPerSubArray) {
 function submitInventory() {
     let user_id = getCookie('userid');
     var url = "../PHP/addIngredient.php", data = $('#inventory_form').serialize() + "&user_id=" + user_id;
-    console.log("data sent is: "+data);
+    console.log("data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            console.log("data received is: "+data)
+            console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
@@ -114,32 +129,32 @@ function submitInventory() {
     return false;
 }
 
-function changeIngredient(name,newnumber,unit){
-    console.log("call changeIngredient() on "+name);
-    console.log(typeof(newnumber)+" "+ newnumber + " "+typeof(orinum)+" "+orinum);
-    if(newnumber>orinum){
+function changeIngredient(name, newnumber, unit) {
+    console.log("call changeIngredient() on " + name);
+    console.log(typeof (newnumber) + " " + newnumber + " " + typeof (orinum) + " " + orinum);
+    if (newnumber > orinum) {
         addup = newnumber - orinum;
-        addInventory(name,addup,unit);
-    }else if(newnumber == orinum){
+        addInventory(name, addup, unit);
+    } else if (newnumber == orinum) {
         alert("new number the same as original one");
-    }else{
+    } else {
         del = orinum - newnumber;
-        submitDelInv(name,del,unit);
+        submitDelInv(name, del, unit);
     }
 }
 
-function submitDelInv(ingredient,quantity,unit){
+function submitDelInv(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/deleteUserIngredients.php", data = "ingredient="+ingredient+"&quantity="+quantity+"&unit="+unit+"&user_id=" + user_id;
-    console.log("minoring data sent is: "+data);
+    var url = "../PHP/deleteUserIngredients.php", data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    console.log("minoring data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            console.log("data received is: "+data)
+            console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Deleted successfully');
@@ -156,18 +171,18 @@ function submitDelInv(ingredient,quantity,unit){
     return false;
 }
 
-function addInventory(ingredient,quantity,unit){
+function addInventory(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/addIngredient.php", data = "ingredient="+ingredient+"&quantity="+quantity+"&unit="+unit+"&user_id=" + user_id;
-    console.log("adding data sent is: "+data);
+    var url = "../PHP/addIngredient.php", data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    console.log("adding data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            console.log("data received is: "+data)
+            console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
