@@ -8,9 +8,9 @@
 
 */
 function loadShoppingList() {
+    console.log("loading");
     getShoppingList_ingredients();
     getShoppingList_recipes();
-    return false;
 }
 function getShoppingList_ingredients() {
     console.log('getting ingredients');
@@ -22,8 +22,13 @@ function getShoppingList_ingredients() {
         type: 'POST',
         data: data,
         success: function (data) {
+            console.log("received: "+data+" type: "+typeof(date));
+            if(data == "array(0) {}"){
+                displayEmptySL_ingredients();
+                return;
+            }
             var shoppinglist = seperateBy('#', data);
-            console.log(shoppinglist);
+            console.log("split: "+shoppinglist);
             /*
                 ['bluefish', '431', 'g\r\n', 'rice', '300', 'g\r\n', 'seaweed', '10', 'g']
                 show a table of it
@@ -51,7 +56,6 @@ function addElementToPage(rawItem) {
     addThToTr(row, rawItem[0]);
     addThToTr(row, rawItem[1]);
     addThToTr(row, rawItem[2]);
-    //addBuToTr(row,rawItem);
     parentTable.appendChild(row);
 }
 function addThToTr(row, rawContent) {
@@ -85,8 +89,9 @@ function getShoppingList_recipes() {
         type: 'POST',
         data: data,
         success: function (data) {
-            if (data == '') {
-                alert('empty data stream');
+            if(data == ''){
+                displayEmptySL_recipes();
+                return;
             }
             var shoppinglist = seperateBy('#', data);
             console.log(shoppinglist);
@@ -160,4 +165,22 @@ function submitDelRecipe(name) {
         }
     });
     return false;
+}
+
+
+function displayEmptySL_ingredients(){
+    let parentd = document.getElementById('display-div');
+    let table = document.getElementById('ingredients-table');
+    parentd.removeChild(table);
+    
+    let content = document.createTextNode("Nothing you should Buy");
+    parentd.appendChild(content);
+}
+function displayEmptySL_recipes(){
+    let parentd = document.getElementById('display-div');
+    let table = document.getElementById('recipes-table');
+    parentd.removeChild(table);
+    
+    let content = document.createTextNode("Nothing you have chosen");
+    parentd.appendChild(content);
 }
