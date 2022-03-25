@@ -1,7 +1,7 @@
 function addToSL() {
   alert('function call');
   let user_id = getCookie('userid');
-  let recipe_id = document.getElementById('recipe_id')
+  let recipe_id = document.getElementById('recipe_id').value;
   alert(user_id);
   alert(recipe_id);
   $('#add_to_list').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
