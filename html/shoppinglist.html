@@ -16,10 +16,18 @@
     <script src="../javaScript/shoppinglist.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            return loadShoppingList();
-        });
+    <script src="../javaScript/guestUser.js"></script>
+    <script>
+        window.onload = function () {
+            if (!checkUser()) {
+                alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+                window.history.go(-1);
+            } else {
+                document.addEventListener('DOMContentLoaded', function () {
+                    return loadShoppingList();
+                });
+            }
+        }
     </script>
 </head>
 

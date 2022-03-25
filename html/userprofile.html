@@ -11,29 +11,32 @@
     <script src="../javaScript/myprofile.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script src="../javaScript/getValue.js"></script>
+    <script src="../javaScript/guestUser.js"></script>
     <script>
-        // Ziggy:
-        // having error in vscode hence fixed;
-        // --Hanmin
-        window.load = function () {
-            document.addEventListener('username_form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                submitUsernameChangeRequest();
-            });
-            document.addEventListener('firstname_form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                submitFirstnameChangeRequest();
-            });
-            document.addEventListener('lastname_form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                submitLastnameChangeRequest();
-            });
-            document.addEventListener('delete_form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                submitDeleteRequest();
-            });
-        }
+        window.onload = function () {
+            if (!checkUser()) {
+                alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+                window.history.go(-1);
+            } else {
+                document.addEventListener('username_form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    submitUsernameChangeRequest();
+                });
+                document.addEventListener('firstname_form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    submitFirstnameChangeRequest();
+                });
+                document.addEventListener('lastname_form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    submitLastnameChangeRequest();
+                });
+                document.addEventListener('delete_form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    submitDeleteRequest();
+                });
 
+            }
+        }
     </script>
 </head>
 
