@@ -31,7 +31,7 @@
 	function checkIfInDatbase($conn, $userId, $recipeId){
 		$sql = "SELECT * FROM recipeList WHERE userId = :user AND recipeId = :recipe";
 		$stmt = $conn->prepare($sql);
-		$stmt->execute(['user' => $userId, 'recipe' => $recipeId])
+		$stmt->execute(['user' => $userId, 'recipe' => $recipeId]);
 
 		while ($row = $stmt->fetch()){
 			return true;
