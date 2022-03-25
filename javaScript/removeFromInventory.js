@@ -6,7 +6,7 @@
 
 function remove_from_inventory(){
     let user_id = getCookie('userid');
-    let recipe_id = document.getElementById('recipe_id')
+    let recipe_id = document.getElementById('recipe_id').value;
     $('#remove_from_inventory').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
     $('#remove_from_inventory').append('<input type="hidden" name="recipe_id" value="'+recipe_id+'" /> ');
     var url = "../PHP/removeRecipeIngredients.php", data = "&user_id" + user_id + "&recipe_id" + recipe_id;
