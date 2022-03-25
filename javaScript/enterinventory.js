@@ -27,41 +27,41 @@ function receiveInventory() {
             
             parentTable = document.getElementById('inventory-table');
             for( i=0; i<allInventory.length; ++i){
-                addRow(parentTable,allInventory[i]);
+                addRow(parentTable,allInventory[i],i);
             }
         }
     });
     return false;
 }
 
-function addRow(parentTable, rawItem) {
+function addRow(parentTable, rawItem,i) {
     // name quantity unit
     let row = document.createElement("tr");
     addThToTr(row, rawItem[0]);
-    addInToTr(row, rawItem[1]);
+    addInToTr(row, rawItem[1], i);
     addThToTr(row, rawItem[2]);
-    addBuToTr(row,rawItem);
+    addBuToTr(row, rawItem, i);
     parentTable.appendChild(row);
 }
-function addInToTr(row, number) {
+function addInToTr(row, number, id) {
     let box = document.createElement("th");
     let input = document.createElement("input");
     input.type = "number";
     input.min = "0";
-    input.id = "input_number";
+    input.id = "input_number-" + id;
     input.value = number;
     input.placeholder = number;
     box.appendChild(input);
     row.appendChild(box);
 }
-function addBuToTr(row, rawContent){
+function addBuToTr(row, rawContent, id){
     let box = document.createElement("th");
     let button = document.createElement("button");
     let content = document.createTextNode("change");
     button.addEventListener('click',function(e){
         e.preventDefault();
-        orinum = parseInt(document.getElementById('input_number').placeholder);
-        changeIngredient(rawContent[0],parseInt(document.getElementById('input_number').value),rawContent[2]);
+        orinum = parseInt(document.getElementById("input_number-"+id).placeholder);
+        changeIngredient(rawContent[0],parseInt(document.getElementById("input_number-"+id).value),rawContent[2]);
     });
     button.appendChild(content);
     box.appendChild(button);
@@ -115,7 +115,7 @@ function submitInventory() {
 }
 
 function changeIngredient(name,newnumber,unit){
-    console.log("call changeInfredient()");
+    console.log("call changeIngredient() on "+name);
     console.log(typeof(newnumber)+" "+ newnumber + " "+typeof(orinum)+" "+orinum);
     if(newnumber>orinum){
         addup = newnumber - orinum;
