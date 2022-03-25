@@ -36,8 +36,20 @@ function addRow(parentTable, rawItem) {
     addThToTr(row, rawItem[0]);
     addThToTr(row, rawItem[1]);
     addThToTr(row, rawItem[2]);
-    //addBuToTr(row,rawItem);
+    addBuToTr(row,rawItem);
     parentTable.appendChild(row);
+}
+function addBuToTr(row, rawContent){
+    let box = document.createElement("th");
+    let button = document.createElement("button");
+    let content = document.createTextNode("delete");
+    button.addEventListener('click',function(e){
+        e.preventDefault();
+        submitDelInv(rawContent);
+    });
+    button.appendChild(content);
+    box.appendChild(button);
+    row.appendChild(box);
 }
 function addThToTr(row, rawContent) {
     let box = document.createElement("th");
@@ -83,4 +95,28 @@ function submitInventory() {
         }
     });
     return false;
+}
+function submitDelInv(info){
+    let user_id = getCookie('userid');
+    var url = "../PHP/addIngredient.php", data = $('#inventory_form').serialize() + "&user_id=" + user_id;
+    console.log("data sent is: "+data);
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (data) {
+            console.log("data received is: "+data)
+            let flag = getValue('flag', data);
+            if (flag == '1') {
+                alert('Added successfully');
+            }
+            else if (flag == '0') {
+                alert('Falty, no such food');
+            }
+            else {
+                alert('server respond invald value: ' + data);
+            }
+        }
+    });
 }

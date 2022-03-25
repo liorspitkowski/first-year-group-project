@@ -23,7 +23,7 @@ function getShoppingList_ingredients() {
         data: data,
         success: function (data) {
             console.log("received: "+data+" type: "+typeof(date));
-            if(data == "array(0) {}"){
+            if(data == ''){
                 displayEmptySL_ingredients();
                 return;
             }
@@ -138,7 +138,7 @@ function addBuToTr(row, info) {
 
 function submitDelRecipe(name) {
     console.log("deleting" + name);
-    var url = "removeRecipeFromList.php", data = 'userId=' + getCookie('userId') + '&recipeId=' + name;
+    var url = "../PHP/removeRecipeFromList.php", data = 'userId=' + getCookie('userId') + '&recipeId=' + name;
     console.log("posting data: " + data);
     $.ajax({
         async: false,
@@ -146,6 +146,7 @@ function submitDelRecipe(name) {
         type: 'POST',
         data: data,
         success: function (data) {
+            console.log("received: "+data);
             let flag = getValue('flag');
             /* 
                 - "flag=0" : SQL fail
