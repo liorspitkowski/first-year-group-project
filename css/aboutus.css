@@ -2,28 +2,20 @@
     Written by: Hanmin Liu;
     css style page for 'aboutus.html'
 */
-html{
-    height:100%;
-    background-color: honeydew;
-}
-body{
-    margin:0;
-    height:98%;
-}
-.top-box{
-    height: 10%;
-}
-.title-box{
-    height:100%;
-    width:20%;
-    float:left;
-}
-.bottom-box{
-    height:10%;
-}
-.row{
-    height:80%;
-    width:100%;
+
+html {
+    height: 100%;
     background-color: gold;
 }
 
+body {
+    margin: 0;
+    height: 98%;
+}
+
+#main-content {
+    height: 80%;
+    width: 100%;
+    opacity: 0.8;
+    background-color: white;
+}
