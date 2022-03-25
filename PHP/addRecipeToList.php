@@ -4,7 +4,7 @@
 	require "DatabaseHandler.php";
 
 	$userId = $_POST['user_id'];
-	$reicpeId = $_POST['recipe_id'];
+	$recipeId = $_POST['recipe_id'];
 	$portions = $_POST['portions'];
 
 	//echo flag returned
