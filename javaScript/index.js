@@ -7,7 +7,11 @@ function checkUser() {
     let user_name = getCookie('username');
     let user_id = getCookie('userid');
     console.log(user_name + ' ' + user_id);
-    if (user_id == '1') {
+    if(user_id == '' || user_name == ''){
+        initializeGuest();
+        document.getElementById('currentuser').innerHTML = "Welcome back! Guest user.";
+    }
+    else if (user_id == '1') {
         document.getElementById('currentuser').innerHTML = "Welcome back! Guest user.";
     }
     else {
@@ -34,6 +38,9 @@ function addLogoutBu(username) {
     parentd.appendChild(button);
 }
 function GuestLogin(){
+    setCookieasGuest();
+}
+function initializeGuest(){
     setCookieasGuest();
 }
 function setCookieasGuest(){
