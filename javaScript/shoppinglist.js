@@ -23,7 +23,7 @@ function getShoppingList_ingredients() {
         data: data,
         success: function (data) {
             console.log("received: "+data+" type: "+typeof(date));
-            if(data == "array(0) {}"){
+            if(data == ''){
                 displayEmptySL_ingredients();
                 return;
             }
