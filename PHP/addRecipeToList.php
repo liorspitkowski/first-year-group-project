@@ -3,8 +3,8 @@
 
 	require "DatabaseHandler.php";
 
-	$userId = $_POST['userId'];
-	$reicpeName = $_POST['recipe'];
+	$userId = $_POST['user_id'];
+	$reicpeName = $_POST['recipe_id'];
 	$portions = $_POST['portions'];
 
 	//echo flag returned
