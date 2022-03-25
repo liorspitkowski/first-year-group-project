@@ -90,8 +90,6 @@
 			array_push($Ids, $row['recipeId']);
 		}
 
-		var_dump($Ids);
-
 		return $Ids;
 	}
 
