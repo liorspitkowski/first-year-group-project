@@ -135,7 +135,6 @@ function main(){
   search($searchName);
 }
 
-//main();
-//inIventory(connect(true), 24, 14);
+main();
 
  ?>
