@@ -9,32 +9,21 @@
   </title>
   <link rel="stylesheet" href="./css/index.css">
   <script src="./javaScript/getCookie.js"></script>
-</head>
-
-<body onLoad="checkUser()">
+  <script src="./javaScript/index.js"></script>
   <script>
-    function checkUser() {
-      //alert('fucking checkUser() called');
-      let user_name = getCookie('username');
-      let user_id = getCookie('userid');
-      console.log(user_name + ' ' + user_id);
-      if (user_id != '') {
-        document.getElementById('currentuser').innerHTML = "Welcome back! " + user_name;
-        document.getElementById('changeButton').innerHTML = 'Menu';
-        document.getElementById('changeButton').href = './html/menu.html';
-      }
-      else{
-        alert('You haven\'t login! You must have forget! ');
-      }
+    window.onload = function () {
+      checkUser();
     }
   </script>
+  
+</head>
+
+<body>
   <div class="row">
     <!--Welcome page left part - image and icon-->
     <div class="column-1">
       <!-- display current logged in user -->
-      <div class="div-currentuser" id="currentuser">
-
-      </div>
+      <div class="div-currentuser" id="currentuser"></div>
 
       <!-- 'FOOGLE' in color -->
       <div class="div-title_icon">
@@ -59,10 +48,6 @@
       </ul>
     </div>
   </div>
-
-  <!-- the php test hyperlink remained for Ziggy
-    <a href="test_connection.php">test connection</a>-->
-
 </body>
 
 </html>
