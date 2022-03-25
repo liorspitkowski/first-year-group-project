@@ -8,7 +8,7 @@ function checkUser() {
     let user_id = getCookie('userid');
     console.log(user_name + ' ' + user_id);
     if (user_id == '1') {
-        document.getElementById('currentuser').innerHTML = "Welcome back! guestuser.";
+        document.getElementById('currentuser').innerHTML = "Welcome back! Guest user.";
     }
     else {
         let MorG = document.getElementById('changeButton');
