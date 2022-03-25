@@ -117,7 +117,7 @@ else{
                 <form id="add_to_list" onsubmit="event.preventDefault(); addToSL();"><button type="submit">add to shopping list</button>
                 portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></form><br>
                 <form id="remove_from_list" onsubmit="event.preventDefault(); removeFromSL();"><button type="submit">remove from shopping list</button></form><br>
-                <button onclick="remove_from_inventory()">remove from inventory</button>
+                <form id="remove_from_inventory" onsubmit="event.preventDefault(); remove_from_inventory();"><button type="submit">remove from inventory</button></form><br>
 
                 </div>
             </div>
