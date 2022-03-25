@@ -13,7 +13,7 @@ function loadShoppingList() {
     return false;
 }
 function getShoppingList_ingredients() {
-    alert('getting ingredients');
+    console.log('getting ingredients');
     var url = "../PHP/generateList.php", data = 'userId=' + getCookie('userid');
     console.log(data);
     $.ajax({
@@ -76,7 +76,7 @@ function listToMatrix(list, elementsPerSubArray) {
 
 
 function getShoppingList_recipes() {
-    alert('getting recipes');
+    console.log('getting recipes');
     var url = "../PHP/displayRecipesOnList.php", data = 'userId=' + getCookie('userid');
     console.log('recipes posting: '+data);
     $.ajax({
