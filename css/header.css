@@ -1,13 +1,23 @@
-.div-title_icon{
-    position: absolute;
-    /*Put it at the top*/
-    z-index: 100;
+/* header section */
+.header{
+    height: 10%;
+}
 
+/* 'FOOGLE' icon on the top-left corner */
+.icon-hyperlink{
+    height:100%;
+    display: block;
+    position:relative;
+}
+.div-title_icon{
+    position:absolute;
+    height: 100%;
+    line-height: 90%;
     left:1px;
     top:0;
 
     font-size: 5vw;
-    font-weight: 800;
+    font-weight: 800; 
 }
 .div-title_icon .character{
     float: left;

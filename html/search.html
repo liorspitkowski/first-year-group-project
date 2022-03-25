@@ -21,23 +21,15 @@
     </script>
     <!-- style sheets -->
     <link rel="stylesheet" type="text/css" href="../css/search.css">
-    <link rel="stylesheet" href="../css/icon.css">
 </head>
 
 <body>
     <!-- Main contect space -->
     <section class="left-box">
         <!-- header -->
-        <div class="topbox" id="header">
+        <section class="header" id="header">
             <script>$("#header").load("./header.html");</script>
-            <!-- shopping list button
-                <div class="shopping-list">
-                <div class="card">
-                    <a href="shoppinglist.html">Shopping List</a>
-                </div>
-            </div>
-             -->
-        </div>
+        </section>
 
         <!-- search space begin -->
         <div class="row">
@@ -59,7 +51,8 @@
             <div class="column-2">
                 <div class="search-panel">
                     <form id="search_form" class="search-bar">
-                        <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
+                        <input type="text" name='user_search' id="user_search" placeholder="Search some food..."
+                            required>
                         <input type="submit">
                         <div class="filter" id="filter-box">
                             <input type="checkbox" id="filter1" name="filter1" value="vegi">
