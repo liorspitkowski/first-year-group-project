@@ -14,15 +14,16 @@ let orinum = 0;
 
 function receiveInventory() {
     let user_id = getCookie('userid');
-    var url = "../PHP/displayInventory.php", data = "&user=" + user_id;
+    var url = "../PHP/displayInventory.php",
+        data = "&user=" + user_id;
     console.log(data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
-            if (data!='') {
+        success: function(data) {
+            if (data != '') {
                 let allInventory = listToMatrix(data.split('#'), 3);
                 console.log("received: " + allInventory);
 
@@ -39,7 +40,7 @@ function receiveInventory() {
     return false;
 }
 
-function outputEmpty(){
+function outputEmpty() {
     console.log("deleting");
     let parentTable = document.getElementById('displayinventory');
     let d = document.getElementById('inventory-table');
@@ -52,14 +53,15 @@ function outputEmpty(){
 function addRow(parentTable, rawItem, i) {
     // name quantity unit
     let row = document.createElement("tr");
-    addThToTr(row, rawItem[0]);
+    addTdToTr(row, rawItem[0]);
     addInToTr(row, rawItem[1], i);
-    addThToTr(row, rawItem[2]);
+    addTdToTr(row, rawItem[2]);
     addBuToTr(row, rawItem, i);
     parentTable.appendChild(row);
 }
+
 function addInToTr(row, number, id) {
-    let box = document.createElement("th");
+    let box = document.createElement("td");
     let input = document.createElement("input");
     input.type = "number";
     input.min = "0";
@@ -69,11 +71,12 @@ function addInToTr(row, number, id) {
     box.appendChild(input);
     row.appendChild(box);
 }
+
 function addBuToTr(row, rawContent, id) {
-    let box = document.createElement("th");
+    let box = document.createElement("td");
     let button = document.createElement("button");
     let content = document.createTextNode("change");
-    button.addEventListener('click', function (e) {
+    button.addEventListener('click', function(e) {
         e.preventDefault();
         orinum = parseInt(document.getElementById("input_number-" + id).placeholder);
         changeIngredient(rawContent[0], parseInt(document.getElementById("input_number-" + id).value), rawContent[2]);
@@ -82,8 +85,9 @@ function addBuToTr(row, rawContent, id) {
     box.appendChild(button);
     row.appendChild(box);
 }
-function addThToTr(row, rawContent) {
-    let box = document.createElement("th");
+
+function addTdToTr(row, rawContent) {
+    let box = document.createElement("td");
     let content = document.createTextNode(rawContent);
     box.appendChild(content);
     row.appendChild(box);
@@ -92,7 +96,8 @@ function addThToTr(row, rawContent) {
 
 /* convert list to n elements per row. */
 function listToMatrix(list, elementsPerSubArray) {
-    var matrix = [], i, k;
+    var matrix = [],
+        i, k;
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
             k++;
@@ -102,26 +107,26 @@ function listToMatrix(list, elementsPerSubArray) {
     }
     return matrix;
 }
+
 function submitInventory() {
     let user_id = getCookie('userid');
-    var url = "../PHP/addIngredient.php", data = $('#inventory_form').serialize() + "&user_id=" + user_id;
+    var url = "../PHP/addIngredient.php",
+        data = $('#inventory_form').serialize() + "&user_id=" + user_id;
     console.log("data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
                 window.reload();
-            }
-            else if (flag == '0') {
+            } else if (flag == '0') {
                 alert('Falty, no such food');
-            }
-            else {
+            } else {
                 alert('server respond invald value: ' + data);
             }
         }
@@ -131,7 +136,7 @@ function submitInventory() {
 
 function changeIngredient(name, newnumber, unit) {
     console.log("call changeIngredient() on " + name);
-    console.log(typeof (newnumber) + " " + newnumber + " " + typeof (orinum) + " " + orinum);
+    console.log(typeof(newnumber) + " " + newnumber + " " + typeof(orinum) + " " + orinum);
     if (newnumber > orinum) {
         addup = newnumber - orinum;
         addInventory(name, addup, unit);
@@ -146,24 +151,23 @@ function changeIngredient(name, newnumber, unit) {
 function submitDelInv(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/deleteUserIngredients.php", data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    var url = "../PHP/deleteUserIngredients.php",
+        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
     console.log("minoring data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Deleted successfully');
                 window.reload();
-            }
-            else if (flag == '0') {
+            } else if (flag == '0') {
                 alert('Falty, no such food');
-            }
-            else {
+            } else {
                 alert('server respond invald value: ' + data);
             }
         }
@@ -174,24 +178,23 @@ function submitDelInv(ingredient, quantity, unit) {
 function addInventory(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/addIngredient.php", data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    var url = "../PHP/addIngredient.php",
+        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
     console.log("adding data sent is: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             console.log("data received is: " + data)
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
                 window.location.reload();
-            }
-            else if (flag == '0') {
+            } else if (flag == '0') {
                 alert('Falty, no such food');
-            }
-            else {
+            } else {
                 alert('server respond invald value: ' + data);
             }
         }

@@ -11,82 +11,80 @@
     <script src="../javaScript/enterinventory.js"></script>
     <script src="../javaScript/guestUser.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             if (checkUser()) {
                 receiveInventory();
-                document.getElementById('inventory_form').addEventListener('submit', function (e) {
+                document.getElementById('inventory_form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     submitInventory();
                 });
-            }else{
+            } else {
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
             }
         }
-
     </script>
     <!-- style files -->
-    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/enterinventory.css">
 </head>
 
 <body>
     <!-- header -->
-  <section class="header" id="header">
-    <script>$("#header").load("./header.html");</script>
-  </section>
+    <section class="header" id="header">
+        <script>
+            $("#header").load("./header.html");
+        </script>
+    </section>
 
-    <!-- middle space starts -->
-    <section class="middle-box">
+    <!-- main content -->
+    <section class="middle-box" id="middle-box">
         <div class="form-box">
-
-            <div class="displayinventory scroller" id="displayinventory">
-                <p>What's in your fridge</p>
+            <p class="title">What's in your fridge</p>
+            <div id="displayinventory">
                 <table id="inventory-table">
                     <tr>
                         <th>Ingredient</th>
                         <th>Quantity</th>
                         <th>Unit</th>
+                        <th>Change</th>
                     </tr>
                 </table>
             </div>
-            <div class="addinventory">
-                <form id="inventory_form" class="inventory_form">
-                    <div class="inventoryline">
-                        Add an ingredient
-                    </div>
-                    <div class=" inventoryline">
-                        <label for="ingredient">Ingredient:</label>
-                        <input type="text" placeholder="Foodname..." name="ingredient" required>
-                    </div>
-                    <div class=" inventoryline">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" placeholder="Quantities..." name="quantity" id="quantity" min="0" required>
-                    </div>
-                    <div class=" inventoryline">
-                        <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
-                        <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
-                        <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
-                        <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
-                        <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
-                    </div>
-                    <div class=" inventoryline">
-                        <input type="submit">
-                    </div>
-
+            <p class="title">Add an ingredient</p>
+            <div id="addinventory">
+                <form id="inventory_form">
+                    <table id="form-table">
+                        <tr>
+                            <td>
+                                <label for="ingredient">Ingredient:</label>
+                                <input type="text" placeholder="Foodname..." name="ingredient" required>
+                            </td>
+                            <td>
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" placeholder="Quantities..." name="quantity" id="quantity" min="0" required>
+                            </td>
+                            <td rowspan="2"><input type="submit" value="Add"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="radio" id="ml" name="unit" value="ml"><label for="ml">ml</label>
+                                <input type="radio" id="g" name="unit" value="g"><label for="g">g</label>
+                                <input type="radio" id="kg" name="unit" value="kg"><label for="kg">kg</label>
+                                <input type="radio" id="slices" name="unit" value="slices"><label for="slices">slices</label>
+                                <input type="radio" id="mug" name="unit" value="mug"><label for="mug">mug</label>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
-
         </div>
-
-        <div class="below-box"></div>
     </section>
-    <!-- middle space starts -->
-
 
     <!-- footer -->
     <div class="footer">
-        <script>$(".footer").load("./footer.html");</script>
+        <script>
+            $(".footer").load("./footer.html");
+        </script>
     </div>
 </body>
 
