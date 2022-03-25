@@ -7,8 +7,6 @@
     expect return value: Username, Firstname, Lastname, users recipies;
 */
 
-window.onload = populate;
-
 function populate() {
     let user_id = getCookie('userid');
     console.log(user_id);
@@ -59,7 +57,12 @@ function submitUsernameChangeRequest() {
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            let flag = getValue('flag',data);
+            if(flag == '1'){
+                alert("changed successful.");
+            }else{
+                alert("server respond invalid value: "+data);
+            }
         }
     });
     return false;
@@ -75,7 +78,12 @@ function submitFirstnameChangeRequest() {
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            let flag = getValue('flag',data);
+            if(flag == '1'){
+                alert("changed successful.");
+            }else{
+                alert("server respond invalid value: "+data);
+            }
         }
     });
     return false;
@@ -91,7 +99,12 @@ function submitLastnameChangeRequest() {
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            let flag = getValue('flag',data);
+            if(flag == '1'){
+                alert("changed successful.");
+            }else{
+                alert("server respond invalid value: "+data);
+            }
         }
     });
     return false;

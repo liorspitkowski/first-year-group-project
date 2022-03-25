@@ -18,19 +18,20 @@
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
             } else {
-                document.addEventListener('username_form').addEventListener('submit', function (e) {
+                populate();
+                document.getElementById('username_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitUsernameChangeRequest();
                 });
-                document.addEventListener('firstname_form').addEventListener('submit', function (e) {
+                document.getElementById('firstname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitFirstnameChangeRequest();
                 });
-                document.addEventListener('lastname_form').addEventListener('submit', function (e) {
+                document.getElementById('lastname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitLastnameChangeRequest();
                 });
-                document.addEventListener('delete_form').addEventListener('submit', function (e) {
+                document.getElementById('delete_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitDeleteRequest();
                 });
