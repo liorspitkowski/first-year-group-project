@@ -10,20 +10,18 @@
 window.onload = populate;
 
 function populate() {
-    alert('function call');
     let user_id = getCookie('userid');
-    alert(user_id);
+    console.log(user_id);
     var url = "../PHP/getProfile.php";
     var data = $('<input type="hidden" name="user_id" value="'+user_id+'" /> ').serialize();
     console.log(data);
-    alert(data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
         success: function (data) {
-            alert(data);
+            console.log(data);
             let info = data.split('#');
             var un = info[0];
             var fn = info[1];
@@ -48,14 +46,13 @@ function populate() {
 }
 
 function submitUsernameChangeRequest() {
-    alert('function call');
     let user_id = getCookie('userid');
-    alert(user_id);
+    console.log(user_id);
     $('#username_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
     var url = "../PHP/changeUsername.php";
     var data = $('#username_form').serialize();
     console.log(data);
-    alert(data);
+    console.log(data);
     $.ajax({
         async: false,
         url: url,
@@ -68,13 +65,10 @@ function submitUsernameChangeRequest() {
     return false;
 }
 function submitFirstnameChangeRequest() {
-    alert('function call');
     let user_id = getCookie('userid');
-    alert(user_id);
     $('#firstname_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
     var url = "../PHP/changeFirstname.php", data = $('#firstname_form').serialize();
     console.log(data);
-    alert(data);
     $.ajax({
         async: false,
         url: url,
@@ -87,13 +81,10 @@ function submitFirstnameChangeRequest() {
     return false;
 }
 function submitLastnameChangeRequest() {
-    alert('function call');
     let user_id = getCookie('userid');
-    alert(user_id);
     $('#lastname_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
     var url = "../PHP/changeLastname.php", data = $('#lastname_form').serialize();
     console.log(data);
-    alert(data);
     $.ajax({
         async: false,
         url: url,
@@ -107,14 +98,11 @@ function submitLastnameChangeRequest() {
 }
 
 function submitDeleteRequest() {
-  alert('function call');
   let user_id = getCookie('userid');
-  alert(user_id);
   $('#delete_form').append('<input type="hidden" name="user_id" value="'+user_id+'" /> ');
   var url = "../PHP/deleteUser.php", data = $('#delete_form').serialize();
   console.log(data);
   var temp = data;
-  alert(data);
   $.ajax({
       async: false,
       url: url,
