@@ -127,12 +127,21 @@ function submitInventory() {
             } else if (flag == '0') {
                 alert('Falty, no such food');
             } else {
-                alert('server respond invald value: ' + data);
+                flag = getValue_S('flag', data, '\n');
+                if (flag == '1') {
+                    alert('Added successfully');
+                    window.reload();
+                } else if (flag == '0') {
+                    alert('Falty, no such food');
+                } else {
+                    alert('server respond invald value: ' + data);
+                }
             }
         }
     });
     return false;
 }
+
 
 function changeIngredient(name, newnumber, unit) {
     console.log("call changeIngredient() on " + name);
