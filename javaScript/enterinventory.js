@@ -2,12 +2,16 @@
     Written by Hanmin Liu;
     Display inventory;
     Allow user add ingredients;
+    Allow user delete ingredients;
 
     - Returns the inventory in one string.
     - in the order : Name, qty, units separated by #
     - e.g. "Chicken#2#kg#rice#3#kg
 
 */
+
+let orinum = 0;
+
 function receiveInventory() {
     let user_id = getCookie('userid');
     var url = "../PHP/displayInventory.php", data = "&user=" + user_id;
@@ -34,18 +38,30 @@ function addRow(parentTable, rawItem) {
     // name quantity unit
     let row = document.createElement("tr");
     addThToTr(row, rawItem[0]);
-    addThToTr(row, rawItem[1]);
+    addInToTr(row, rawItem[1]);
     addThToTr(row, rawItem[2]);
     addBuToTr(row,rawItem);
     parentTable.appendChild(row);
 }
+function addInToTr(row, number) {
+    let box = document.createElement("th");
+    let input = document.createElement("input");
+    input.type = "number";
+    input.min = "0";
+    input.id = "input_number";
+    input.value = number;
+    input.placeholder = number;
+    box.appendChild(input);
+    row.appendChild(box);
+}
 function addBuToTr(row, rawContent){
     let box = document.createElement("th");
     let button = document.createElement("button");
-    let content = document.createTextNode("delete");
+    let content = document.createTextNode("change");
     button.addEventListener('click',function(e){
         e.preventDefault();
-        submitDelInv(rawContent);
+        orinum = parseInt(document.getElementById('input_number').placeholder);
+        changeIngredient(rawContent[0],parseInt(document.getElementById('input_number').value),rawContent[2]);
     });
     button.appendChild(content);
     box.appendChild(button);
@@ -85,6 +101,7 @@ function submitInventory() {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
+                window.reload();
             }
             else if (flag == '0') {
                 alert('Falty, no such food');
@@ -96,10 +113,54 @@ function submitInventory() {
     });
     return false;
 }
-function submitDelInv(info){
+
+function changeIngredient(name,newnumber,unit){
+    console.log("call changeInfredient()");
+    console.log(typeof(newnumber)+" "+ newnumber + " "+typeof(orinum)+" "+orinum);
+    if(newnumber>orinum){
+        addup = newnumber - orinum;
+        addInventory(name,addup,unit);
+    }else if(newnumber == orinum){
+        alert("new number the same as original one");
+    }else{
+        del = orinum - newnumber;
+        submitDelInv(name,del,unit);
+    }
+}
+
+function submitDelInv(ingredient,quantity,unit){
+    // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/addIngredient.php", data = $('#inventory_form').serialize() + "&user_id=" + user_id;
-    console.log("data sent is: "+data);
+    var url = "../PHP/deleteUserIngredients.php", data = "ingredient="+ingredient+"&quantity="+quantity+"&unit="+unit+"&user_id=" + user_id;
+    console.log("minoring data sent is: "+data);
+    $.ajax({
+        async: false,
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function (data) {
+            console.log("data received is: "+data)
+            let flag = getValue('flag', data);
+            if (flag == '1') {
+                alert('Deleted successfully');
+                window.reload();
+            }
+            else if (flag == '0') {
+                alert('Falty, no such food');
+            }
+            else {
+                alert('server respond invald value: ' + data);
+            }
+        }
+    });
+    return false;
+}
+
+function addInventory(ingredient,quantity,unit){
+    // ingredient=beans&quantity=1&unit=g&user_id=14
+    let user_id = getCookie('userid');
+    var url = "../PHP/addIngredient.php", data = "ingredient="+ingredient+"&quantity="+quantity+"&unit="+unit+"&user_id=" + user_id;
+    console.log("adding data sent is: "+data);
     $.ajax({
         async: false,
         url: url,
@@ -110,6 +171,7 @@ function submitDelInv(info){
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
+                window.location.reload();
             }
             else if (flag == '0') {
                 alert('Falty, no such food');
@@ -119,4 +181,5 @@ function submitDelInv(info){
             }
         }
     });
+    return false;
 }
