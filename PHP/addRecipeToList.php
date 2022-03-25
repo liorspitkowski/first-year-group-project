@@ -4,17 +4,15 @@
 	require "DatabaseHandler.php";
 
 	$userId = $_POST['user_id'];
-	$reicpeName = $_POST['recipe_id'];
+	$reicpeId = $_POST['recipe_id'];
 	$portions = $_POST['portions'];
 
 	//echo flag returned
-	echo(mainFunction($userId, $recipeName, $portions));
+	echo(mainFunction($userId, $recipeId, $portions));
 
 
-	function mainFunction($userId, $recipeName, $portions){
+	function mainFunction($userId, $recipeId, $portions){
 		$conn = connect(true);
-
-		$recipeId = getRecipeId($conn, $recipeName);
 
 		//checks record doesn't already exist
 		if (recordExists($conn, $userId, $recipeId)){
@@ -39,15 +37,15 @@
 		$stmt->execute(['user' => $userId, 'recipe' => $recipeId, 'portions' => $portions]);
 	}
 
-	function getRecipeId($conn, $name){
-		$sql = "SELECT recipeId FROM recipes WHERE recipeName = :name";
-		$stmt = $conn->prepare($sql);
+	// function getRecipeId($conn, $name){
+	// 	$sql = "SELECT recipeId FROM recipes WHERE recipeName = :name";
+	// 	$stmt = $conn->prepare($sql);
 
-		$stmt->execute(['name' => $name]);
+	// 	$stmt->execute(['name' => $name]);
 
-		$result = $stmt->fetch()['recipeId'];
-		return $result;
-	}
+	// 	$result = $stmt->fetch()['recipeId'];
+	// 	return $result;
+	// }
 
 	//used for confirmation and error checking at beginning
 	//doesn't need to check portions
