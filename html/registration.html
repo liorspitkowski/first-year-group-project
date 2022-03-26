@@ -3,95 +3,86 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title>Registration</title>
-  <script src="../javaScript/jquery-3.6.0.js"></script>
-  <script src="../javaScript/registration.js"></script>
-  <script>
-    window.onload = function () {
-      document.getElementById('registration_form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        submitReg();
-      });
-      document.getElementById('re_password').addEventListener('input', function (e) {
-        e.preventDefault();
-        if (input.value != document.getElementById('password').value) {
-          input.setCustomValidity('Password Must be Matching.');
-        } else {
-          // input is valid -- reset the error message
-          input.setCustomValidity('');
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/registration.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('registration_form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitReg();
+            });
+            document.getElementById('re_password').addEventListener('input', function(e) {
+                e.preventDefault();
+                if (input.value != document.getElementById('password').value) {
+                    input.setCustomValidity('Password Must be Matching.');
+                } else {
+                    // input is valid -- reset the error message
+                    input.setCustomValidity('');
+                }
+            });
         }
-      });
-    }
-
-  </script>
-  <script src="../javaScript/getValue.js"></script>
-  <link rel="stylesheet" href="../css/login.css">
-  <link rel="stylesheet" href="../css/registration.css">
+    </script>
+    <script src="../javaScript/getValue.js"></script>
+    <link rel="stylesheet" href="../css/registration.css">
 </head>
 
 <body>
-  <!-- header -->
-  <section class="header" id="header">
-    <script>$("#header").load("./header.html");</script>
-  </section>
+    <!-- header -->
+    <section class="header" id="header">
+        <script>
+            $("#header").load("./header.html");
+        </script>
+    </section>
 
-  <!-- main content begin -->
-  <section class="middle-box">
-    <!-- container for form -->
-    <div class="form-box">
-      <form id="registration_form">
-        <div class="line">
-          <p>Registration</p>
-        </div>
-        <div class="line">
-          <!-- input username -->
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more"><br>
-        </div>
-        <div class="line">
-          <label for="first_name">First name:</label><br>
-          <input type="text" id="first_name" name="first_name" required pattern="[A-Z][a-z]*"
-            title="Please capitalize the first letter"><br>
-        </div>
-        <div class="line">
-          <label for="last_name">Last name:</label><br>
-          <input type="text" id="last_name" name="last_name" required pattern="[A-Z][a-z]*"
-            title="Please capitalize the first letter"><br>
-        </div>
-        <div class="line">
-          <!-- input email -->
-          <label for="email">E-mail:</label><br>
-          <input type="text" id="email" name="user_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
-            title="Please enter a valid email format"><br>
-        </div>
-        <div class="line">
-          <!-- input password -->
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters."><br>
-        </div>
-        <div class="line">
-          <!-- checking if password and repeat password begin -->
-          <label for="re_password">Repeat Password:</label><br>
-          <input type="password" id="re_password" name="user_repassword" required><br>
-        </div>
-        <div class="line">
-          <!-- submit button -->
-          <input type="submit"></input>
-        </div>
-      </form>
-    </div>
+    <!-- main content -->
+    <section class="middle-box">
+        <!-- container for form -->
+        <div id="form-box">
+            <div class="title">
+                <p>Registration</p>
+            </div>
+            <form id="registration_form">
 
-    <!-- 'Glass panel' -->
-    <div class="below-box"></div>
-  </section>
-  <!-- middle block end -->
+                <div class="line">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="user_name" required pattern=".{8,}" title="8 letters or more">
+                </div>
+                <div class="line">
+                    <label for="first_name">First name:</label>
+                    <input type="text" id="first_name" name="first_name" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                </div>
+                <div class="line">
+                    <label for="last_name">Last name:</label>
+                    <input type="text" id="last_name" name="last_name" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                </div>
+                <div class="line">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" name="user_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" title="Please enter a valid email format">
+                </div>
+                <div class="line">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="user_password" required pattern=".*(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one uppercase and lowercase letter, and at least 8 or more letters.">
+                </div>
+                <div class="line">
+                    <!-- checking if password and repeat password begin -->
+                    <label for="re_password">Repeat Password:</label>
+                    <input type="password" id="re_password" name="user_repassword" required>
+                </div>
+                <div class="line">
+                    <input id="SignupButton" type="submit" value="Sign Up"></input>
+                </div>
+            </form>
+        </div>
+    </section>
 
-  <!-- footer -->
-  <section class="footer">
-    <script>$(".footer").load("./footer.html");</script>
-  </section>
+    <!-- footer -->
+    <section class="footer">
+        <script>
+            $(".footer").load("./footer.html");
+        </script>
+    </section>
 
 </body>
 
