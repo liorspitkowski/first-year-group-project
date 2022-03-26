@@ -1,0 +1,79 @@
+/* 
+    Written by Hanmin Liu;
+    css style page for login.html;
+*/
+
+html {
+    height: 100%;
+    background-color: rgba(255, 215, 0, 1);
+}
+
+body {
+    height: 100%;
+    background-image: url("../src/inventory_bg.jpg");
+    background-size: cover;
+}
+
+.middle-box {
+    height: 80%;
+    position: relative;
+}
+
+.title {
+    font-size: 4vw;
+    font-weight: 900;
+    display: flex;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-box {
+    border-radius: 15px 100px;
+    height: 100%;
+    width: 50%;
+    margin: 0 25%;
+    background-color: white;
+    position: absolute;
+    text-align: center;
+}
+
+#registration_form {
+    height: 57%;
+    width: 68%;
+    margin: 0 auto;
+    padding: 4vh 0;
+    border: 2px rgba(255, 217, 0, 0.486);
+    border-style: solid none;
+}
+
+.line {
+    display: block;
+    height: 14%;
+    width: 100%;
+}
+
+.line label {
+    display: block;
+    font-size: 2.5vh;
+}
+
+.line input {
+    border: 0px;
+    height: 3vh;
+}
+
+#SignupButton {
+    display: block;
+    height: 68%;
+    width: 58%;
+    margin: 4% auto;
+    border: 0px;
+    background-color: gold;
+    font-size: 2vw;
+    font-family: 'Brush Script MT', cursive;
+}
+
+#SignupButton:hover {
+    background-color: goldenrod;
+}
