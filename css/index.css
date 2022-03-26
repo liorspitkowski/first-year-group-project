@@ -2,132 +2,160 @@
     Written by Hanmin Liu;
     css style page for index.html;
 */
-html{
-    height:100%;
+
+html {
+    height: 100%;
     background-color: honeydew;
 }
-body{
-    height:100%;
-    margin:0;
-}
-.outer{
-    height:100%;
-    width:100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.row{
-   background-color: gold;
-   height:100%;
-}
-/* 
-I don't know what this can do but I'll keep it cause
-the initial code I wrote had it. --Hanmin Liu
 
-.row::after{
-    content:"";
-    clear:both;
-    display:table;
-}
-*/
-.column-1{
-    float: left;
+body {
     height: 100%;
-    width: 80%;
-    padding-left: 0px;
-
-    overflow: hidden;
-}
-.div-currentuser{
-    position: absolute;
-    left:0;
-    top:0;
-    color: bisque;
-    font-size: small;
-    font-weight: 100;
-}
-.div-title_icon{
-    position: absolute;
-    /*Put it at the top*/
-    z-index: 100;
-
-    left:10%;
-    top:30%;
-
-    font-size: 10vw;
-    font-weight: 800;
-}
-.div-title_icon .character{
-    float: left;
-    text-shadow: 5px 5px black;
-}
-.div-title_icon #f {
-    color: rgb(66,133,244);
-}
-.div-title_icon #o1 {
-    color: rgb(219,68,55);
-}
-.div-title_icon #o2 {
-    color: rgb(244,180,0);
-}
-.div-title_icon #g {
-    color: rgb(66,133,244);
-}
-.div-title_icon #l {
-    color: rgb(15,157,88);
-}
-.div-title_icon #e {
-    color: rgb(219,68,55);
-}
-
-.div-title_bg_img{
-    /*Put it at second*/
+    margin: 0;
     background-image: url("../src/index_front.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
     background-size: cover;
-    height: 100%;
-    z-index: 80;
 }
-.column-2{
+
+.outer {
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.row {
+    height: 100%;
+}
+
+.column-1 {
+    float: left;
+    height: 100%;
+    width: 80%;
+    padding-left: 0px;
+    overflow: hidden;
+}
+
+.div-currentuser {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: bisque;
+    font-size: small;
+    font-weight: 100;
+}
+
+
+/* 'FOOGLE' title icon */
+
+.div-title_icon {
+    position: absolute;
+    /*Put it at the top*/
+    z-index: 100;
+    left: 10%;
+    top: 30%;
+    font-size: 10vw;
+    font-weight: 800;
+}
+
+.div-title_icon .character {
+    float: left;
+    text-shadow: 5px 5px black;
+}
+
+.div-title_icon #f {
+    color: rgb(66, 133, 244);
+}
+
+.div-title_icon #o1 {
+    color: rgb(219, 68, 55);
+}
+
+.div-title_icon #o2 {
+    color: rgb(244, 180, 0);
+}
+
+.div-title_icon #g {
+    color: rgb(66, 133, 244);
+}
+
+.div-title_icon #l {
+    color: rgb(15, 157, 88);
+}
+
+.div-title_icon #e {
+    color: rgb(219, 68, 55);
+}
+
+
+/* Buttons */
+
+.column-2 {
     float: left;
     height: 100%;
     width: 20%;
-
     padding-left: 0px;
     padding-top: 0px;
 }
-.column-2 ul{
-    list-style: none; /*delete circle*/
+
+.column-2 ul {
+    list-style: none;
     padding: 0;
     margin: 0;
     width: 100%;
     height: 100%;
 }
- .column-2 li{
+
+.column-2 li {
     display: block;
     padding: 0;
     margin: 0;
     height: 25%;
     overflow: hidden;
-} 
-.column-2 a{
-    display:inline-block;
-    width: 100%;
-    height: 40%;
-
-    line-height: 100%;
-    text-align:center;
-    text-decoration:none;
-    padding:30% 0; 
-    overflow: hidden;
-
-    background-color: gold;
-    font-size: 32px;
-    font-family: "Times New Roman", Times, serif;
 }
-.column-2 a:hover{
+
+.column-2 a {
+    /* justify position and size */
+    display: flex;
+    width: 90%;
+    height: 40%;
+    margin: 19% 0;
+    justify-content: center;
+    align-items: center;
+    /* justify style */
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: gold;
+    text-decoration: none;
+}
+
+
+/* unvisited link */
+
+.column-2 a:link {
+    color: rgb(21, 52, 78);
+}
+
+
+/* visited link */
+
+.column-2 a:visited {
+    color: aliceblue;
+}
+
+
+/* mouse over link */
+
+.column-2 a:hover {
     background-color: goldenrod;
-    border: rgb(185, 92, 15);
+}
+
+.column-2 a p {
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: 3vw;
+    font-family: 'Brush Script MT', cursive;
+    font-weight: 800;
 }

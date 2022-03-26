@@ -6,19 +6,15 @@
 
 .header {
     height: 10%;
+    width: 100%;
+    display: block;
 }
 
 
 /* 'FOOGLE' icon on the top-left corner */
 
-.icon-hyperlink {
-    height: 100%;
-    display: block;
-    position: relative;
-}
-
-.div-title_icon {
-    position: absolute;
+.title_icon {
+    display: inline-block;
     height: 100%;
     line-height: 90%;
     left: 1px;
@@ -27,38 +23,53 @@
     font-weight: 800;
 }
 
-.div-title_icon .character {
+.title_icon .character {
     float: left;
     text-shadow: 5px 5px black;
 }
 
-.div-title_icon #f {
+.f {
     color: rgb(66, 133, 244);
 }
 
-.div-title_icon #o1 {
+.o1 {
     color: rgb(219, 68, 55);
 }
 
-.div-title_icon #o2 {
+.o2 {
     color: rgb(244, 180, 0);
 }
 
-.div-title_icon #g {
+.g {
     color: rgb(66, 133, 244);
 }
 
-.div-title_icon #l {
+.l {
     color: rgb(15, 157, 88);
 }
 
-.div-title_icon #e {
+.e {
     color: rgb(219, 68, 55);
 }
 
 
-/* footer section */
+/* Shopping list Icon on the top right */
+
+.shoppinglist_icon {
+    display: block;
+    float: right;
+    height: 90%;
+    background-color: gold;
+    border-radius: 15px;
+}
+
+#shoppinglist-img {
+    height: auto;
+    width: auto;
+    /* footer section */
+}
 
 .footer {
     height: 10%;
+    color: aliceblue;
 }
