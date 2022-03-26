@@ -6,19 +6,14 @@
 
 .header {
     height: 10%;
+    display: block;
 }
 
 
 /* 'FOOGLE' icon on the top-left corner */
 
-.icon-hyperlink {
-    height: 100%;
-    display: block;
-    position: relative;
-}
-
 .div-title_icon {
-    position: absolute;
+    display: inline-block;
     height: 100%;
     line-height: 90%;
     left: 1px;
@@ -32,27 +27,27 @@
     text-shadow: 5px 5px black;
 }
 
-.div-title_icon #f {
+.div-title_icon .f {
     color: rgb(66, 133, 244);
 }
 
-.div-title_icon #o1 {
+.div-title_icon .o1 {
     color: rgb(219, 68, 55);
 }
 
-.div-title_icon #o2 {
+.div-title_icon .o2 {
     color: rgb(244, 180, 0);
 }
 
-.div-title_icon #g {
+.div-title_icon .g {
     color: rgb(66, 133, 244);
 }
 
-.div-title_icon #l {
+.div-title_icon .l {
     color: rgb(15, 157, 88);
 }
 
-.div-title_icon #e {
+.div-title_icon .e {
     color: rgb(219, 68, 55);
 }
 
