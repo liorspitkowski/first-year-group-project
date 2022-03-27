@@ -14,29 +14,35 @@ function add_ingredient() {
     $conn = connect(True); // connects to database
 
     $foodId = get_foodId($conn, $ingredient)[0];
-    $current_quantity = get_quantity($conn, $id, $foodId);
 
-    if ($current_quantity > 0) {
-        // already have ingredient, update it
-        $quantity = $current_quantity[0] + $quantity;
-        $sql = "UPDATE inventory
-                SET amount = :amount
-                WHERE userId = :userId AND foodId = :foodId";
+    if ($foodId != null) {
+        $current_quantity = get_quantity($conn, $id, $foodId);
+
+        if ($current_quantity > 0) {
+            // already have ingredient, update it
+            $quantity = $current_quantity[0] + $quantity;
+            $sql = "UPDATE inventory
+                    SET amount = :amount
+                    WHERE userId = :userId AND foodId = :foodId";
+        } else {
+            // didn't previously have ingredient, adds record
+            $sql = "INSERT INTO inventory (userId, foodId, amount)
+                    VALUES (:userId, :foodId, :amount)";
+        }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+          'userId' => $id,
+          'foodId' => $foodId,
+          'amount' => $quantity
+        ]);
+
+        // confirmation check
+        $confirmationSignal = confirmation($conn, $id, $foodId, $quantity);
+
     } else {
-        // didn't previously have ingredient, adds record
-        $sql = "INSERT INTO inventory (userId, foodId, amount)
-                VALUES (:userId, :foodId, :amount)";
+        $confirmationSignal = "flag=0";
     }
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([
-      'userId' => $id,
-      'foodId' => $foodId,
-      'amount' => $quantity
-    ]);
-
-    // confirmation check
-    $confirmationSignal = confirmation($conn, $id, $foodId, $quantity);
     echo($confirmationSignal);
 }
 
