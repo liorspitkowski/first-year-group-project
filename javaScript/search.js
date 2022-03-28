@@ -2,16 +2,18 @@
     Written by: Hanmin Liu;
     send search form, expect a list of buttons to be displayed in the search bar.
 */
-var page_num/* total pages num */, current_page/* current_page/page_num */, recipe_array/* results string array */, max_show = 5/* max elements per page */;
+var page_num /* total pages num */ , current_page /* current_page/page_num */ , recipe_array /* results string array */ , max_show = 5 /* max elements per page */ ;
+
 function submitSearch() {
     // console.log(document.querySelector('#search_form'));
-    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize() + "&user_id=" + getCookie("userid");
+    var url = "../PHP/SearchRecipe.php",
+        data = $('#search_form').serialize() + "&user_id=" + getCookie("userid");
     console.log(data);
     $.ajax({
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             console.log('receiving:' + data);
 
             if (data != '') {
@@ -28,16 +30,16 @@ function submitSearch() {
                 }
                 // write index;
                 indexUpdate();
-            }else{
+            } else {
                 outputEmptyMessage();
             }
         }
     });
     return false;
 }
-/* when server return empty string */ 
-function outputEmptyMessage(){
-    addElement('1',"p","result-1","No result to be shown","search-results");
+/* when server return empty string */
+function outputEmptyMessage() {
+    addElement('1', "p", "result-1", "No result to be shown", "search-results");
 }
 /* create search results */
 function addElement(
@@ -49,8 +51,8 @@ function addElement(
 ) {
     let newDiv = document.createElement(divtype);
     newDiv.name = newdivname;
-    newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
-    newDiv.onclick = function () {
+    // newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
+    newDiv.onclick = function() {
         // when the recipe is clicked.
         console.log("this is the page " + current_page + " number " + id);
         console.log("recipe name is:" + content);
@@ -71,7 +73,7 @@ function delElement(deldivname, parentdiv) {
     var d = document.getElementsByName(deldivname);
     console.log("d is " + d);
     for (var i = 0; i < d.length; ++i) {
-        var item = d[i];  // 调用 myNodeList.item(i) 是没有必要的
+        var item = d[i]; // 调用 myNodeList.item(i) 是没有必要的
         console.log(item);
         document.getElementById(parentdiv).removeChild(item);
     }
@@ -80,7 +82,8 @@ function delElement(deldivname, parentdiv) {
 
 /* convert list to n elements per row. */
 function listToMatrix(list, elementsPerSubArray) {
-    var matrix = [], i, k;
+    var matrix = [],
+        i, k;
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
             k++;
@@ -90,6 +93,7 @@ function listToMatrix(list, elementsPerSubArray) {
     }
     return matrix;
 }
+
 function nextPage() {
     if (current_page + 1 > page_num) {
         console.log("end of pages");
@@ -104,6 +108,7 @@ function nextPage() {
     // write index;
     indexUpdate();
 }
+
 function prevPage() {
     if (current_page - 1 <= 0) {
         console.log("head of pages");
@@ -118,12 +123,14 @@ function prevPage() {
     // write index;
     indexUpdate();
 }
+
 function clearPage() {
     for (let i = 1; i <= max_show; i++) {
         // delete recipes;
         delElement("result-" + i, "search-results");
     }
 }
+
 function indexUpdate() {
     document.getElementById('index').innerHTML = current_page + '/' + page_num;
 }
