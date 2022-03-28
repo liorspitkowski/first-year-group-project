@@ -173,7 +173,7 @@ function submitDelInv(ingredient, quantity, unit) {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Deleted successfully');
-                window.reload();
+                window.location.reload();
             } else if (flag == '0') {
                 alert('Falty, no such food');
             } else {
