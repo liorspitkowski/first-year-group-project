@@ -160,8 +160,8 @@ function changeIngredient(name, newnumber, unit) {
 function submitDelInv(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/deleteUserIngredients.php",
-        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    var url = "../PHP/removeIngredient.php",
+        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&user_id=" + user_id;
     console.log("minoring data sent is: " + data);
     $.ajax({
         async: false,
