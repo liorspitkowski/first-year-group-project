@@ -12,23 +12,25 @@ function loadShoppingList() {
     getShoppingList_ingredients();
     getShoppingList_recipes();
 }
+
 function getShoppingList_ingredients() {
     console.log('getting ingredients');
-    var url = "../PHP/generateList.php", data = 'userId=' + getCookie('userid');
+    var url = "../PHP/generateList.php",
+        data = 'userId=' + getCookie('userid');
     console.log(data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
-            console.log("received: "+data+" type: "+typeof(date));
-            if(data == ''){
+        success: function(data) {
+            console.log("received: " + data + " type: " + typeof(date));
+            if (data == '') {
                 displayEmptySL_ingredients();
                 return;
             }
             var shoppinglist = seperateBy('#', data);
-            console.log("split: "+shoppinglist);
+            console.log("split: " + shoppinglist);
             /*
                 ['bluefish', '431', 'g\r\n', 'rice', '300', 'g\r\n', 'seaweed', '10', 'g']
                 show a table of it
@@ -58,6 +60,7 @@ function addElementToPage(rawItem) {
     addThToTr(row, rawItem[2]);
     parentTable.appendChild(row);
 }
+
 function addThToTr(row, rawContent) {
     let box = document.createElement("th");
     let content = document.createTextNode(rawContent);
@@ -67,7 +70,8 @@ function addThToTr(row, rawContent) {
 
 /* convert list to n elements per row. */
 function listToMatrix(list, elementsPerSubArray) {
-    var matrix = [], i, k;
+    var matrix = [],
+        i, k;
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % elementsPerSubArray === 0) {
             k++;
@@ -81,15 +85,16 @@ function listToMatrix(list, elementsPerSubArray) {
 
 function getShoppingList_recipes() {
     console.log('getting recipes');
-    var url = "../PHP/displayRecipesOnList.php", data = 'userId=' + getCookie('userid');
-    console.log('recipes posting: '+data);
+    var url = "../PHP/displayRecipesOnList.php",
+        data = 'userId=' + getCookie('userid');
+    console.log('recipes posting: ' + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
-            if(data == ''){
+        success: function(data) {
+            if (data == '') {
                 displayEmptySL_recipes();
                 return;
             }
@@ -124,12 +129,13 @@ function addElementToPage_recipes(rawItem) {
     addBuToTr(row, rawItem);
     parentTable.appendChild(row);
 }
+
 function addBuToTr(row, info) {
     let box = document.createElement("th");
     let button = document.createElement("button");
     let content = document.createTextNode("delete");
     //button.onclick = "return deleteRecipe("+info[0]+")";
-    button.addEventListener("click", function () { submitDelRecipe(info[0]) });
+    button.addEventListener("click", function() { submitDelRecipe(info[0]) });
     button.appendChild(content);
     box.appendChild(button);
     row.appendChild(box);
@@ -138,15 +144,16 @@ function addBuToTr(row, info) {
 
 function submitDelRecipe(name) {
     console.log("deleting" + name);
-    var url = "../PHP/removeRecipeFromList.php", data = 'userId=' + getCookie('userId') + '&recipeId=' + name;
-    console.log("posting data: " + data);
+    var url = "../PHP/removeRecipeFromList.php",
+        data = 'user_id=' + getCookie('userid') + '&recipe_id=' + name;
+    console.log("1posting data: " + data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
-            console.log("received: "+data);
+        success: function(data) {
+            console.log("received: " + data);
             let flag = getValue('flag');
             /* 
                 - "flag=0" : SQL fail
@@ -169,19 +176,20 @@ function submitDelRecipe(name) {
 }
 
 
-function displayEmptySL_ingredients(){
+function displayEmptySL_ingredients() {
     let parentd = document.getElementById('display-div');
     let table = document.getElementById('ingredients-table');
     parentd.removeChild(table);
-    
+
     let content = document.createTextNode("Nothing you should Buy");
     parentd.appendChild(content);
 }
-function displayEmptySL_recipes(){
+
+function displayEmptySL_recipes() {
     let parentd = document.getElementById('display-div');
     let table = document.getElementById('recipes-table');
     parentd.removeChild(table);
-    
+
     let content = document.createTextNode("Nothing you have chosen");
     parentd.appendChild(content);
 }
