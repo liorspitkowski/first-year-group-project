@@ -2,12 +2,8 @@
 
 require "DatabaseHandler.php";
 
-
-$vegi = $_POST['vegi'];
-$vegan = $_POST['vegan'];
-
 //search based on recipe name
-function search($search){
+function search($search, $vegi, $vegan){
 
   $conn = connect(true);
 
@@ -17,6 +13,9 @@ function search($search){
 
   $results = [];
   while ($row = $result->fetch()){
+    if (($vegi && ($row['vegetarian'] != 1)) || ($vegan && ($row['vegan'] != 1))){
+      continue;
+    }
     $dbNames = explode(" ", $row['recipeName']);
     $score = 0;
 
@@ -41,17 +40,17 @@ function search($search){
 
 }
 
-function searchInv($uid){
+function searchInv($uid, $vegi, $vegan){
 
   $conn = connect(true);
 
-  $sql = "SELECT recipeId FROM recipes, vegetarian, vegan";
+  $sql = "SELECT recipeId, vegetarian, vegan FROM recipes";
   $result = $conn->query($sql);
   $names = explode(" ", $search);
 
   $results = [];
   while ($row = $result->fetch()){
-    if (($vegi != NULL && $vegi) || ($vegan != NULL && $vegan)){
+    if (($vegi && ($row['vegetarian'] != 1)) || ($vegan && ($row['vegan'] != 1))){
       continue;
     }
     $recipeName = $row['recipeName'];
@@ -115,6 +114,7 @@ function inIventory($conn, $recipeid, $uid){
 
 }
 
+//checks for matching dietry requirments
 function matchesDietry($conn, $recipeid, $dietry){
 
   //fetches dietry info
@@ -163,12 +163,16 @@ function main(){
   $searchName = $_POST['user_search'];
   $searchByInventory = $_POST['inv_search'];
   $userId = $_POST['user_id'];
+  $vegi = isset($_POST['filter1']);
+  $vegan = isset($_POST['filter2']);
 
   if ($searchByInventory != NULL){
-    searchInv($userId);
+    echo "inv";
+    searchInv($userId, $vegi, $vegan);
   }
   else{
-    search($searchName);
+    echo "name";
+    search($searchName, $vegi, $vegan);
   }
 }
 

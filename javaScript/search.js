@@ -5,7 +5,7 @@
 var page_num/* total pages num */, current_page/* current_page/page_num */, recipe_array/* results string array */, max_show = 5/* max elements per page */;
 function submitSearch() {
     // console.log(document.querySelector('#search_form'));
-    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize();
+    var url = "../PHP/SearchRecipe.php", data = $('#search_form').serialize() + "&user_id=" + getCookie("userid");
     console.log(data);
     $.ajax({
         url: url,
