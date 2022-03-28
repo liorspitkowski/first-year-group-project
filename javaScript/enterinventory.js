@@ -55,7 +55,12 @@ function addRow(parentTable, rawItem, i) {
     let row = document.createElement("tr");
     addTdToTr(row, rawItem[0]);
     addInToTr(row, rawItem[1], i);
-    addTdToTr(row, rawItem[2]);
+    if (rawItem[2] == 'unit') {
+        addTdToTr(row, rawItem[0]);
+    } else {
+        addTdToTr(row, rawItem[2]);
+    }
+     //
     addBuToTr(row, rawItem, i);
     parentTable.appendChild(row);
 }
