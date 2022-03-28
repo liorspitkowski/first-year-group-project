@@ -1,0 +1,43 @@
+/* side bar written by Yuhan begin*/
+
+.sidebar {
+    position: absolute;
+    margin-left: 6%;
+    height: 90%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar .sidebar-title {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+li a {
+    display: block;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+li a:hover {
+    background-color: aliceblue;
+    color: #222;
+}
+
+
+/* side bar written by Yuhan end */
