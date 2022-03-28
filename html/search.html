@@ -9,6 +9,7 @@
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/search.js"></script>
     <script src="../javaScript/getValue.js"></script>
+    <script src="../javaScript/getCookie.js"></script>
     <script type="text/javascript">
         window.onload = function () {
             document.getElementById('search_form').addEventListener('submit', function (e) {
@@ -42,7 +43,6 @@
                         <li><a href="userprofile.html">My profile</a></li>
                         <li><a href="menu.html">Menu</a></li>
                         <li><a href="search.html">Search</a></li>
-                        <li><a href="samplerecipe.html">Samplerecipe</a></li>
                         <li><a href="newRecipe.html">Newrecipe</a></li>
                         <li><a href="shoppinglist.html">Shopping list</a></li>
                     </ul>
@@ -59,6 +59,8 @@
                             <label for="filter1">Vegi</label>
                             <input type="checkbox" id="filter2" name="filter2" value="vegan">
                             <label for="filter2">Vegan</label>
+                            <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
+                            <label for="inv_search">from inventory</label>
                         </div>
                     </form>
                     <div class="search-display">
