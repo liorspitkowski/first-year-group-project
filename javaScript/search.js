@@ -47,21 +47,23 @@ function addElement(
     content, // the content inside
     parentdiv // where to insert
 ) {
-    let newDiv = document.createElement(divtype);
-    newDiv.name = newdivname;
-    newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
-    newDiv.onclick = function () {
-        // when the recipe is clicked.
-        console.log("this is the page " + current_page + " number " + id);
-        console.log("recipe name is:" + content);
-        let url = '../html/samplerecipe_testHanmin.html';
-        let urlphp = '../PHP/DisplayRecipe.php';
-        location.href = urlphp + '?recipeName=' + content;
-    };
-    let newContent = document.createTextNode(content);
-    newDiv.appendChild(newContent);
-    let currentDiv = document.getElementById(parentdiv);
-    currentDiv.appendChild(newDiv);
+    if (content != undefined){
+        let newDiv = document.createElement(divtype);
+        newDiv.name = newdivname;
+        newDiv.style.cssText = 'width:90%;height:18%;margin:0.5% auto;';
+        newDiv.onclick = function () {
+            // when the recipe is clicked.
+            console.log("this is the page " + current_page + " number " + id);
+            console.log("recipe name is:" + content);
+            let url = '../html/samplerecipe_testHanmin.html';
+            let urlphp = '../PHP/DisplayRecipe.php';
+            location.href = urlphp + '?recipeName=' + content;
+        };
+        let newContent = document.createTextNode(content);
+        newDiv.appendChild(newContent);
+        let currentDiv = document.getElementById(parentdiv);
+        currentDiv.appendChild(newDiv);
+    }
 }
 
 /* delete current results */
