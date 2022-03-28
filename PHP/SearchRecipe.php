@@ -2,12 +2,16 @@
 
 require "DatabaseHandler.php";
 
+
+$vegi = $_POST['vegi'];
+$vegan = $_POST['vegan'];
+
 //search based on recipe name
 function search($search){
 
   $conn = connect(true);
 
-  $sql = "SELECT recipeId, recipeName FROM recipes";
+  $sql = "SELECT recipeId, recipeName, vegetarian, vegan FROM recipes";
   $result = $conn->query($sql);
   $names = explode(" ", $search);
 
@@ -32,6 +36,31 @@ function search($search){
   }
 
   asort($results);
+  $printReturn = implode(";", array_keys($results));
+  echo $printReturn;
+
+}
+
+function searchInv($uid){
+
+  $conn = connect(true);
+
+  $sql = "SELECT recipeId FROM recipes, vegetarian, vegan";
+  $result = $conn->query($sql);
+  $names = explode(" ", $search);
+
+  $results = [];
+  while ($row = $result->fetch()){
+    if (($vegi != NULL && $vegi) || ($vegan != NULL && $vegan)){
+      continue;
+    }
+    $recipeName = $row['recipeName'];
+    $score = isInvetory($conn, $recipeName, $uid);
+
+    $results += [$row['recipeName'] => $score];
+  }
+
+  sort($results);
   $printReturn = implode(";", array_keys($results));
   echo $printReturn;
 
@@ -132,7 +161,15 @@ function levenshteinDistance($w1, $w2){
 
 function main(){
   $searchName = $_POST['user_search'];
-  search($searchName);
+  $searchByInventory = $_POST['inv_search'];
+  $userId = $_POST['user_id'];
+
+  if ($searchByInventory != NULL){
+    searchInv($userId);
+  }
+  else{
+    search($searchName);
+  }
 }
 
 main();

@@ -74,12 +74,12 @@ else{
                          Sidebar
                     </div>
                     <ul>
-                        <li><a href="userprofile.html">My profile</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="search.html">Search</a></li>
-                        <li><a href="samplerecipe.html">Samplerecipe</a></li>
-                        <li><a href="newRecipe.html">Newrecipe</a></li>
-                        <li><a href="shoppinglist.html">Shopping list</a></li>
+                        <li><a href="../html/userprofile.html">My profile</a></li>
+                        <li><a href="../html/menu.html">Menu</a></li>
+                        <li><a href="../html/search.html">Search</a></li>
+                        <li><a href="../html/samplerecipe.html">Samplerecipe</a></li>
+                        <li><a href="../html/newRecipe.html">Newrecipe</a></li>
+                        <li><a href="../html/shoppinglist.html">Shopping list</a></li>
                     </ul>
 
                 </div>
