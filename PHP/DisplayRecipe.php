@@ -20,6 +20,7 @@ if($row = $stmt->fetch()){
   $id = $row['recipeId'];
   // so javaScript can access recipeId
   echo ("<label id='recipe_id' hidden>$id</label><br>");
+  echo ("<label id='recipe_name' hidden>$name</label><br>");
   $instructions = $row['instructions'];
   $TTM = $row['timeToMake'];
   $foods = [];
