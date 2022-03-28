@@ -32,8 +32,11 @@
 
 	function returnData($names, $portions){
 		$endString = "";
-		for ($i = 0; $i < (count($names)); $i++){
+		for ($i = 0; $i < (count($names)- 1); $i++){
 			$endString = $endString . $names[$i] . "#" . $portions[$i] . "#";
+		}
+		if (count($names) != 0){
+			$endString = $endString . $names[count($names) - 1] . "#" . $portions[count($portions) - 1];
 		}
 		return $endString;
 	}

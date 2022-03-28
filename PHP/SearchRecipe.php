@@ -44,29 +44,32 @@ function searchInv($uid, $vegi, $vegan){
 
   $conn = connect(true);
 
-  $sql = "SELECT recipeId, vegetarian, vegan FROM recipes";
+  $sql = "SELECT recipeId, recipeName, vegetarian, vegan FROM recipes";
   $result = $conn->query($sql);
-  $names = explode(" ", $search);
 
   $results = [];
   while ($row = $result->fetch()){
     if (($vegi && ($row['vegetarian'] != 1)) || ($vegan && ($row['vegan'] != 1))){
       continue;
     }
-    $recipeName = $row['recipeName'];
-    $score = isInvetory($conn, $recipeName, $uid);
+    $recipeId = $row['recipeId'];
+    $score = inInvetory($conn, $recipeId, $uid);
 
     $results += [$row['recipeName'] => $score];
   }
 
-  sort($results);
+  arsort($results);
   $printReturn = implode(";", array_keys($results));
+  $printReturnWithScore = "";
+  foreach(array_keys($results) as $name){
+    $printReturnWithScore = $printReturnWithScore . $name . strval($results[$name]) . "%\n";
+  }
   echo $printReturn;
 
 }
 
 //calculates how well recipe matches what is in inventory
-function inIventory($conn, $recipeid, $uid){
+function inInvetory($conn, $recipeid, $uid){
 
   //fetches data from inventory
   $sql = "SELECT foodId, amount FROM inventory WHERE userId = :userid";
@@ -99,18 +102,13 @@ function inIventory($conn, $recipeid, $uid){
     if (isset($foods[$ingridient])){
       if ($foods[$ingridient] < $amount){
         $score -= ($amount - $foods[$ingridient])/$amount * 100/count($ingridients);
-        echo $amount - $foods[$ingridient] . "\n";
       }
     }
     else {
       $score -= 100/count($ingridients);
     }
-    echo $score . "\n";
   }
-
-  echo http_build_query($foods) . "\n";
-  echo http_build_query($ingridients) . "\n";
-  echo $score . "%\n";
+  return round(abs($score), 2);
 
 }
 
@@ -167,11 +165,9 @@ function main(){
   $vegan = isset($_POST['filter2']);
 
   if ($searchByInventory != NULL){
-    echo "inv";
     searchInv($userId, $vegi, $vegan);
   }
   else{
-    echo "name";
     search($searchName, $vegi, $vegan);
   }
 }
