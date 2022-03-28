@@ -1,6 +1,5 @@
-//Written and Maintained by Daniel Makin
 <?php
-	
+	//Written and Maintained by Daniel Makin
 	require "DatabaseHandler.php";
 
 	$userId = $_POST['user_id'];
@@ -8,18 +7,26 @@
 
 	mainFunction($userId, $recipeId);
 
-	function mainFunction($userId, $recipeId){
+	function mainFunction($userId, $recipeName){
 		//removes the item from the table
 		$conn = connect(true);
+		//get recipeid associated
+		$recipeId = getRecipeId($conn, $recipeName);
 		//check record exists
-		if (checkIfInDatbase() == false){
+		if (checkIfInDatbase($conn, $userId, $recipeId) == false){
 			return "flag=1";
 		}
-
 
 		removeRecord($conn, $userId, $recipeId);
 
 		echo(checkRecordRemoved($conn, $userId, $recipeId));
+	}
+
+	function getRecipeId($conn, $recipeName){
+		$sql = "SELECT recipeId FROM recipes WHERE recipeName = :recipe";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute(['recipe' => $recipeName]);
+		return $stmt->fetch()['recipeId'];
 	}
 
 	function removeRecord($conn, $userId, $recipeId){
@@ -29,7 +36,7 @@
 	}
 
 	function checkIfInDatbase($conn, $userId, $recipeId){
-		$sql = "SELECT * FROM recipeList WHERE userId = :user AND recipeId = :recipe";
+		$sql = "SELECT * FROM shopRecipes WHERE userId = :user AND recipeId = :recipe";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(['user' => $userId, 'recipe' => $recipeId]);
 
