@@ -5,166 +5,93 @@
 
 html {
     height: 100%;
-    background-color: honeydew;
 }
 
 body {
-    margin: 0;
-    height: 100%;
-}
-
-.row-large {
-    height: 100%;
-    width: 100%;
-}
-
-.left-box {
-    background-color: rgba(240, 255, 240, 1);
-    float: left;
-    height: 100%;
-    width: 60%;
-}
-
-.right-box {
-    background-color: blue;
-    float: left;
-    height: 100%;
-    width: 40%;
-    overflow: hidden;
-    background-image: linear-gradient(to right, rgba(240, 255, 240, 1), rgba(255, 255, 255, 0)), url(../src/search_bg.png);
+    background-image: url("../src/cooked-food.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-}
-
-.topbox {
-    height: 8%;
-}
-
-.title-box {
     height: 100%;
-    width: 20%;
-    float: left;
 }
 
-.shopping-list {
-    height: 100%;
-    width: 10%;
-    float: right;
-}
-
-.row {
+.middle-box {
     height: 80%;
-    width: 100%;
-    background-color: gold;
-}
-
-.column-1 {
-    height: 100%;
-    width: 20%;
-    float: left;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.card {
-    padding: 10%;
-    background-color: honeydew;
-    height: 70%;
-    width: 70%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    display: flex;
-    /*use flex to center the inner item*/
-    justify-content: center;
-    /*vertical*/
-    align-items: center;
-    /*horizontal*/
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.column-2 {
-    height: 100%;
-    width: 80%;
-    float: left;
-    position: relative;
-    overflow: visible;
-    display: flex;
-    align-items: center;
-}
-
-.column-2 p {
-    margin: 0;
-    line-height: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-family: "Times New Roman", Times, serif;
-    text-decoration: none;
-}
-
-.sidebar-panel {
-    position: absolute;
-    margin-left: 20%;
-    height: 90%;
-    width: 90%;
-    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .search-panel {
-    position: absolute;
-    height: 90%;
-    width: 150%;
-    margin-left: 4%;
-    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
-.bottom-box {
-    height: 10%;
+
+/* Search Bar */
+
+#search_form {
+    height: 14%;
+    padding: 3vh 0 0 0;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
-.search-bar {
-    margin: 1%;
-    height: 9%;
-    border: 1px solid black;
-    padding: 5px;
-}
-
-.search-bar form {
-    margin: 5px 1%;
-    height: 40%;
+#searchbar-table {
+    height: 80%;
+    width: 80%;
+    margin: 0 0 auto 2.2vh;
+    border-collapse: collapse;
 }
 
 .search-display {
-    margin: 1%;
     height: 85%;
-    border: 1px solid black;
 }
 
 #search-results {
     text-align: center;
-    height: 90%;
+    height: 87%;
 }
+
+#user_search {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    background-color: rgba(255, 242, 127, 0.6);
+}
+
+#search_button {
+    height: 70%;
+    width: 80%;
+    border: 0;
+    border-radius: 5px;
+    background-color: gold;
+}
+
+#search_button:hover {
+    background-color: goldenrod;
+}
+
+label {
+    font-size: 1vh;
+}
+
+
+/* Search Results */
 
 #index,
 #buttons {
     text-align: center;
 }
 
-.filter {
-    margin: 5px 1%;
-    height: 30%;
-    border: 1px solid black;
-    /* overflow: hidden; */
+#search-results button {
+    background-color: rgba(255, 242, 127, 0.6);
+    border: 0;
+    border-radius: 10px;
+    width: 89%;
+    height: 17%;
+    margin: 1% 0 0 0;
 }
 
-
-
-
-
-/* Search results */
-
-#search-results button {
-    background-color: blueviolet;
+#search-results button:hover {
+    background-color: gold;
 }

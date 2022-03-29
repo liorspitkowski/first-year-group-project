@@ -11,14 +11,12 @@
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script type="text/javascript">
-        window.onload = function () {
-            document.getElementById('search_form').addEventListener('submit', function (e) {
+        window.onload = function() {
+            document.getElementById('search_form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 return submitSearch();
             });
         }
-
-
     </script>
     <!-- style sheets -->
     <link rel="stylesheet" type="text/css" href="../css/search.css">
@@ -27,44 +25,64 @@
 <body>
     <!-- header -->
     <section class="header" id="header">
-        <script>$("#header").load("./header.html");</script>
+        <script>
+            $("#header").load("./header.html");
+        </script>
     </section>
 
     <!-- search space begin -->
-    <div class="row">
+    <section class="middle-box" id="middle-box">
         <div class="column-1" id="sidebar-box">
-            <script>$('#sidebar-box').load("./sidebar.html");</script>
+            <script>
+                $('#sidebar-box').load("./sidebar.html");
+            </script>
         </div>
         <div class="column-2">
             <div class="search-panel">
-                <form id="search_form" class="search-bar">
-                    <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
-                    <input type="submit">
-                    <div class="filter" id="filter-box">
-                        <input type="checkbox" id="filter1" name="filter1" value="vegi">
-                        <label for="filter1">Vegi</label>
-                        <input type="checkbox" id="filter2" name="filter2" value="vegan">
-                        <label for="filter2">Vegan</label>
-                        <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
-                        <label for="inv_search">from inventory</label>
-                    </div>
+
+                <form id="search_form">
+                    <table id="searchbar-table">
+                        <tr>
+                            <th colspan="3">
+                                <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
+                            </th>
+                            <th rowspan="2"><input type="submit" value="Search" id="search_button"></th>
+                        </tr>
+                        <tr style="height:10%;">
+                            <td>
+                                <input type="checkbox" id="filter1" name="filter1" value="vegi">
+                                <label for="filter1">Vegi</label>
+                            </td>
+                            <td><input type="checkbox" id="filter2" name="filter2" value="vegan">
+                                <label for="filter2">Vegan</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
+                                <label for="inv_search">from inventory</label>
+                            </td>
+                        </tr>
+                    </table>
+
+
                 </form>
+
                 <div class="search-display">
                     <div id="search-results"></div>
                     <div id="buttons">
                         <button id="prev_page_button" onclick="prevPage()">Previous Page</button>
                         <button id="next_page_button" onclick="nextPage()">Next page</button>
                     </div>
-
                     <div id="index">0/0</div>
                 </div>
+
             </div>
         </div>
-    </div>
-    <!-- search space end -->
+    </section>
 
     <!-- footer -->
     <div class="footer">
-        <script>$(".footer").load("./footer.html");</script>
+        <script>
+            $(".footer").load("./footer.html");
+        </script>
     </div>
 </body>
