@@ -265,12 +265,7 @@ function autoCompleteFood(input){
 
 function init(){
 
-  console.log("loaded");
-
-  console.log(document.getElementById("ingredient1"));
-
   input = document.getElementById("ingredient1");
-  console.log(input);
   autoCompleteFood(input);
 
   addIngredientFeild();
@@ -280,8 +275,3 @@ function init(){
   submitRecipe(submit);
 
 }
-
-window.onload = function() {
-  console.log("hello");
-  init();
-};
