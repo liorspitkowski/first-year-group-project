@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>myprofile</title>
+    <title>My Profile</title>
     <link rel="stylesheet" href="../css/myprofile.css">
     <script src="../javaScript/jquery-3.6.0.js"></script>
     <script src="../javaScript/myprofile.js"></script>
@@ -12,25 +12,25 @@
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/guestUser.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             if (!checkUser()) {
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
             } else {
                 populate();
-                document.getElementById('username_form').addEventListener('submit', function (e) {
+                document.getElementById('username_form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     submitUsernameChangeRequest();
                 });
-                document.getElementById('firstname_form').addEventListener('submit', function (e) {
+                document.getElementById('firstname_form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     submitFirstnameChangeRequest();
                 });
-                document.getElementById('lastname_form').addEventListener('submit', function (e) {
+                document.getElementById('lastname_form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     submitLastnameChangeRequest();
                 });
-                document.getElementById('delete_form').addEventListener('submit', function (e) {
+                document.getElementById('delete_form').addEventListener('submit', function(e) {
                     e.preventDefault();
                     submitDeleteRequest();
                 });
@@ -45,33 +45,34 @@
     <section class="left-box">
         <!-- header -->
         <section class="header" id="header">
-            <script>$("#header").load("./header.html");</script>
+            <script>
+                $("#header").load("./header.html");
+            </script>
         </section>
 
         <!-- search space begin -->
         <div class="row">
             <div class="column-1" id="sidebar-box">
-                <script>$('#sidebar-box').load("./sidebar.html");</script>
+                <script>
+                    $('#sidebar-box').load("./sidebar.html");
+                </script>
             </div>
             <div class="column-2">
                 <div class="search-result">
                     <p>My profile</p>
                     <form id="username_form">
                         <label for="user_changed_name">Username</label>
-                        <input type="text" name="user_changed_name" id="user_changed_name" value="" required
-                            pattern=".{8,}" title="8 letters or more">
+                        <input type="text" name="user_changed_name" id="user_changed_name" value="" required pattern=".{8,}" title="8 letters or more">
                         <input type="submit" value="change">
                     </form>
                     <form id="firstname_form">
                         <label for="user_changed_fname">Firstname</label>
-                        <input type="text" name="user_changed_fname" id="user_changed_fname" value="" required
-                            pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                        <input type="text" name="user_changed_fname" id="user_changed_fname" value="" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit" value="change">
                     </form>
                     <form id="lastname_form">
                         <label for="user_changed_lname">Lastname</label>
-                        <input type="text" name="user_changed_lname" id="user_changed_lname" value="" required
-                            pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                        <input type="text" name="user_changed_lname" id="user_changed_lname" value="" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit" value="change">
                     </form>
                     <form id="delete_form">
@@ -80,16 +81,18 @@
                 </div>
                 <div class="displayrecipies scroller" id="displayrecipies">
                     <p>Your recipies:
-                    <p>
-                    <ul id="displayRecipiesList">
-                    </ul>
+                        <p>
+                            <ul id="displayRecipiesList">
+                            </ul>
                 </div>
             </div>
             <!-- search space end -->
 
             <!-- footer -->
             <div class="footer">
-                <script>$(".footer").load("./footer.html");</script>
+                <script>
+                    $(".footer").load("./footer.html");
+                </script>
             </div>
     </section>
     <!-- The background image section -->
