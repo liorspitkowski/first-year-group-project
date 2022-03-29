@@ -275,5 +275,3 @@ function init(){
   submitRecipe(submit);
 
 }
-
-window.onload = init;

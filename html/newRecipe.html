@@ -3,6 +3,31 @@ Use side bar to go to any page you have been to. -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>create recipe</title>
+
+    <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/newRecipe.js"></script>
+    <script src="../javaScript/getCookie.js"></script>
+    <script src="../javaScript/guestUser.js"></script>
+    <script>
+      window.onload = function () {
+            if (!checkUser()) {
+                alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+                window.history.go(-1);
+            }
+            else{
+              init();
+            }
+      }
+    </script>
+    <link rel="stylesheet" href="../css/newRecipe.css">
+
+  </head>
+  <body>
+
+    <div class="fixed-bg">
 
 <head>
   <meta charset="utf-8">
