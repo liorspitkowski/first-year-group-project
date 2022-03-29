@@ -20,6 +20,7 @@ if($row = $stmt->fetch()){
   $id = $row['recipeId'];
   // so javaScript can access recipeId
   echo ("<label id='recipe_id' hidden>$id</label><br>");
+  echo ("<label id='recipe_name' hidden>$name</label><br>");
   $instructions = $row['instructions'];
   $TTM = $row['timeToMake'];
   $foods = [];
@@ -57,33 +58,16 @@ else{
 <body>
     <!-- Main contect space -->
     <section class="left-box">
-        <!-- blank space on top begin -->
-        <div class="topbox">
-            <div class="title-box">
-            Foogle
-            </div>
-
-        </div>
-        <!-- blank space on top end -->
+        <!-- header -->
+        <section class="header" id="header">
+            <script>$("#header").load("../html/header.html");</script>
+        </section>
 
         <!-- search space begin -->
         <div class="row">
-            <div class="column-1">
-                <div class="sidebar">
-                    <div class="sidebar-title">
-                         Sidebar
-                    </div>
-                    <ul>
-                        <li><a href="../html/userprofile.html">My profile</a></li>
-                        <li><a href="../html/menu.html">Menu</a></li>
-                        <li><a href="../html/search.html">Search</a></li>
-                        <li><a href="../html/samplerecipe.html">Samplerecipe</a></li>
-                        <li><a href="../html/newRecipe.html">Newrecipe</a></li>
-                        <li><a href="../html/shoppinglist.html">Shopping list</a></li>
-                    </ul>
-
-                </div>
-            </div>
+        <div class="column-1" id="sidebar-box">
+            <script>$('#sidebar-box').load("../html/sidebar.html");</script>
+        </div>
             <div class="column-2"><div class="search-panel">
                 <div class="search-bar">
                     new search button?
@@ -124,11 +108,10 @@ else{
         </div>
         <!-- search space end -->
 
-        <!-- footer begin -->
-        <div class="bottom-box">
-            Perhaps some 'contact us' stuff?
-        </div>
-        <!-- footer end -->
+        <!-- footer -->
+        <div class="footer">
+                <script>$(".footer").load("../html/footer.html");</script>
+            </div>
     </section>
     <!-- The background image section -->
     <section class="right-box">

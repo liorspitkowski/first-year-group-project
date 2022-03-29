@@ -55,7 +55,12 @@ function addRow(parentTable, rawItem, i) {
     let row = document.createElement("tr");
     addTdToTr(row, rawItem[0]);
     addInToTr(row, rawItem[1], i);
-    addTdToTr(row, rawItem[2]);
+    if (rawItem[2] == 'unit') {
+        addTdToTr(row, rawItem[0]);
+    } else {
+        addTdToTr(row, rawItem[2]);
+    }
+     //
     addBuToTr(row, rawItem, i);
     parentTable.appendChild(row);
 }
@@ -160,8 +165,8 @@ function changeIngredient(name, newnumber, unit) {
 function submitDelInv(ingredient, quantity, unit) {
     // ingredient=beans&quantity=1&unit=g&user_id=14
     let user_id = getCookie('userid');
-    var url = "../PHP/deleteUserIngredients.php",
-        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&unit=" + unit + "&user_id=" + user_id;
+    var url = "../PHP/removeIngredient.php",
+        data = "ingredient=" + ingredient + "&quantity=" + quantity + "&user_id=" + user_id;
     console.log("minoring data sent is: " + data);
     $.ajax({
         async: false,
@@ -173,7 +178,7 @@ function submitDelInv(ingredient, quantity, unit) {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Deleted successfully');
-                window.reload();
+                window.location.reload();
             } else if (flag == '0') {
                 alert('Falty, no such food');
             } else {

@@ -29,58 +29,93 @@ Use side bar to go to any page you have been to. -->
 
     <div class="fixed-bg">
 
-      <div class="header">
-        header
-      </div>
+<head>
+  <meta charset="utf-8">
+  <title>create recipe</title>
 
-      <!-- form for entering recipe -->
-      <div id="recipeFormDiv" class="newRecipeForm">
+  <script src="../javaScript/jquery-3.6.0.js"></script>
+  <script src="../javaScript/newRecipe.js"></script>
+  <script src="../javaScript/getCookie.js"></script>
+  <script src="../javaScript/guestUser.js"></script>
+  <script>
+    window.onload = function () {
+      if (!checkUser()) {
+        alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
+        window.history.go(-1);
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/newRecipe.css">
 
-        <h1> Create New Recipe </h1>
+</head>
 
-        <form id="newRecipe" method="post" onsubmit="submitRecipe()">
+<body>
 
-          <h3> Recipe Name<sup>*</sup></h3>
-          <input required type="text" id="recipeName" name="recipeName" autocomplete="off">
+  <div class="fixed-bg">
 
-          <h3> Portions<sup>*</sup>
-          <input required type="number" id="portions" name="portions" min="0" autocomplete="off" step="1" placeholder="0">
-          </h3>
+    <!-- header -->
+    <section class="header" id="header">
+      <script>
+        $("#header").load("./header.html");
+      </script>
+    </section>
 
-          <h3> Time to cook&nbsp;
+    <!-- form for entering recipe -->
+    <div id="recipeFormDiv" class="newRecipeForm">
+
+      <h1> Create New Recipe </h1>
+
+      <form id="newRecipe" method="post" onsubmit="submitRecipe()">
+
+        <h3> Recipe Name<sup>*</sup></h3>
+        <input required type="text" id="recipeName" name="recipeName" autocomplete="off">
+
+        <h3> Portions<sup>*</sup>
+          <input required type="number" id="portions" name="portions" min="0" autocomplete="off" step="1"
+            placeholder="0">
+        </h3>
+
+        <h3> Time to cook&nbsp;
           <input type="number" id="timeToCook" name="timeToCook" min="0" autocomplete="off" step="1" placeholder="mins">
-          </h3>
+        </h3>
 
-          <h3>Dietary requirements</h3>
-          <input id="vegan" type="checkbox" name="vegan" value="vegan"><label for="vegan">Vegan</label>
-          <input id="vegetarian" type="checkbox" name="vegetarian" value="vegetarian"><label for="vegetarian">Vegetarian</label><br>
+        <h3>Dietary requirements</h3>
+        <input id="vegan" type="checkbox" name="vegan" value="vegan"><label for="vegan">Vegan</label>
+        <input id="vegetarian" type="checkbox" name="vegetarian" value="vegetarian"><label
+          for="vegetarian">Vegetarian</label><br>
 
-          <h2> Ingredients<sup>*</sup> </h2>
-          <table id="ingredientTable">
-            <tr>
-              <td class="foodColumn"><input class="ingredient" id="ingredient1" required type="text" name="ingredient1" placeholder="food" autocomplete="off" value=""></td>
-              <td><input required class="amount" type="number" name="amount1" min="0" step="any" placeholder="quantity" value=""></td>
-              <td><input class="unit" type="text" name="unit1" placeholder="unit" autocomplete="off" value=""></td>
-            </tr>
-          </table><br>
-          <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>
-          <button id="minus" type="button" name="button" onclick="removeIngredientFeild()">-</button><br>
+        <h2> Ingredients<sup>*</sup> </h2>
+        <table id="ingredientTable">
+          <tr>
+            <td class="foodColumn"><input class="ingredient" id="ingredient1" required type="text" name="ingredient1"
+                placeholder="food" autocomplete="off" value=""></td>
+            <td><input required class="amount" type="number" name="amount1" min="0" step="any" placeholder="quantity"
+                value=""></td>
+            <td><input class="unit" type="text" name="unit1" placeholder="unit" autocomplete="off" value=""></td>
+          </tr>
+        </table><br>
+        <button id="plus" type="button" name="button" onclick="addIngredientFeild()">+</button>
+        <button id="minus" type="button" name="button" onclick="removeIngredientFeild()">-</button><br>
 
-          <h3>Instructions<sup>*</sup></h3>
-          <textarea required name="instructions" rows="8" cols="40"></textarea><br><br>
+        <h3>Instructions<sup>*</sup></h3>
+        <textarea required name="instructions" rows="8" cols="40"></textarea><br><br>
 
-          <input id="submitRecipe" type="submit" name="submit" value="submit">
-          <input id="clearForm" type="reset" name="clear" value="clear">
+        <input id="submitRecipe" type="submit" name="submit" value="submit">
+        <input id="clearForm" type="reset" name="clear" value="clear">
 
-        </form>
-      </div>
-
-      <div class="footer">
-        footer
-      </div>
-
+      </form>
     </div>
 
+    <!-- footer -->
+    <div class="footer">
+      <script>
+        $(".footer").load("./footer.html");
+      </script>
+    </div>
 
-  </body>
+  </div>
+
+
+</body>
+
 </html>
