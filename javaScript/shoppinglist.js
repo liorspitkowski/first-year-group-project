@@ -62,7 +62,7 @@ function addElementToPage(rawItem) {
 }
 
 function addThToTr(row, rawContent) {
-    let box = document.createElement("th");
+    let box = document.createElement("td");
     let content = document.createTextNode(rawContent);
     box.appendChild(content);
     row.appendChild(box);
@@ -131,7 +131,7 @@ function addElementToPage_recipes(rawItem) {
 }
 
 function addBuToTr(row, info) {
-    let box = document.createElement("th");
+    let box = document.createElement("td");
     let button = document.createElement("button");
     let content = document.createTextNode("delete");
     //button.onclick = "return deleteRecipe("+info[0]+")";
@@ -153,8 +153,12 @@ function submitDelRecipe(name) {
         type: 'POST',
         data: data,
         success: function(data) {
-            console.log("received: " + data);
-            let flag = getValue('flag');
+            data = String(data);
+            console.log("received: " + data + " type is: " + typeof(data));
+            let flag = getValue('flag', data);
+            if (flag == '') {
+                flag = getValue_S('flag', data);
+            }
             /* 
                 - "flag=0" : SQL fail
                 - "flag=1" : recipe not in shopping list
@@ -167,6 +171,7 @@ function submitDelRecipe(name) {
                 alert('there is no such recipe in your shopping list');
             } else if (flag == '2') {
                 alert('deleted successfully');
+                window.location.reload();
             } else {
                 alert('server respond invalid value: ' + data);
             }
@@ -177,7 +182,7 @@ function submitDelRecipe(name) {
 
 
 function displayEmptySL_ingredients() {
-    let parentd = document.getElementById('display-div');
+    let parentd = document.getElementById('display-container-ingredients');
     let table = document.getElementById('ingredients-table');
     parentd.removeChild(table);
 
@@ -186,7 +191,7 @@ function displayEmptySL_ingredients() {
 }
 
 function displayEmptySL_recipes() {
-    let parentd = document.getElementById('display-div');
+    let parentd = document.getElementById('display-container-recipes');
     let table = document.getElementById('recipes-table');
     parentd.removeChild(table);
 
