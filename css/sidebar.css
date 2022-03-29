@@ -1,10 +1,25 @@
-/* side bar written by Yuhan begin*/
+/* 
+    Written by Yuhan/Hanmin;
+    Side bar CSS, linked to sidebar.html, loaded to pages with JS;
+    Including column-1 and column-2 setup;
+*/
+
+.column-1 {
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+
+.column-2 {
+    height: 100%;
+    width: 80%;
+    float: left;
+}
 
 .sidebar {
-    position: absolute;
-    margin-left: 6%;
     height: 90%;
     width: 90%;
+    margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.5);
 }
 

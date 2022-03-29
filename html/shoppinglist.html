@@ -17,7 +17,7 @@
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/guestUser.js"></script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             if (!checkUser()) {
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
@@ -28,47 +28,44 @@
     </script>
 </head>
 
-<body id="import">
-    <!-- Main contect space begin-->
-    <section class="left-box">
-        <!-- header -->
-        <section class="header" id="header">
-            <script>$("#header").load("./header.html");</script>
-        </section>
-
-        <!-- search space begin -->
-        <div class="row">
-            <div class="column-1" id="sidebar-box">
-                <script>$('#sidebar-box').load("./sidebar.html");</script>
-            </div>
-            <div class="column-2">
-                <div class="search-panel">
-                    <div class="search-result" id="display-div">
-                        <table id="recipes-table">
-                            <tr>
-                                <th>Recipe Name</th>
-                                <th>Portion</th>
-                                <th>Delete</th>
-                            </tr>
-                        </table>
-                        <table id="ingredients-table">
-                            <tr>
-                                <th>Ingredient Name</th>
-                                <th>Quantity</th>
-                                <th>Unit</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- search space end -->
-            <!-- footer begin -->
-            <div class="footer">
-                <script>$(".footer").load("./footer.html");</script>
-            </div>
-            <!-- footer end -->
+<body>
+    <!-- header -->
+    <section class="header" id="header">
+        <script>
+            $("#header").load("./header.html");
+        </script>
     </section>
-    <!-- Main content space end-->
-    <!-- The background image section -->
-    <section class="right-box"></section>
+
+    <!-- main content -->
+    <section class="middle-box" id="middle-box">
+        <div class="column-1" id="sidebar-box">
+            <script>
+                $('#sidebar-box').load("./sidebar.html");
+            </script>
+        </div>
+        <div class="column-2">
+            <div class="display-shoppinglist" id="display-div">
+                <table id="recipes-table">
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Portion</th>
+                        <th>Delete</th>
+                    </tr>
+                </table>
+                <table id="ingredients-table">
+                    <tr>
+                        <th>Ingredient Name</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                    </tr>
+                </table>
+            </div>
+    </section>
+
+    <!-- footer -->
+    <section class="footer">
+        <script>
+            $(".footer").load("./footer.html");
+        </script>
+    </section>
 </body>
