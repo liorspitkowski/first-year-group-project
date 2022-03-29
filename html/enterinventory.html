@@ -38,51 +38,59 @@
 
     <!-- main content -->
     <section class="middle-box" id="middle-box">
-        <div class="form-box">
-            <p class="title">What's in your fridge</p>
-            <div id="displayinventory">
-                <table id="inventory-table">
-                    <tr>
-                        <th>Ingredient</th>
-                        <th>Quantity</th>
-                        <th>Unit</th>
-                        <th>Change</th>
-                    </tr>
-                </table>
-            </div>
-            <p class="title">Add an ingredient</p>
-            <div id="addinventory">
-                <form id="inventory_form">
-                    <table id="form-table">
+        <div class="column-1" id="sidebar-box">
+            <script>
+                $('#sidebar-box').load("./sidebar.html");
+            </script>
+        </div>
+        <div class="column-2">
+            <div class="form-box">
+                <p class="title">What's in your fridge</p>
+                <div id="displayinventory">
+                    <table id="inventory-table">
                         <tr>
-                            <td>
-                                <label for="ingredient">Ingredient:</label>
-                                <input type="text" placeholder="Foodname..." name="ingredient" required>
-                            </td>
-                            <td>
-                                <label for="quantity">Quantity:</label>
-                                <input type="number" placeholder="Quantities..." name="quantity" id="quantity" min="0" required>
-                            </td>
-                            <td rowspan="2"><input type="submit" value="Add"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <input type="hidden" id="ml" name="unit" value="ml">
-                                <!--label type= for="ml">ml</label-->
-                                <input type="hidden" id="g" name="unit" value="g">
-                                <!--label for="g">g</label-->
-                                <input type="hidden" id="kg" name="unit" value="kg">
-                                <!--label for="kg">kg</label-->
-                                <input type="hidden" id="slices" name="unit" value="slices">
-                                <!--label for="slices">slices</label-->
-                                <input type="hidden" id="mug" name="unit" value="mug">
-                                <!--label for="mug">mug</label-->
-                            </td>
+                            <th>Ingredient</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Change</th>
                         </tr>
                     </table>
-                </form>
+                </div>
+                <p class="title">Add an ingredient</p>
+                <div id="addinventory">
+                    <form id="inventory_form">
+                        <table id="form-table">
+                            <tr>
+                                <td>
+                                    <label for="ingredient">Ingredient:</label>
+                                    <input type="text" placeholder="Foodname..." name="ingredient" required>
+                                </td>
+                                <td>
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" placeholder="Quantities..." name="quantity" id="quantity" min="0" required>
+                                </td>
+                                <td rowspan="2"><input type="submit" value="Add"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="hidden" id="ml" name="unit" value="ml">
+                                    <!--label type= for="ml">ml</label-->
+                                    <input type="hidden" id="g" name="unit" value="g">
+                                    <!--label for="g">g</label-->
+                                    <input type="hidden" id="kg" name="unit" value="kg">
+                                    <!--label for="kg">kg</label-->
+                                    <input type="hidden" id="slices" name="unit" value="slices">
+                                    <!--label for="slices">slices</label-->
+                                    <input type="hidden" id="mug" name="unit" value="mug">
+                                    <!--label for="mug">mug</label-->
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
+
     </section>
 
     <!-- footer -->
