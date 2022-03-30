@@ -1,0 +1,70 @@
+
+.footer {
+    height: 10%;
+    width: 100%;
+    display: block;
+}
+.footer-content{
+    height: 80%;
+    width: 100%;
+    display: flex;
+}
+.footer-content .left-box{
+    flex-grow: 1;
+    text-align: center;
+    color:black;
+}
+.footer-content .right-box{
+    flex-grow: 1;
+    text-align: center;
+}
+.footer-content .right-box a {
+    font-size: 26px;
+    margin: 0 16px;
+    border-radius: 25%;
+    text-align: center; 
+    line-height: 60px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    color: #fff;
+    padding: 10px;
+}
+.right-box a:nth-child(1){
+    background: #4267B2;
+}
+.right-box a:nth-child(1):hover{
+    color: #4267B2 ;
+    background: #fff;
+}
+.right-box a:nth-child(2){
+    background: #1DA1F2;
+}
+.right-box a:nth-child(2):hover{
+    color: #1DA1F2 ;
+    background: #fff;
+}
+.right-box a:nth-child(3){
+    background: #E1306c;
+}
+.right-box a:nth-child(3):hover{
+    color: #E1306c ;
+    background: #fff;
+} 
+.right-box a:nth-child(4){
+    background: #0077b5;
+}
+.right-box a:nth-child(4):hover{
+    color: #0077B5 ;
+    background: #fff;
+}
+.right-box a:nth-child(5){
+    background: #FF0000;
+}
+.right-box a:nth-child(5):hover{
+    color: #FF0000 ;
+    background: #fff;
+}                 
+.copyright{
+    text-align: center;
+    color: black;
+}
