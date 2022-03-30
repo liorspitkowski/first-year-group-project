@@ -1,84 +1,93 @@
-
-html{
-    height:100%;
+html {
+    height: 100%;
     background-color: honeydew;
 }
-body{
-    margin:0;
-    height:100%;
-}
-.left-box{
-    background-color: rgba(240,255,240,1);
-    float:left;
-    height:100%;
-    width:60%;
 
-}
-.right-box{
-    background-color: blue;
-    float:left;
-    height: 100%;
-    width:40%;
-
-    overflow: hidden;
-    background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
+body {
+    background-image: url("../src/cooked-food.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-
+    height: 100%;
 }
 
-.row{
-    height:80%;
-    width:100%;
+.middle-box {
+    height: 80%;
+}
+
+.column-1 {
+    padding-left: 20px;
+}
+
+.search-panel {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Search Bar */
+
+#search_form {
+    height: 14%;
+    padding: 3vh 0 0 0;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.search {
+    height: 75%;
+    width: 80%;
+    display: flex;
+    margin: 0 10%;
+}
+
+.search-box {
+    flex-grow: 1;
+    height: 70%;
+    width: 80%;
+    text-align: center;
+}
+
+.search-comfirm {
+    flex-grow: 1;
+    width: 20%;
+    margin: 20px;
+}
+
+.search-selection {
+    margin: 0 10%;
+}
+
+.search-display {
+    height: 85%;
+}
+
+#search-results {
+    text-align: center;
+    height: 87%;
+}
+
+#user_search {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    background-color: rgba(255, 242, 127, 0.6);
+}
+
+#search_button {
+    height: 70%;
+    width: 80%;
+    border: 0;
+    border-radius: 5px;
     background-color: gold;
 }
 
-
-.column-1{
-    height:100%;
-    width:20%;
-    float: left;
-    position:relative;
-
-    display: flex;
-    align-items: center;
-}
-.column-2{
-    height:100%;
-    width:80%;
-    float:left;
-
-    position:relative;
-
-    overflow: visible;
-
-     display: flex; 
-    
-    align-items: center;  
-}
-.column-2 p{
-    margin:0;
-    line-height: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-family: "Times New Roman", Times, serif;
-    text-decoration:none;
+#search_button:hover {
+    background-color: goldenrod;
 }
 
-.search-panel{
-    position:absolute;
-    
-    height:90%;
-    width:150%;
-    margin-left:10%;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-.search-bar{
-    margin:1%;
-    height:10%;
-    border: 1px solid black;
-}
-.search-result{
-    margin:1%;
-    height:85%;
-    border: 1px solid black;
+label {
+    font-size: 1vh;
 }
