@@ -227,7 +227,7 @@
 			//remove last letter
 			$last = substr($ingredients[$i], -1);
 			if ($last == "s"){
-				$ingredients[$i] = substr($ingredients, 0, -1) . "(s)";
+				$ingredients[$i] = substr($ingredients[$i], 0, -1) . "(s)";
 			}else{
 				$ingredients[$i] = $ingredients[$i] . "(s)";
 			}
