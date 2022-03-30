@@ -225,15 +225,10 @@
 	function removeUnitVariableNames($ingredients, $amounts, $units){
 		for ($i = 0; $i < count($ingredients); $i++){
 			//remove last letter
-			$last = substr($ingredients[$i], -1);
-			if ($last == "s"){
-				$ingredients[$i] = substr($ingredients[$i], 0, -1) . "(s)";
-			}else{
-				$ingredients[$i] = $ingredients[$i] . "(s)";
+			if ($units[$i] == "unit"){
+				//remove unit from units array
+				$units[$i] = $ingredients[$i];
 			}
-
-			//remove unit from units array
-			$units[$i] = " ";
 		}
 
 		return array($ingredients, $amounts, $units);
