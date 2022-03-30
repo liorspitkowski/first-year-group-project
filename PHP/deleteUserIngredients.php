@@ -12,7 +12,7 @@ function delete_and_confirm() {
 
     delete_user_ingredients($conn, $id);
     reassign_recipes($conn, $id);
-    delete_user_ingredients($conn, $id);
+    delete_user_shoppinglist($conn, $id);
 
     if (ingredients_confirmation($conn, $id) && recipes_confirmation($conn, $id) && shoppingList_confirmation($conn, $id)) {
         echo("flag=1");
@@ -40,7 +40,7 @@ function reassign_recipes($conn, $id) {
 }
 
 // deletes user shopping list
-function delete_user_ingredients($conn, $id) {
+function delete_user_shoppinglist($conn, $id) {
     $sql = "DELETE FROM shopRecipes WHERE userId = :userId";
     $stmt = $conn->prepare($sql);
     $stmt ->execute([
