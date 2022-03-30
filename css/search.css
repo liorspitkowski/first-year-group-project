@@ -17,11 +17,13 @@ body {
 }
 
 .middle-box {
-    height: 80%;
+    height: 79%;
 }
-.column-1{
+
+.column-1 {
     padding-left: 20px;
 }
+
 .search-panel {
     height: 100%;
     width: 90%;
@@ -38,26 +40,30 @@ body {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.search{
+.search {
     height: 75%;
     width: 80%;
     display: flex;
     margin: 0 10%;
 }
-.search-box{
+
+.search-box {
     flex-grow: 1;
     height: 70%;
     width: 80%;
     text-align: center;
 }
-.search-comfirm{
+
+.search-comfirm {
     flex-grow: 1;
     width: 20%;
     margin: 20px;
 }
-.search-selection{
+
+.search-selection {
     margin: 0 10%;
 }
+
 .search-display {
     height: 85%;
 }
