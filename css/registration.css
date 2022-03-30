@@ -59,7 +59,10 @@ body {
 }
 
 .line input {
-    border: 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: rgba(255, 217, 0, 0.486);
+    border-image: initial;
     height: 3vh;
 }
 

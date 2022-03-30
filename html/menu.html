@@ -8,10 +8,11 @@
         Foogle - Menu
     </title>
     <script src="../javaScript/jquery-3.6.0.js"></script>
+    <script src="../javaScript/menu.js"></script>
     <link rel="stylesheet" href="../css/menu.css">
 </head>
 
-<body>
+<body onload="loadDiscription()">
     <!-- header -->
     <section class="header" id="header">
         <script>
@@ -27,14 +28,14 @@
             <div class="block-row">
                 <div class="block">
                     <div class="card">
-                        <a href="./newRecipe.html">
+                        <a id="link_recipe" href="./newRecipe.html">
                             Create your recipe
                         </a>
                     </div>
                 </div>
                 <div class="block">
                     <div class="card">
-                        <a href="./enterinventory.html">Enter your Inventory</a>
+                        <a id="link_inventory" href="./enterinventory.html">Enter your Inventory</a>
                     </div>
                 </div>
             </div>
@@ -42,12 +43,12 @@
             <div class="block-row">
                 <div class="block">
                     <div class="card">
-                        <a href="./search.html">Search for recipe</a>
+                        <a id="link_search" href="./search.html">Search for recipe</a>
                     </div>
                 </div>
                 <div class="block">
                     <div class="card">
-                        <a href="./userprofile.html">My Profile</a>
+                        <a id="link_profile" href="./userprofile.html">My Profile</a>
                     </div>
                 </div>
             </div>
@@ -55,8 +56,7 @@
         <!-- left part ends -->
         <!-- right part start -->
         <div class="column-2">
-            <p>This is the Place<br> where should have a bunch of<br> content showing what the <br> buttons on left side do <br>
-            </p>
+            <p id="contentLoadParagraph"></p>
         </div>
         <!-- right part ends -->
     </section>
