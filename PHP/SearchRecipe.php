@@ -159,12 +159,12 @@ function levenshteinDistance($w1, $w2){
 
 function main(){
   $searchName = $_POST['user_search'];
-  $searchByInventory = $_POST['inv_search'];
+  $searchByInventory = isset($_POST['inv_search']);
   $userId = $_POST['user_id'];
   $vegi = isset($_POST['filter1']);
   $vegan = isset($_POST['filter2']);
 
-  if ($searchByInventory != NULL){
+  if ($searchByInventory){
     searchInv($userId, $vegi, $vegan);
   }
   else{
