@@ -19,7 +19,10 @@
 		//now the names and units are retrieved
 		$ingredients = getIngredientNames($conn, $ingredients[0], $ingredients[1]);
 
+		$ingredients = removeUnitVariableNames($ingredients[0], $ingredients[1], $ingredients[2]);
+
 		$endString = formatData($ingredients[0], $ingredients[1], $ingredients[2]);
+
 
 		//then returned to user
 		return $endString;
@@ -217,5 +220,22 @@
 			$data = $data . $names[count($names) - 1] . "#" . $amounts[count($names) - 1] . "#" . $units[count($names) - 1];
 		}
 		return $data;
+	}
+
+	function removeUnitVariableNames($ingredients, $amounts, $units){
+		for ($i = 0; $i < count($ingredients); $i++){
+			//remove last letter
+			$last = substr($ingredients[$i], -1);
+			if ($last == "s"){
+				$ingredients[$i] = substr($ingredients, 0, -1) . "(s)";
+			}else{
+				$ingredients[$i] = $ingredients[$i] . "(s)";
+			}
+
+			//remove unit from units array
+			$units[$i] = " ";
+		}
+
+		return array($ingredients, $amounts, $units);
 	}
 ?>
