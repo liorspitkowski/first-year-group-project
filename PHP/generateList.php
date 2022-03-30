@@ -218,4 +218,19 @@
 		}
 		return $data;
 	}
+
+	function removeUnitVariableNames($ingredients, $units){
+		for ($i = 0; $i < count($ingredients); $i++){
+			//remove last letter
+			$last = substr($ingredients[$i], -1);
+			if ($last == "s"){
+				$ingredients[$i] = substr($ingredients, 0, -1) . "(s)";
+			}else{
+				$ingredients[$i] = $ingredients[$i] . "(s)";
+			}
+
+			//remove unit from units array
+			$units[$i] = " ";
+		}
+	}
 ?>
