@@ -1,90 +1,60 @@
-
-html{
-    height:100%;
+html {
+    height: 100%;
     background-color: honeydew;
 }
-body{
-    margin:0;
-    height:100%;
-}
-.left-box{
-    background-color: rgba(240,255,240,1);
-    float:left;
-    height:100%;
-    width:60%;
 
-}
-.right-box{
-    background-color: blue;
-    float:left;
+body {
+    margin: 0;
     height: 100%;
-    width:40%;
-
-    overflow: hidden;
-    background-image:linear-gradient(to right, rgba(240,255,240,1), rgba(255,255,255,0)), url(../src/search_bg.png);
+    background-image: url("../src/cooked-food.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-
 }
 
-.topbox{
-    height: 8%;
-}
-.title-box{
-    height:100%;
-    width:20%;
-    float:left;
-}
-.shopping-list{
-    height:100%;
-    width:10%;
-    float:right;
-}
-
-.row{
-    height:80%;
-    width:100%;
+.row {
+    margin: 0 auto;
+    height: 80%;
+    width: 70%;
     background-color: gold;
 }
 
 
-.column-1{
-    height:100%;
-    width:20%;
+.column-1 {
+    height: 100%;
+    width: 20%;
     float: left;
-    position:relative;
+    position: relative;
 
     display: flex;
     align-items: center;
 }
-.column-2{
-    height:100%;
-    width:80%;
-    float:left;
 
-    position:relative;
-
+.column-2 {
     overflow: visible;
-
-     display: flex; 
-    
-    align-items: center;  
+    display: flex;
+    align-items: center;
+    margin: 0 5%;
 }
-.column-2 p{
-    margin:0;
+
+.column-2 p {
+    margin: 0 10%;
     line-height: 100%;
     text-align: center;
     font-size: 32px;
     font-family: "Times New Roman", Times, serif;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-.search-bar{
-    margin:1%;
-    height:10%;
+.search-bar {
+    margin: 1%;
+    height: 10%;
     border: 1px solid black;
 }
-.search-result{
-    height:89.6%;
+
+.search-result {
+    height: 95%;
     width: 95%;
     border: 1px solid black;
 }

@@ -12,25 +12,25 @@
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/guestUser.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             if (!checkUser()) {
                 alert("You haven't logged in! You must have forget!\nOr...Try to Register?");
                 window.history.go(-1);
             } else {
                 populate();
-                document.getElementById('username_form').addEventListener('submit', function(e) {
+                document.getElementById('username_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitUsernameChangeRequest();
                 });
-                document.getElementById('firstname_form').addEventListener('submit', function(e) {
+                document.getElementById('firstname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitFirstnameChangeRequest();
                 });
-                document.getElementById('lastname_form').addEventListener('submit', function(e) {
+                document.getElementById('lastname_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitLastnameChangeRequest();
                 });
-                document.getElementById('delete_form').addEventListener('submit', function(e) {
+                document.getElementById('delete_form').addEventListener('submit', function (e) {
                     e.preventDefault();
                     submitDeleteRequest();
                 });
@@ -41,61 +41,68 @@
 </head>
 
 <body>
-    <!-- Main contect space -->
-    <section class="left-box">
-        <!-- header -->
-        <section class="header" id="header">
-            <script>
-                $("#header").load("./header.html");
-            </script>
-        </section>
 
-        <!-- search space begin -->
-        <div class="row">
-            <div class="column-1" id="sidebar-box">
-                <script>
-                    $('#sidebar-box').load("./sidebar.html");
-                </script>
-            </div>
-            <div class="column-2">
-                <div class="search-result">
-                    <p>My profile</p>
+    <!-- header -->
+    <section class="header" id="header">
+        <script>
+            $("#header").load("./header.html");
+        </script>
+    </section>
+
+    <!-- search space begin -->
+    <div class="row">
+        <div class="column-1" id="sidebar-box">
+            <script>
+                $('#sidebar-box').load("./sidebar.html");
+            </script>
+        </div>
+        <div class="column-2">
+            <div class="search-result">
+                <br>
+                <p>My profile</p>
+                <br>
+                <center>
                     <form id="username_form">
                         <label for="user_changed_name">Username</label>
-                        <input type="text" name="user_changed_name" id="user_changed_name" value="" required pattern=".{8,}" title="8 letters or more">
+                        <input type="text" name="user_changed_name" id="user_changed_name" value="" required
+                            pattern=".{8,}" title="8 letters or more">
                         <input type="submit" value="change">
                     </form>
+                    <br>
                     <form id="firstname_form">
                         <label for="user_changed_fname">Firstname</label>
-                        <input type="text" name="user_changed_fname" id="user_changed_fname" value="" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                        <input type="text" name="user_changed_fname" id="user_changed_fname" value="" required
+                            pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit" value="change">
                     </form>
+                    <br>
                     <form id="lastname_form">
                         <label for="user_changed_lname">Lastname</label>
-                        <input type="text" name="user_changed_lname" id="user_changed_lname" value="" required pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
+                        <input type="text" name="user_changed_lname" id="user_changed_lname" value="" required
+                            pattern="[A-Z][a-z]*" title="Please capitalize the first letter">
                         <input type="submit" value="change">
                     </form>
+                    <br>
                     <form id="delete_form">
                         <input type="submit" value="Delete user">
                     </form>
-                </div>
-                <div class="displayrecipies scroller" id="displayrecipies">
-                    <p>Your recipies:
+                    <br>
+                    <div class="displayrecipies scroller" id="displayrecipies">
+                        <p>Your recipies:
                         <p>
-                            <ul id="displayRecipiesList">
-                            </ul>
-                </div>
+                        <ul id="displayRecipiesList">
+                        </ul>
+                    </div>
             </div>
-            <!-- search space end -->
-
-            <!-- footer -->
-            <div class="footer">
-                <script>
-                    $(".footer").load("./footer.html");
-                </script>
-            </div>
-    </section>
-    <!-- The background image section -->
-    <section class="right-box">
+        </div>
+        </center>
+        <!-- search space end -->
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <script>
+            $(".footer").load("./footer.html");
+        </script>
+    </div>
     </section>
 </body>
