@@ -137,3 +137,7 @@ label {
     justify-content: center;
     height: 20%;
 }
+
+.disabled {
+    pointer-events: none;
+}
