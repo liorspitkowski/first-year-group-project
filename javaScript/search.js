@@ -136,3 +136,73 @@ function clearPage() {
 function indexUpdate() {
     document.getElementById('index').innerHTML = current_page + '/' + page_num;
 }
+
+/*
+    Receive data from display recipe page;
+*/
+
+function receiveGET() {
+    console.log("running receive get");
+    let params = new URLSearchParams(location.search);
+    console.log("receiveing: " + params.get('user_search_notlocal'));
+
+    initializePage(params);
+
+    if (params.get('user_search_notlocal') == null) {
+        console.log("nothing received from displayrecipe.php");
+        return false;
+    }
+
+    params = "user_search=" + params.get('user_search_notlocal');
+    var url = "../PHP/SearchRecipe.php",
+        data = params + "&user_id=" + getCookie("userid");
+    console.log(data);
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        success: function(data) {
+            console.log('receiving:' + data);
+
+            if (data != '') {
+                recipe_array = getValue_noName(';', data);
+                // let totalresult = recipe_array.length;
+                recipe_array = listToMatrix(recipe_array, max_show);
+                // Get how many pages
+                page_num = recipe_array.length;
+                current_page = 1;
+                clearPage();
+                for (let i = 1; i <= max_show; i++) {
+                    // write recipes;
+                    addElement(i, "button", "result-" + i, recipe_array[current_page - 1][i - 1], "search-results");
+                }
+                // write index;
+                indexUpdate();
+            } else {
+                outputEmptyMessage();
+            }
+        }
+    });
+    return false;
+}
+
+function initializePage(data) {
+    user_search = data.get('user_search_notlocal');
+    document.getElementById('user_search').value = user_search;
+    filter1 = data.get('filter1');
+    if (filter1 == 'vegi') {
+        document.getElementById('filter1').checked = true;
+    }
+    filter2 = data.get('filter2');
+    if (filter2 == 'vegan') {
+        document.getElementById('filter2').checked = true;
+    }
+    inv_search = data.get('inv_search');
+    if (inv_search == 'inv_search') {
+        document.getElementById('inv_search').checked = true;
+    }
+
+
+
+
+}
