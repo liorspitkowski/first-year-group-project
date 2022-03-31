@@ -11,11 +11,12 @@
     <script src="../javaScript/getValue.js"></script>
     <script src="../javaScript/getCookie.js"></script>
     <script type="text/javascript">
-        window.onload = function () {
-            document.getElementById('search_form').addEventListener('submit', function (e) {
+        window.onload = function() {
+            document.getElementById('search_form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 return submitSearch();
             });
+            receiveGET();
         }
     </script>
     <!-- style sheets -->
@@ -43,24 +44,23 @@
                 <form id="search_form">
                     <div class="search">
                         <div class="search-box">
-                                <input type="text" name='user_search' id="user_search" placeholder="Search some food..."
-                                    required>
+                            <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
                         </div>
-                        <div class="search-comfirm">    
+                        <div class="search-comfirm">
                             <input type="submit" value="Search" id="search_button">
-                        </div>    
+                        </div>
                     </div>
-                    <div class="search-selection">  
-                                <input type="checkbox" id="filter1" name="filter1" value="vegi">
-                                <label for="filter1">Vegi</label>
-                            
-                            <input type="checkbox" id="filter2" name="filter2" value="vegan">
-                                <label for="filter2">Vegan</label>
-                            
-                            
-                                <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
-                                <label for="inv_search">from inventory</label>
-                    </div>          
+                    <div class="search-selection">
+                        <input type="checkbox" id="filter1" name="filter1" value="vegi">
+                        <label for="filter1">Vegi</label>
+
+                        <input type="checkbox" id="filter2" name="filter2" value="vegan">
+                        <label for="filter2">Vegan</label>
+
+
+                        <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
+                        <label for="inv_search">from inventory</label>
+                    </div>
 
 
                 </form>

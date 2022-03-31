@@ -76,10 +76,10 @@ if ($row = $stmt->fetch()) {
     <div class="column-2">
 
       <div class="search-panel">
-        <form id="search_form">
+        <form id="search_form" action="../html/search.html" method="GET">
           <div class="search">
             <div class="search-box">
-              <input type="text" name='user_search' id="user_search" placeholder="Search some food..." required>
+              <input type="text" name='user_search_notlocal' id="user_search_notlocal" placeholder="Search some food..." required>
             </div>
             <div class="search-comfirm">
               <input type="submit" value="Search" id="search_button">
@@ -104,47 +104,37 @@ if ($row = $stmt->fetch()) {
 
 
 
-          <?php
-          if ($page_result == 200) {
-          ?>
+          <?php if ($page_result == 200) { ?>
             <div class="content-row">
               <div class="content-left">
                 <p class="title">
-                  <?php
-                  echo $name;
-                  ?>
+                  <?php echo $name; ?>
                 </p>
                 <p class="subtitle">
-                  <?php
-                  echo "Portions: $portions Times required: $TTM"
-                  ?>
+                  <?php echo "Portions: $portions Times required: $TTM" ?>
                 </p>
                 <p class="subtitle">
                   Ingredients mentioned:
                 </p>
-                <?php
-                foreach ($foods as $ingridient) {
+                <?php foreach ($foods as $ingridient) {
                   echo "<p class='ingredients'>$ingridient</p>\n";
-                }
-                ?>
+                } ?>
               </div>
               <div class="content-right">
                 <p class="title">Instructions</p>
                 <p class="instructions">
-                  <?php
-                  echo $instructions;
-                  ?>
+                  <?php echo $instructions; ?>
                 </p>
               </div>
             </div>
 
 
-          <?php
-          } else {
+          <?php } else {
             echo "<h1>404 Not found</h1>";
-            echo "<p>$result</p>";
-          }
-          ?>
+            if (isset($result)) :
+              echo "<p>$result</p>";
+            endif;
+          } ?>
 
           <div class="display_buttons">
             <table>
@@ -153,7 +143,7 @@ if ($row = $stmt->fetch()) {
                   <td>
                     <button type="submit">add to shopping list</button>
                   </td>
-                  <td rowspan="3">portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></td>
+                  <td rowspan="3">portions:<input id="portions" name="portions" type="number" min="1" step="any" value="1"></td>
                 </tr>
               </form>
               <form id="remove_from_list" onsubmit="event.preventDefault(); removeFromSL();">
