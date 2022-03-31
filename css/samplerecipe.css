@@ -62,6 +62,7 @@ body {
 
 .search-display {
     height: 85%;
+    text-align: center;
 }
 
 #search-results {
@@ -90,4 +91,49 @@ body {
 
 label {
     font-size: 1vh;
+}
+
+
+/* Recipe Discriptions */
+
+.content-row {
+    height: 75%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.content-left {
+    float: left;
+    width: 35%;
+    height: 100%;
+}
+
+.content-right {
+    float: left;
+    width: 65%;
+    height: 100%;
+}
+
+.instructions {
+    overflow-y: scroll;
+}
+
+.title {
+    font-size: 6vh;
+    font-weight: 800;
+}
+
+.subtitle {
+    font-size: 3vh;
+    font-weight: 600;
+}
+
+
+/* Butttons */
+
+.display_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
 }
