@@ -109,25 +109,40 @@ function submitRecipe(submitButton) {
         });
     }
 
-    function displayMessage(type, message) {
+    var url = "../PHP/addRecipe.php";
+    var data = $('#newRecipe').serialize() + "&userId=" + getCookie('userid');
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        success: function(data)
+         {
+           console.log(data);
+           result = data.split(" | ");
+           displayMessage(result[0], result[1]);
+         }
+     });
+  }
 
-        var colour;
-        switch (type) {
-            case "-1":
-                colour = "#ffdede";
-                break;
-            case "0":
-                colour = "#ffb861";
-                break;
-            case "1":
-                document.getElementById("clearForm").click();
-                colour = "#83ff7a";
-                break;
-            case "99":
-                return;
-            default:
-                colour = "white";
-                break;
+  function displayMessage(type, message){
+
+    var colour;
+    switch (type) {
+      case "-1":
+        colour = "#ffdede";
+        break;
+      case "0":
+        colour = "#ffb861";
+        break;
+      case "1":
+        document.getElementById("clearForm").click();
+        colour = "#83ff7a";
+        break;
+      case "99":
+        return;
+      default:
+        colour = "white";
+        break;
 
         }
 
