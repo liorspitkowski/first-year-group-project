@@ -56,6 +56,7 @@ if ($row = $stmt->fetch()) {
   <script src="../javaScript/editShoppingList.js"></script>
   <script src="../javaScript/getCookie.js"></script>
   <script src="../javaScript/getValue.js"></script>
+  <script src="../javaScript/guestUser.js"></script>
 </head>
 
 <body>
