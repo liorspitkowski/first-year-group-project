@@ -3,33 +3,33 @@
     send login form, expect return value -0/1: incorrect username and password -2: correct username and password;
 */
 function submitLogin() {
-    var url = "../PHP/login.php", data = $('#login_form').serialize();
+    var url = "../PHP/login.php",
+        data = $('#login_form').serialize();
     const formData = new FormData(document.querySelector('#login_form'))
     console.log(data);
     $.ajax({
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             let flag = getValue("flag", data);
             let userid = getValue("username", data);
             // alert(data);
             // alert("flag= "+flag+" userid= "+userid);
             if (flag == "0" | flag == "1") {
                 alert('username or password incorrect, \nplease check again');
-            }
-            else if (flag == "2") {
-                alert('welcome back to Foogle ' + userid);
+            } else if (flag == "2") {
+                console.log("logged in as " + userid);
                 for (var pair of formData.entries()) {
                     console.log(pair[0] + ': ' + pair[1]);
                     if (pair[0] == 'user_name') {
                         document.cookie = 'username=' + pair[1] + '; expires=18 Dec 2025 12:00:00 UTC;path=/';
+                        alert('welcome back to Foogle, ' + pair[1] + "!");
                     }
                 }
                 document.cookie = 'userid=' + userid + '; expires=18 Dec 2025 12:00:00 UTC;path=/';
                 location.href = "../html/menu.html";
-            }
-            else {
+            } else {
                 alert('server response invalid value: ' + data);
             }
         }
@@ -51,15 +51,15 @@ function submitLogin() {
 function setupResetPassword() {
     console.log("setupResetPassword()");
     var parentform = document.getElementById('forgetpasswordform')
-    // remove the button
-    //parentform.removeChild(document.getElementById('removedbutton'));
-    // add form begin
-    // form
+        // remove the button
+        //parentform.removeChild(document.getElementById('removedbutton'));
+        // add form begin
+        // form
     let newDiv = document.createElement("form");
     newDiv.name = "resetpw_form";
     newDiv.id = "resetpw_form";
     // when submiting the form, it should call the function 'submitResetPassword()'
-    newDiv.addEventListener("submit",submitResetPassword);
+    newDiv.addEventListener("submit", submitResetPassword);
     //newDiv.onsubmit = "return submitResetPassword()";
 
     parentform.appendChild(newDiv);
@@ -111,7 +111,8 @@ function setupResetPassword() {
 function submitResetPassword() {
     alert("function called");
     if (email != null) {
-        var url = "../PHP/forgotPassword.php", data = $('#resetpw_form').serialize();
+        var url = "../PHP/forgotPassword.php",
+            data = $('#resetpw_form').serialize();
         console.log(data);
         $.ajax({
             // prevent page reload, dunno the reason
@@ -119,7 +120,7 @@ function submitResetPassword() {
             url: url,
             type: 'POST',
             data: data,
-            success: function (data) {
+            success: function(data) {
                 alert(data);
                 let flag = getValue('flag', data);
                 if (flag == '1') {
@@ -128,11 +129,9 @@ function submitResetPassword() {
                     if (user_code == server_code) {
                         return submitCode();
                     }
-                }
-                else if (flag == '0') {
+                } else if (flag == '0') {
                     alert('No such email');
-                }
-                else {
+                } else {
                     alert('server respond invald value: ' + data);
                 }
             }
@@ -141,7 +140,7 @@ function submitResetPassword() {
         return false;
     }
     alert('please enter a valid email address');
-    
+
     return false;
 }
 
@@ -151,7 +150,8 @@ function submitCode() {
     if (reset_pw != null) {
         let user_id = getCookie('userid');
         // add user_id into data stream.
-        var url = "../PHP/forgotPassword.php", data = 'newPassword=' + reser_pw + "&user_id=" + user_id;
+        var url = "../PHP/forgotPassword.php",
+            data = 'newPassword=' + reser_pw + "&user_id=" + user_id;
         console.log(data);
         $.ajax({
             // prevent page reload, dunno the reason
@@ -159,16 +159,14 @@ function submitCode() {
             url: url,
             type: 'POST',
             data: data,
-            success: function (data) {
+            success: function(data) {
                 alert(data);
                 let flag = getValue('flag', data);
                 if (flag == '1') {
                     alert("successful, a confirmation email should be in your inbox\n remember to check spam.");
-                }
-                else if (flag == '0') {
+                } else if (flag == '0') {
                     alert('Falty, try again?');
-                }
-                else {
+                } else {
                     alert('server respond invald value: ' + data);
                 }
             }
