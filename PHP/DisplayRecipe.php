@@ -74,6 +74,7 @@ if ($row = $stmt->fetch()) {
       </script>
     </div>
     <div class="column-2">
+
       <div class="search-panel">
         <form id="search_form">
           <div class="search">
@@ -95,40 +96,88 @@ if ($row = $stmt->fetch()) {
             <input type="checkbox" id="inv_search" name="inv_search" value="inv_search">
             <label for="inv_search">from inventory</label>
           </div>
-
-
         </form>
 
 
         <div class="search-display">
 
+
+
+
           <?php
           if ($page_result == 200) {
-            echo "<div id='result-recipe-name'>\n";
-            echo "<h1>$name</h1>\n";
-            echo "</div>\n";
-            echo "<div id='result-recipe-info'>\n";
-            echo "<h2>Portions: $portions</h2>\n";
-            echo "<h2>Time To Make: $TTM</h2>\n";
-            echo "</div>\n";
-            echo "<div id='result-recipe-instructions'>\n";
-            foreach ($foods as $ingridient) {
-              echo "<p>$ingridient</p>\n";
-            }
-            echo "</div>";
-            echo "<div id='result-recipe-instructions'>";
-            echo "<p>$instructions</p>";
-            echo "</div>";
+          ?>
+            <div class="content-row">
+              <div class="content-left">
+                <p class="title">
+                  <?php
+                  echo $name;
+                  ?>
+                </p>
+                <p class="subtitle">
+                  <?php
+                  echo "Portions: $portions Times required: $TTM"
+                  ?>
+                </p>
+                <p class="subtitle">
+                  Ingredients mentioned:
+                </p>
+                <?php
+                foreach ($foods as $ingridient) {
+                  echo "<p class='ingredients'>$ingridient</p>\n";
+                }
+                ?>
+              </div>
+              <div class="content-right">
+                <p class="title">Instructions</p>
+                <p class="instructions">
+                  <?php
+                  echo $instructions;
+                  ?>
+                </p>
+              </div>
+            </div>
+
+
+          <?php
           } else {
             echo "<h1>404 Not found</h1>";
             echo "<p>$result</p>";
           }
           ?>
 
-          <form id="add_to_list" onsubmit="event.preventDefault(); addToSL();"><button type="submit">add to shopping list</button>
-            portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></form><br>
-          <form id="remove_from_list" onsubmit="event.preventDefault(); removeFromSL();"><button type="submit">remove from shopping list</button></form><br>
-          <form id="remove_from_inventory" onsubmit="event.preventDefault(); remove_from_inventory();"><button type="submit">remove from inventory</button></form><br>
+          <div class="display_buttons">
+            <table>
+              <form id="add_to_list" onsubmit="event.preventDefault(); addToSL();">
+                <tr>
+                  <td>
+                    <button type="submit">add to shopping list</button>
+                  </td>
+                  <td rowspan="3">portions:<input id="portions" name="portions" type="number" min="0" step="any" value=""></td>
+                </tr>
+              </form>
+              <form id="remove_from_list" onsubmit="event.preventDefault(); removeFromSL();">
+                <tr>
+                  <td><button type="submit">remove from shopping list</button></td>
+                </tr>
+              </form>
+              <form id="remove_from_inventory" onsubmit="event.preventDefault(); remove_from_inventory();">
+                <tr>
+                  <td><button type="submit">remove from inventory</button></td>
+                </tr>
+              </form>
+            </table>
+
+
+
+
+
+
+
+
+
+
+          </div>
 
         </div>
       </div>
