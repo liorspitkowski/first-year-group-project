@@ -128,7 +128,7 @@ function submitInventory() {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert('Added successfully');
-                window.reload();
+                window.location.reload();
             } else if (flag == '0') {
                 alert('Falty, no such food');
             } else {

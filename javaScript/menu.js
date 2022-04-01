@@ -15,7 +15,7 @@ function loadDiscription() {
     );
     AddListenerToBu(
         'link_search',
-        'Search for a recipe<br>And get start<br>Right now!',
+        'Search for a recipe<br>And get started<br>Right now!',
         'url(../src/grandparents-niece-searching-recipe-christmas.jpg)'
     );
     AddListenerToBu(
@@ -28,7 +28,7 @@ function loadDiscription() {
 function loadDefault() {
     console.log("loading default");
     let parentp = document.getElementById('contentLoadParagraph');
-    parentp.innerHTML = 'Move your mouse on a button<br>to see what it do.<br>';
+    parentp.innerHTML = 'Move your mouse on a button<br>to see what it does.<br>';
     parentp.style.backgroundImage = "url(../src/cooked-food.jpg)";
 }
 
@@ -50,6 +50,6 @@ function mouseOver(content, imgUrl) {
 
 function mouseOut() {
     let parentp = document.getElementById('contentLoadParagraph');
-    parentp.innerHTML = 'Move your mouse on a button<br>to see what it do.<br>';
+    parentp.innerHTML = 'Move your mouse on a button<br>to see what it does.<br>';
     parentp.style.backgroundImage = "url(../src/cooked-food.jpg)";
 }
