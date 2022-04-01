@@ -54,7 +54,8 @@
 		$stmt = $conn->prepare($sql);
 
 		$stmt->execute(['user' => $userId, 'recipe' => $recipeId]);
-		while ($row = $stmt->fetch()){
+		$row = $stmt->fetch();
+		while ($row != null){
 			//should only return one record if any
 			return true; //record already exists
 		}
