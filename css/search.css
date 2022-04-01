@@ -57,7 +57,7 @@ body {
 .search-comfirm {
     flex-grow: 1;
     width: 20%;
-    margin: 20px;
+    margin: 0 20px;
 }
 
 .search-selection {
