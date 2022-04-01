@@ -16,7 +16,13 @@ function addToSL() {
             type: 'POST',
             data: data,
             success: function(data) {
+              let flag = getValue('flag', data);
+              if (flag == '1') {
                 alert("Success.");
+              }
+              else {
+                alert("Error.");
+              }
             }
         });
         return false;
