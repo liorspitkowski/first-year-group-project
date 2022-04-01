@@ -18,7 +18,7 @@ function populate() {
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             console.log(data);
             let info = data.split('#');
             var un = info[0];
@@ -34,8 +34,7 @@ function populate() {
                     node.appendChild(textnode);
                     document.getElementById("displayRecipiesList").appendChild(node);
                 }
-            }
-            else {
+            } else {
 
             }
         }
@@ -56,7 +55,7 @@ function submitUsernameChangeRequest() {
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert("changed successful.");
@@ -67,17 +66,19 @@ function submitUsernameChangeRequest() {
     });
     return false;
 }
+
 function submitFirstnameChangeRequest() {
     let user_id = getCookie('userid');
     $('#firstname_form').append('<input type="hidden" name="user_id" value="' + user_id + '" /> ');
-    var url = "../PHP/changeFirstname.php", data = $('#firstname_form').serialize();
+    var url = "../PHP/changeFirstname.php",
+        data = $('#firstname_form').serialize();
     console.log(data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert("changed successful.");
@@ -88,17 +89,19 @@ function submitFirstnameChangeRequest() {
     });
     return false;
 }
+
 function submitLastnameChangeRequest() {
     let user_id = getCookie('userid');
     $('#lastname_form').append('<input type="hidden" name="user_id" value="' + user_id + '" /> ');
-    var url = "../PHP/changeLastname.php", data = $('#lastname_form').serialize();
+    var url = "../PHP/changeLastname.php",
+        data = $('#lastname_form').serialize();
     console.log(data);
     $.ajax({
         async: false,
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             let flag = getValue('flag', data);
             if (flag == '1') {
                 alert("changed successful.");
@@ -113,7 +116,8 @@ function submitLastnameChangeRequest() {
 function submitDeleteRequest() {
     let user_id = getCookie('userid');
     $('#delete_form').append('<input type="hidden" name="user_id" value="' + user_id + '" /> ');
-    var url = "../PHP/deleteUser.php", data = $('#delete_form').serialize();
+    var url = "../PHP/deleteUser.php",
+        data = $('#delete_form').serialize();
     console.log(data);
     var temp = data;
     $.ajax({
@@ -121,7 +125,7 @@ function submitDeleteRequest() {
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
             let flag = getValue("flag", data);
             if (flag == "1") {
                 var url = "../PHP/deleteUserIngredients.php";
@@ -130,16 +134,22 @@ function submitDeleteRequest() {
                     url: url,
                     type: 'POST',
                     data: temp,
-                    success: function (data) {
+                    success: function(data) {
                         alert("successful")
+                        setCookieasGuest();
                     }
                 });
                 window.location.replace("../index.html");
-            }
-            else {
+            } else {
                 alert("Unabe to delete this user");
             }
         }
     });
     return false;
+}
+
+function setCookieasGuest() {
+    console.log("setting guestuser");
+    document.cookie = "username=guestUser; expires=18 Dec 2025 12:00:00 UTC; path=/;";
+    document.cookie = "userid=1; expires=18 Dec 2025 12:00:00 UTC; path=/;";
 }
