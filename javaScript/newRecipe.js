@@ -53,120 +53,106 @@ function removeIngredientFeild() {
 function submitRecipe(submitButton) {
 
     //adds event listeners for form submit
-    submitButton.addEventListener("click", function(e) {
+    submitButton.addEventListener("click", function (e) {
 
         e.preventDefault();
         submitRequest();
 
     });
 
-    document.addEventListener("keypress", function(e) {
+    document.addEventListener("keypress", function (e) {
         if (e.keyCode === 13 && e.target.type != "submit") {
             e.preventDefault
             submitRequest();
         }
     });
 
-    document.getElementById("clearForm").addEventListener("click", function(e) {
+    document.getElementById("clearForm").addEventListener("click", function (e) {
         clearMessages();
         var form = document.getElementById('newRecipe');
         for (var i = 0; i < form.elements.length; i++) {
             form.elements[i].style.backgroundColor = "white";
         }
     });
+}
+function submitRequest() {
 
-    function submitRequest() {
-
-        //validation
-        var form = document.getElementById('newRecipe');
-        var validation = true;
-        for (var i = 0; i < form.elements.length; i++) {
-            if (form.elements[i].hasAttribute('required')) {
-                form.elements[i].style.backgroundColor = "white";
-                if (form.elements[i].value === '') {
-                    form.elements[i].style.backgroundColor = "#ffdede";
-                    validation = false;
-                }
+    //validation
+    var form = document.getElementById('newRecipe');
+    var validation = true;
+    for (var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].hasAttribute('required')) {
+            form.elements[i].style.backgroundColor = "white";
+            if (form.elements[i].value === '') {
+                form.elements[i].style.backgroundColor = "#ffdede";
+                validation = false;
             }
         }
-
-        if (!validation) {
-            displayMessage("-1", "missing some required fields");
-            return false;
-        }
-
-        var url = "../PHP/AddRecipe.php";
-        var data = $('#newRecipe').serialize() + "&userId=" + getCookie('userid');
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: data,
-            success: function(data) {
-                console.log(data);
-                result = data.split(" | ");
-                displayMessage(result[0], result[1]);
-            }
-        });
     }
 
-    var url = "../PHP/addRecipe.php";
+    if (!validation) {
+        displayMessage("-1", "missing some required fields");
+        return false;
+    }
+
+    var url = "../PHP/AddRecipe.php";
     var data = $('#newRecipe').serialize() + "&userId=" + getCookie('userid');
     $.ajax({
         url: url,
         type: 'post',
         data: data,
-        success: function(data)
-         {
-           console.log(data);
-           result = data.split(" | ");
-           displayMessage(result[0], result[1]);
-         }
-     });
-  }
+        success: function (data) {
+            console.log(data);
+            result = data.split(" | ");
+            displayMessage(result[0], result[1]);
+        }
+    });
+}
 
-  function displayMessage(type, message){
+
+function displayMessage(type, message) {
 
     var colour;
     switch (type) {
-      case "-1":
-        colour = "#ffdede";
-        break;
-      case "0":
-        colour = "#ffb861";
-        break;
-      case "1":
-        document.getElementById("clearForm").click();
-        colour = "#83ff7a";
-        break;
-      case "99":
-        return;
-      default:
-        colour = "white";
-        break;
+        case "-1":
+            colour = "#ffdede";
+            break;
+        case "0":
+            colour = "#ffb861";
+            break;
+        case "1":
+            document.getElementById("clearForm").click();
+            colour = "#83ff7a";
+            break;
+        case "99":
+            return;
+        default:
+            colour = "white";
+            break;
 
-        }
-
-        const container = document.getElementById("recipeFormDiv");
-
-        clearMessages();
-
-        var requestMessage = document.createElement("DIV");
-        requestMessage.className = "message";
-        requestMessage.style.backgroundColor = colour;
-        requestMessage.innerHTML = message;
-        container.appendChild(requestMessage);
     }
 
-    function clearMessages() {
-        const container = document.getElementById("recipeFormDiv");
+    const container = document.getElementById("recipeFormDiv");
 
-        var messages = container.getElementsByClassName("message");
-        while (messages[0]) {
-            messages[0].parentNode.removeChild(messages[0]);
-        }
-    }
+    clearMessages();
 
+    var requestMessage = document.createElement("DIV");
+    requestMessage.className = "message";
+    requestMessage.style.backgroundColor = colour;
+    requestMessage.innerHTML = message;
+    container.appendChild(requestMessage);
 }
+
+function clearMessages() {
+    const container = document.getElementById("recipeFormDiv");
+
+    var messages = container.getElementsByClassName("message");
+    while (messages[0]) {
+        messages[0].parentNode.removeChild(messages[0]);
+    }
+}
+
+
 
 function autoCompleteFood(input) {
 
@@ -174,7 +160,7 @@ function autoCompleteFood(input) {
 
     /*adds event listener to send a request to the database when a letter is entered or removed
     from the input box*/
-    input.addEventListener('input', function(e) {
+    input.addEventListener('input', function (e) {
         var url = "../PHP/GetIngridientParts.php",
             input = e.target;
         inputVal = e.target.value;
@@ -182,7 +168,7 @@ function autoCompleteFood(input) {
             url: url,
             type: 'post',
             data: { input: inputVal, function: "autofill" },
-            success: function(data) {
+            success: function (data) {
                 closeLists();
                 if (inputVal.length < 1) return;
                 var foods = data.split(",");
@@ -197,7 +183,7 @@ function autoCompleteFood(input) {
                     item.innerHTML = "<strong>" + foods[i].substr(0, inputVal.length) + "</strong>";
                     item.innerHTML += foods[i].substr(inputVal.length);
                     item.innerHTML += "<input type='hidden' value='" + foods[i] + "'>";
-                    item.addEventListener("click", function(event) {
+                    item.addEventListener("click", function (event) {
                         //autofills value clicked by user
                         const food = this.getElementsByTagName("input")[0].value;
                         input.value = food;
@@ -206,7 +192,7 @@ function autoCompleteFood(input) {
                             url: "../PHP/GetIngridientParts.php",
                             type: 'post',
                             data: { input: food, function: "defaultUnits" },
-                            success: function(unitVals) {
+                            success: function (unitVals) {
                                 var units = unitVals.split(",");
                                 if (units.length == 1) {
                                     input.parentNode.parentNode.getElementsByClassName("unit")[0].value = units[0];
@@ -224,7 +210,7 @@ function autoCompleteFood(input) {
     });
 
     /*adds event listener to allow scrolling through aoutfill options with arrow keys */
-    input.addEventListener('keydown', function(e) {
+    input.addEventListener('keydown', function (e) {
         var list = document.getElementById(this.id + "-autocomplete-list");
         if (list) list = list.getElementsByTagName("div");
 
@@ -268,7 +254,7 @@ function autoCompleteFood(input) {
         }
     }
 
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", function (e) {
         closeLists();
     });
 
